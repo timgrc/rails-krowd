@@ -9,3 +9,4 @@
 # production:
 #   stripe_api_key: sk_live_EeHnL644i6zo4Iyq4v1KdV9H
 #   stripe_publishable_key: pk_live_9lcthxpSIHbGwmdO941O1XVU
+SECRET_KEY_BASE: '2268b24cb80ce46abdad1bc655184c55d023d51cc6b97771826e40a567d5206957652ffee68bcb4e369a4c7bc15ee101e5dbca001d891630302bc1c378d488b6'

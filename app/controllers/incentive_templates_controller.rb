@@ -1,0 +1,3 @@
+class IncentiveTemplatesController < ApplicationController
+
+end

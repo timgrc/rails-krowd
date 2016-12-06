@@ -10,8 +10,6 @@ gem 'devise'
 gem 'redis'
 gem 'pundit'
 gem 'yam'
-gem 'omniauth'
-gem 'omniauth-yammer'
 
 gem 'sass-rails'
 gem 'jquery-rails'

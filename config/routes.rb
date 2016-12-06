@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+
   root to: 'pages#home'
 
   post "yammer", to: "users/omniauth_callbacks#yammer"

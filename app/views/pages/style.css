@@ -10,6 +10,7 @@
 .beige { background-color: #e0dfc5; }
 
 .green { background-color: #4caf50; }
+.green-bis { background-color: #3F9042; }
 
 .blue { background-color: #33658a; }
 .blue-bis { background-color: #58819F; }
@@ -21,9 +22,17 @@
 
 .black { background-color: #1e1d23; }
 
-.btn-color-red { background-color: #cd3333; }
+.btn-color-red {
+  background: -webkit-linear-gradient(top, #cd3333 0, #A82A2A 100%);
+  background: linear-gradient(to bottom,#cd3333 0,#A82A2A 100%);
+  box-shadow: 0 1px 0 #A82A2A;
+}
 
-.btn-color-green { background-color: #4caf50; }
+.btn-color-green {
+  background: -webkit-linear-gradient(top, #4caf50 0, #3F9042 100%);
+  background: linear-gradient(to bottom,#4caf50 0,#3F9042 100%);
+  box-shadow: 0 1px 0 #3F9042;
+}
 
 h1 { font-family: 'Droid Sans', sans-serif; }
 
@@ -36,7 +45,8 @@ p {
 
 .btn-cancel, .btn-push {
   color: white;
-  padding: 10px 15px;
+  margin: 8px 4px 0 0;
+  padding: 7px 20px;
   border-radius: 4px;
   font-weight: bold;
   text-decoration: none;

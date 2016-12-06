@@ -22,7 +22,9 @@
       </div>
       <div class="modal-body center">
         <div>
-          <%= image_tag "yammer-sign-in.png" %>
+          <%= link_to new_user_session_path do %>
+            <%= image_tag "yammer-sign-in.png" %>
+          <% end %>
         </div>
       </div>
     </div>

@@ -3,6 +3,9 @@ Rails.application.routes.draw do
 
   root to: 'pages#home'
 
+  post "yammer", to: "users/omniauth_callbacks#yammer"
+  get "yammer/callback", to: "users/omniauth_callbacks#callback"
+
   resources :groups, only: [:show, :new, :create, :delete] do
     resources :incentive_templates
     post '/incentive_templates/push_templates', to: 'incentive_templates#push_templates', as: 'push_templates'

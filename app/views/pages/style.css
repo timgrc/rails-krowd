@@ -7,23 +7,23 @@
 
 .inline-block { display: inline-block; }
 
-.first { background-color: #e0dfc5; }
+.beige { background-color: #e0dfc5; }
 
-.second { background-color: #4caf50; }
+.green { background-color: #4caf50; }
 
-.third { background-color: #33658a; }
-.third-bis { background-color: #58819F; }
-.third-ter { background-color: #2A5371; }
+.blue { background-color: #33658a; }
+.blue-bis { background-color: #58819F; }
+.blue-ter { background-color: #2A5371; }
 
-.four { background-color: #cd3333; }
-.four-bis { background-color: #D65858; }
-.four-ter { background-color: #A82A2A; }
+.red { background-color: #cd3333; }
+.red-bis { background-color: #D65858; }
+.red-ter { background-color: #A82A2A; }
 
-.five { background-color: #1e1d23; }
+.black { background-color: #1e1d23; }
 
-.btn-color-first { background-color: #cd3333; }
+.btn-color-red { background-color: #cd3333; }
 
-.btn-color-second { background-color: #4caf50; }
+.btn-color-green { background-color: #4caf50; }
 
 h1 { font-family: 'Droid Sans', sans-serif; }
 

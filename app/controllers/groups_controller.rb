@@ -1,9 +1,9 @@
 class GroupsController < ApplicationController
   before_action :find_group, only: [:show, :create] # :destoy ?
 
-  # def index # do we have an index ?
-  #   @groups = policy_scope(Group)
-  # end
+  def index
+    @groups = policy_scope(Group)
+  end
 
   def show
   end

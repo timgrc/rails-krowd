@@ -1,0 +1,40 @@
+.center {
+  text-align: center;
+}
+
+.btn-quick-access, .btn-sign-in {
+    padding: 10px 25px;
+    border-radius: 3px;
+    font-weight: lighter;
+    opacity: 1;
+}
+
+.btn-quick-access {
+    background-color: transparent;
+    color: #33658a;
+    border: 1px solid #33658a;
+}
+
+.btn-sign-in {
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+}
+
+.btn-quick-access:hover, .btn-sign-in:hover {
+  text-decoration: none;
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.btn-sign-in:hover { color: white; }
+
+.arrow {
+  position: absolute;
+  bottom: 10px;
+  font-size: 90px;
+  color: #FFFAFF;
+  right: 0;
+  left: 0;
+}
+

@@ -35,7 +35,9 @@ class User < ApplicationRecord
       mugshot_url: auth["user"]["mugshot_url_template"].sub('{width}x{height}','400x400'),
       network_name: auth["user"]["network_name"]
     }
+
     user = User.where(email: auth["user"]["email"]).first
+
     if user
       # User already signed up -> update data?
       user.update(user_params)
@@ -45,6 +47,7 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0, 20]
       user.save
     end
+
     return user
   end
 

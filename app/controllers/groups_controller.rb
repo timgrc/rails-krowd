@@ -1,8 +1,12 @@
+require 'yammer'
+
 class GroupsController < ApplicationController
-  before_action :find_group, only: [:show, :create] # :destoy ?
+  before_action :find_group, only: [:show] # :destoy ?
 
   def index
-    @groups = policy_scope(Group)
+    @groups     = Group.all
+    @group      = Group.new
+    @yam_groups = GetAllGroups.new(current_user.access_token).list
   end
 
   def show
@@ -11,15 +15,20 @@ class GroupsController < ApplicationController
   # GET /groups/new
   def new
     @group = Group.new
-    authorize @group
+    # authorize @group
   end
 
   def create
-    @group = current_user.groups.build(group_params)
-    authorize @group
+    yam_groups            = GetAllGroups.new(current_user.access_token).list
+    group_params_from_api = yam_groups.find do |yam_group|
+      yam_group[:full_name] == params[:group][:full_name]
+    end
+    @group = current_user.groups.build(group_params_from_api)
+    # authorize @group
 
     if @group.save
-      redirect_to group_path(@group)
+      # redirect_to group_path(@group)
+      redirect_to groups_path
     else
       render 'new'
     end
@@ -31,11 +40,18 @@ class GroupsController < ApplicationController
   private
 
   def group_params
-    params.require(:group).permit(:full_name)
+    params.require(:group).permit(
+      :rse_group_id,
+      :rse_network_id,
+      :full_name,
+      :description,
+      :web_url,
+      :mugshot_url
+    )
   end
 
   def find_group
     @group = Group.find(params[:id])
-    authorize @group
+    # authorize @group
   end
 end

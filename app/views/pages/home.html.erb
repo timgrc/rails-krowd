@@ -1,11 +1,10 @@
 
-<%= link_to "yammer signin", yammer_path, method: :post %>
-
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('<%= path_to_image "background.jpg" %>');">
   <div class="content">
       <h1>Drive your innovation challenges</h1>
       <p>Optimize your entreprise social network and give a voice to your innovation's data</p>
-      <a class="btn-sign-in" data-toggle='modal' data-target='#myModal'>Login</a>
+      <%= link_to 'Login with Yammer', yammer_path, method: :post, class: 'btn-sign-in' %>
+      <!-- <a class="btn-sign-in" data-toggle='modal' data-target='#myModal'>Login</a> -->
   </div>
   <a href="#about">
     <div class="arrow">
@@ -33,4 +32,8 @@
     </div>
   </div>
 </div>
+
+<!--
+<%= render 'modal_login' %>
+ -->
 

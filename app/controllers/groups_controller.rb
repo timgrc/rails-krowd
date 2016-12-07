@@ -12,7 +12,7 @@ class GroupsController < ApplicationController
   def show
     post_id               = 810024598
     @yam_comments_in_post = GetCommentsFromPosts.new(current_user, post_id).call
-    raise
+    # raise
   end
 
   # GET /groups/new

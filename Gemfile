@@ -10,6 +10,7 @@ gem 'devise'
 gem 'redis'
 gem 'pundit'
 gem 'yam'
+gem 'enumerize'
 
 gem 'sass-rails'
 gem 'jquery-rails'

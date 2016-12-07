@@ -10,5 +10,23 @@
             <a class="card-link" href="#" ></a>
           </div>
         </div>
+
+        <div class="col-xs-12 col-sm-4">
+          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('background.jpg');">
+            <div class="card-category">Popular</div>
+              <div class="card-description">
+                <h1>A title</h1>
+                <p>And some additionnal stuff</p>
+              </div>
+            <a class="card-link" href="#" ></a>
+          </div>
+        </div>
       </div>
     </div>
+
+<%= simple_form_for @group do |f| %>
+  <%= f.input :full_name,
+    collection: @yam_groups.map { |yam_group| yam_group[:full_name] },
+    selected: @yam_groups.first[:full_name]  %>
+  <%= f.submit %>
+<% end %>

@@ -16,4 +16,10 @@ class Users::OmniauthCallbacksController < ApplicationController
     flash[:notice] = "Successfully authenticated from Yammer"
     sign_in_and_redirect(user)
   end
+
+  private
+
+  def sign_in_and_redirect(user)
+    redirect_to groups_path
+  end
 end

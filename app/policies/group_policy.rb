@@ -5,7 +5,11 @@ class GroupPolicy < ApplicationPolicy
     end
   end
 
-  def show
+  def index?
+    true
+  end
+
+  def show?
     record.user == user
   end
 

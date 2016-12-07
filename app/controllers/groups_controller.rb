@@ -28,8 +28,9 @@ class GroupsController < ApplicationController
     authorize @group
 
     if @group.save
-      # redirect_to group_path(@group)
+      Membership.create!(user: current_user, group: @group)
       redirect_to groups_path
+      # redirect_to group_path(@group)
     else
       render 'new'
     end

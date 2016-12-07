@@ -14,6 +14,6 @@ class GroupPolicy < ApplicationPolicy
   end
 
   def create?
-    record.member? user
+    true
   end
 end

@@ -15,12 +15,6 @@ class GroupsController < ApplicationController
     # raise
   end
 
-  # GET /groups/new
-  def new
-    @group = Group.new
-    authorize @group
-  end
-
   def create
     yam_groups            = GetAllGroups.new(current_user).call
     group_params_from_api = yam_groups.find do |yam_group|

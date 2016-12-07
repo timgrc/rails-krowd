@@ -4,18 +4,19 @@ class GroupsController < ApplicationController
   before_action :find_group, only: [:show] # :destoy ?
 
   def index
-    @groups     = Group.all
+    @groups     = policy_scope(Group)
     @group      = Group.new
     @yam_groups = GetAllGroups.new(current_user.access_token).list
   end
 
   def show
+    authorize @group
   end
 
   # GET /groups/new
   def new
     @group = Group.new
-    # authorize @group
+    authorize @group
   end
 
   def create
@@ -24,7 +25,7 @@ class GroupsController < ApplicationController
       yam_group[:full_name] == params[:group][:full_name]
     end
     @group = current_user.groups.build(group_params_from_api)
-    # authorize @group
+    authorize @group
 
     if @group.save
       # redirect_to group_path(@group)

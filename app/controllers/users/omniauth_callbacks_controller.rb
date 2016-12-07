@@ -2,6 +2,7 @@ class Users::OmniauthCallbacksController < ApplicationController
   require 'yammer'
 
   skip_before_action :authenticate_user!
+  skip_after_action :verify_authorized
 
   def yammer
     yammer_client = Yammer::OAuth2Client.new(ENV['YAMMER_ID'], ENV['YAMMER_SECRET'])

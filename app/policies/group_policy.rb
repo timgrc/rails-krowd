@@ -1,7 +1,7 @@
 class GroupPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.where(user: user)
+      scope.joins(:memberships).where('memberships.user_id=?', user.id)
     end
   end
 
@@ -10,10 +10,10 @@ class GroupPolicy < ApplicationPolicy
   end
 
   def show?
-    record.user == user
+    record.member? user
   end
 
   def create?
-    true
+    record.member? user
   end
 end

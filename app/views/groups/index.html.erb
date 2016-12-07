@@ -1,32 +1,31 @@
-    <div class="container">
-      <div class="row">
+<div class="container" style="padding-top: 70px;">
+  <div class="row">
+    <% @groups.each do |group| %>
+      <%= link_to group_path(group) do %>
         <div class="col-xs-12 col-sm-4">
           <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('background.jpg');">
             <div class="card-category">Popular</div>
-              <div class="card-description">
-                <h1>A title</h1>
-                <p>And some additionnal stuff</p>
-              </div>
-            <a class="card-link" href="#" ></a>
+            <div class="card-description">
+              <h1><%= group.full_name %></h1>
+              <p><%= group.description %></p>
+            </div>
           </div>
         </div>
+      <% end %>
+    <% end %>
 
-        <div class="col-xs-12 col-sm-4">
-          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('background.jpg');">
-            <div class="card-category">Popular</div>
-              <div class="card-description">
-                <h1>A title</h1>
-                <p>And some additionnal stuff</p>
-              </div>
-            <a class="card-link" href="#" ></a>
-          </div>
+    <%= link_to 'https://www.google.fr', 'data-toggle' => 'modal', 'data-target' => '#myModal'  do %>
+      <div class="col-xs-12 col-sm-4">
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('background.jpg');">
+          <div class="card-category">Popular</div>
+            <div class="card-description">
+              <h1>Create a new challenge</h1>
+              <p>And some additionnal stuff</p>
+            </div>
         </div>
       </div>
-    </div>
+    <% end %>
+  </div>
+</div>
 
-<%= simple_form_for @group do |f| %>
-  <%= f.input :full_name,
-    collection: @yam_groups.map { |yam_group| yam_group[:full_name] },
-    selected: @yam_groups.first[:full_name]  %>
-  <%= f.submit %>
-<% end %>
+<%= render 'modal_form_create_group' %>

@@ -6,11 +6,13 @@ class GroupsController < ApplicationController
   def index
     @groups     = policy_scope(Group)
     @group      = Group.new
-    @yam_groups = GetAllGroups.new(current_user).list
+    @yam_groups = GetAllGroups.new(current_user).call
   end
 
   def show
-    authorize @group
+    post_id               = 810024598
+    @yam_comments_in_post = GetCommentsFromPosts.new(current_user, post_id).call
+    raise
   end
 
   # GET /groups/new
@@ -20,7 +22,7 @@ class GroupsController < ApplicationController
   end
 
   def create
-    yam_groups            = GetAllGroups.new(current_user).list
+    yam_groups            = GetAllGroups.new(current_user).call
     group_params_from_api = yam_groups.find do |yam_group|
       yam_group[:full_name] == params[:group][:full_name]
     end
@@ -54,6 +56,6 @@ class GroupsController < ApplicationController
 
   def find_group
     @group = Group.find(params[:id])
-    # authorize @group
+    authorize @group
   end
 end

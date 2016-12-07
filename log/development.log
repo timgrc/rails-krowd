@@ -3967,3 +3967,414 @@ Processing by PagesController#home as HTML
 Completed 200 OK in 228ms (Views: 226.0ms | ActiveRecord: 0.0ms)
 
 
+Started GET "/groups/3" for ::1 at 2016-12-07 17:29:15 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (43.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by GroupsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGroup Load (0.7ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mMembership Exists (31.1ms)[0m  [1m[34mSELECT  1 AS one FROM "memberships" WHERE "memberships"."group_id" = 3 AND "memberships"."user_id" = 2 LIMIT $1[0m  [["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 218ms (ActiveRecord: 88.5ms)
+
+
+Started GET "/" for ::1 at 2016-12-07 17:29:16 +0100
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/_modal_login.html.erb (1.3ms)
+  Rendered pages/home.html.erb within layouts/application (8636.8ms)
+  [1m[36mUser Load (7.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered shared/_navbar.html.erb (25.0ms)
+  Rendered shared/_flashes.html.erb (0.5ms)
+Completed 200 OK in 8712ms (Views: 8702.5ms | ActiveRecord: 7.4ms)
+
+
+Started GET "/" for ::1 at 2016-12-07 17:29:28 +0100
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/_modal_login.html.erb (1.6ms)
+  Rendered pages/home.html.erb within layouts/application (10.2ms)
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered shared/_navbar.html.erb (6.5ms)
+  Rendered shared/_flashes.html.erb (0.6ms)
+Completed 200 OK in 69ms (Views: 65.1ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/yammer" for ::1 at 2016-12-07 17:29:33 +0100
+Processing by Users::OmniauthCallbacksController#yammer as HTML
+  Parameters: {"authenticity_token"=>"2WaO0sx0xpTAfubIV0mtgd3dWKu+OjttRLP/eHHhtdWR/YbgcgorOXosV0xLsAHo8lOU86QDvS969VfeDcQPhQ=="}
+Redirected to https://www.yammer.com/oauth2/authorize?client_id=f74p17xAaTd7oYsjEgLA&response_type=code
+Completed 302 Found in 3ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/yammer/callback?code=fuOCTbmWCz1T073QnorUHQ" for ::1 at 2016-12-07 17:29:39 +0100
+Processing by Users::OmniauthCallbacksController#callback as HTML
+  Parameters: {"code"=>"fuOCTbmWCz1T073QnorUHQ"}
+  [1m[36mUser Load (43.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "timothee.garcia@wearestim.com"], ["LIMIT", 1]]
+  [1m[35m (13.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+Redirected to http://localhost:3000/groups
+Completed 302 Found in 898ms (ActiveRecord: 57.1ms)
+
+
+Started GET "/groups" for ::1 at 2016-12-07 17:29:40 +0100
+Processing by GroupsController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering groups/index.html.erb within layouts/application
+  [1m[36mGroup Load (24.0ms)[0m  [1m[34mSELECT "groups".* FROM "groups" INNER JOIN "memberships" ON "memberships"."group_id" = "groups"."id" WHERE (memberships.user_id=2)[0m
+  Rendered groups/_modal_form_create_group.html.erb (13.5ms)
+  Rendered groups/index.html.erb within layouts/application (52.5ms)
+  Rendered shared/_navbar.html.erb (4.2ms)
+  Rendered shared/_flashes.html.erb (0.6ms)
+Completed 200 OK in 496ms (Views: 72.9ms | ActiveRecord: 24.6ms)
+
+
+Started GET "/groups/3" for ::1 at 2016-12-07 17:29:57 +0100
+Processing by GroupsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGroup Load (0.4ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mMembership Exists (12.1ms)[0m  [1m[34mSELECT  1 AS one FROM "memberships" WHERE "memberships"."group_id" = 3 AND "memberships"."user_id" = 2 LIMIT $1[0m  [["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 20ms (ActiveRecord: 13.1ms)
+
+
+Started GET "/" for ::1 at 2016-12-07 17:29:57 +0100
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/_modal_login.html.erb (1.2ms)
+  Rendered pages/home.html.erb within layouts/application (7.4ms)
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered shared/_navbar.html.erb (5.1ms)
+  Rendered shared/_flashes.html.erb (0.6ms)
+Completed 200 OK in 56ms (Views: 53.6ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/yammer" for ::1 at 2016-12-07 17:30:03 +0100
+Processing by Users::OmniauthCallbacksController#yammer as HTML
+  Parameters: {"authenticity_token"=>"CcOV7CrvR64fWq/k/sqr+4MA9qQSYvDjoTQFkjIZH8JBWJ3elJGqA6UIHmDiMweSrI46/AhbdqGfcq00Tjylkg=="}
+Redirected to https://www.yammer.com/oauth2/authorize?client_id=f74p17xAaTd7oYsjEgLA&response_type=code
+Completed 302 Found in 3ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/yammer/callback?code=syGx8utL8mOddebejq6GNQ" for ::1 at 2016-12-07 17:30:04 +0100
+Processing by Users::OmniauthCallbacksController#callback as HTML
+  Parameters: {"code"=>"syGx8utL8mOddebejq6GNQ"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "timothee.garcia@wearestim.com"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+Redirected to http://localhost:3000/groups
+Completed 302 Found in 392ms (ActiveRecord: 1.4ms)
+
+
+Started GET "/groups" for ::1 at 2016-12-07 17:30:04 +0100
+Processing by GroupsController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering groups/index.html.erb within layouts/application
+  [1m[36mGroup Load (0.7ms)[0m  [1m[34mSELECT "groups".* FROM "groups" INNER JOIN "memberships" ON "memberships"."group_id" = "groups"."id" WHERE (memberships.user_id=2)[0m
+  Rendered groups/_modal_form_create_group.html.erb (17.1ms)
+  Rendered groups/index.html.erb within layouts/application (24.5ms)
+  Rendered shared/_navbar.html.erb (4.7ms)
+  Rendered shared/_flashes.html.erb (0.6ms)
+Completed 200 OK in 489ms (Views: 80.9ms | ActiveRecord: 1.1ms)
+
+
+Started POST "/groups" for ::1 at 2016-12-07 17:30:15 +0100
+Processing by GroupsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"g7qKLFuTYWaXhx0kpq63sQQ+W9MyTOOXJbZF4xoPVpvLIYIe5e2Myy3VrKC6VxvYK7CXiyh1ZdUb8O1FZirsyw==", "group"=>{"full_name"=>"Innovation 3"}, "commit"=>"Create Group"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mMembership Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "memberships" WHERE "memberships"."group_id" IS NULL AND "memberships"."user_id" = 2 LIMIT $1[0m  [["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 389ms (ActiveRecord: 1.0ms)
+
+
+Started GET "/" for ::1 at 2016-12-07 17:30:15 +0100
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/_modal_login.html.erb (1.4ms)
+  Rendered pages/home.html.erb within layouts/application (9.1ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered shared/_navbar.html.erb (5.2ms)
+  Rendered shared/_flashes.html.erb (0.9ms)
+Completed 200 OK in 53ms (Views: 50.6ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/yammer" for ::1 at 2016-12-07 17:30:18 +0100
+Processing by Users::OmniauthCallbacksController#yammer as HTML
+  Parameters: {"authenticity_token"=>"GzgfupB2Zz6X8+4wOmxldl790asyvJYzqeDUw5GWU+dToxeILgiKky2hX7QmlckfcXMd8yiFEHGXpnxl7bPptw=="}
+Redirected to https://www.yammer.com/oauth2/authorize?client_id=f74p17xAaTd7oYsjEgLA&response_type=code
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/yammer/callback?code=0LAPP8eOZbF2opa6rZrYKg" for ::1 at 2016-12-07 17:30:18 +0100
+Processing by Users::OmniauthCallbacksController#callback as HTML
+  Parameters: {"code"=>"0LAPP8eOZbF2opa6rZrYKg"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "timothee.garcia@wearestim.com"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+Redirected to http://localhost:3000/groups
+Completed 302 Found in 435ms (ActiveRecord: 1.4ms)
+
+
+Started GET "/groups" for ::1 at 2016-12-07 17:30:19 +0100
+Processing by GroupsController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering groups/index.html.erb within layouts/application
+  [1m[36mGroup Load (0.5ms)[0m  [1m[34mSELECT "groups".* FROM "groups" INNER JOIN "memberships" ON "memberships"."group_id" = "groups"."id" WHERE (memberships.user_id=2)[0m
+  Rendered groups/_modal_form_create_group.html.erb (7.1ms)
+  Rendered groups/index.html.erb within layouts/application (12.9ms)
+  Rendered shared/_navbar.html.erb (4.8ms)
+  Rendered shared/_flashes.html.erb (0.6ms)
+Completed 200 OK in 409ms (Views: 50.6ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/groups" for ::1 at 2016-12-07 17:30:38 +0100
+Processing by GroupsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"oShTy+w/QY/k+03F5rrcQ1z2+rciG79WaJgxUOrRzQLps1v5UkGsIl6p/EH6Q3Aqc3g27zgiORRW3pn2lvR3Ug==", "group"=>{"full_name"=>"Innovation 24"}, "commit"=>"Create Group"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mMembership Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "memberships" WHERE "memberships"."group_id" IS NULL AND "memberships"."user_id" = 2 LIMIT $1[0m  [["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 370ms (ActiveRecord: 0.8ms)
+
+
+Started GET "/" for ::1 at 2016-12-07 17:30:39 +0100
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/_modal_login.html.erb (1.1ms)
+  Rendered pages/home.html.erb within layouts/application (7.4ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered shared/_navbar.html.erb (5.4ms)
+  Rendered shared/_flashes.html.erb (0.6ms)
+Completed 200 OK in 53ms (Views: 50.9ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/yammer" for ::1 at 2016-12-07 17:30:42 +0100
+Processing by Users::OmniauthCallbacksController#yammer as HTML
+  Parameters: {"authenticity_token"=>"ErPR3cjqRWg3SX2XN7D+wE/hkUHMxH2rMxkQnAW67x1aKNnvdpSoxY0bzBMrSVKpYG9dGdb9++kNX7g6eZ9VTQ=="}
+Redirected to https://www.yammer.com/oauth2/authorize?client_id=f74p17xAaTd7oYsjEgLA&response_type=code
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/yammer/callback?code=4BJ7955EK31r00ZDry3nbg" for ::1 at 2016-12-07 17:30:43 +0100
+Processing by Users::OmniauthCallbacksController#callback as HTML
+  Parameters: {"code"=>"4BJ7955EK31r00ZDry3nbg"}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "timothee.garcia@wearestim.com"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+Redirected to http://localhost:3000/groups
+Completed 302 Found in 373ms (ActiveRecord: 1.8ms)
+
+
+Started GET "/groups" for ::1 at 2016-12-07 17:30:43 +0100
+Processing by GroupsController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering groups/index.html.erb within layouts/application
+  [1m[36mGroup Load (0.6ms)[0m  [1m[34mSELECT "groups".* FROM "groups" INNER JOIN "memberships" ON "memberships"."group_id" = "groups"."id" WHERE (memberships.user_id=2)[0m
+  Rendered groups/_modal_form_create_group.html.erb (12.6ms)
+  Rendered groups/index.html.erb within layouts/application (20.1ms)
+  Rendered shared/_navbar.html.erb (3.3ms)
+  Rendered shared/_flashes.html.erb (0.7ms)
+Completed 200 OK in 488ms (Views: 59.2ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/" for ::1 at 2016-12-07 17:30:56 +0100
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/_modal_login.html.erb (1.2ms)
+  Rendered pages/home.html.erb within layouts/application (8.6ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered shared/_navbar.html.erb (6.0ms)
+  Rendered shared/_flashes.html.erb (0.7ms)
+Completed 200 OK in 53ms (Views: 50.8ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/yammer" for ::1 at 2016-12-07 17:31:12 +0100
+Processing by Users::OmniauthCallbacksController#yammer as HTML
+  Parameters: {"authenticity_token"=>"DiP3n8gHr0HE1qew5WVmP8nrMO1h8pFltdysBUPEK/1GuP+tdnlC7H6EFjT5nMpW5mX8tXvLFyeLmgSjP+GRrQ=="}
+Redirected to https://www.yammer.com/oauth2/authorize?client_id=f74p17xAaTd7oYsjEgLA&response_type=code
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/yammer/callback?code=Fnmf1JGpiSlkQB2T0Bb5A" for ::1 at 2016-12-07 17:31:12 +0100
+Processing by Users::OmniauthCallbacksController#callback as HTML
+  Parameters: {"code"=>"Fnmf1JGpiSlkQB2T0Bb5A"}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "timothee.garcia@wearestim.com"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+Redirected to http://localhost:3000/groups
+Completed 302 Found in 841ms (ActiveRecord: 1.9ms)
+
+
+Started GET "/groups" for ::1 at 2016-12-07 17:31:13 +0100
+Processing by GroupsController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering groups/index.html.erb within layouts/application
+  [1m[36mGroup Load (0.5ms)[0m  [1m[34mSELECT "groups".* FROM "groups" INNER JOIN "memberships" ON "memberships"."group_id" = "groups"."id" WHERE (memberships.user_id=2)[0m
+  Rendered groups/_modal_form_create_group.html.erb (12.1ms)
+  Rendered groups/index.html.erb within layouts/application (18.3ms)
+  Rendered shared/_navbar.html.erb (3.1ms)
+  Rendered shared/_flashes.html.erb (0.8ms)
+Completed 200 OK in 499ms (Views: 55.9ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/" for ::1 at 2016-12-07 17:31:17 +0100
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/_modal_login.html.erb (1.5ms)
+  Rendered pages/home.html.erb within layouts/application (7.5ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered shared/_navbar.html.erb (5.1ms)
+  Rendered shared/_flashes.html.erb (0.5ms)
+Completed 200 OK in 69ms (Views: 66.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for ::1 at 2016-12-07 17:31:23 +0100
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/_modal_login.html.erb (1.2ms)
+  Rendered pages/home.html.erb within layouts/application (7.4ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered shared/_navbar.html.erb (5.3ms)
+  Rendered shared/_flashes.html.erb (1.0ms)
+Completed 200 OK in 57ms (Views: 53.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for ::1 at 2016-12-07 17:31:26 +0100
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/_modal_login.html.erb (0.9ms)
+  Rendered pages/home.html.erb within layouts/application (5.7ms)
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered shared/_navbar.html.erb (5.0ms)
+  Rendered shared/_flashes.html.erb (0.6ms)
+Completed 200 OK in 49ms (Views: 46.8ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/yammer" for ::1 at 2016-12-07 17:31:30 +0100
+Processing by Users::OmniauthCallbacksController#yammer as HTML
+  Parameters: {"authenticity_token"=>"ufkxRJcPaxLU/1algLrwWj+tsyo/gvxg5kdXgQiXuhvxYjl2KXGGv26t5yGcQ1wzECN/ciW7eiLYAf8ndLIASw=="}
+Redirected to https://www.yammer.com/oauth2/authorize?client_id=f74p17xAaTd7oYsjEgLA&response_type=code
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/yammer/callback?code=lzV8Uc7JRP5UIS4QUY6Shw" for ::1 at 2016-12-07 17:31:31 +0100
+Processing by Users::OmniauthCallbacksController#callback as HTML
+  Parameters: {"code"=>"lzV8Uc7JRP5UIS4QUY6Shw"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "timothee.garcia@wearestim.com"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+Redirected to http://localhost:3000/groups
+Completed 302 Found in 378ms (ActiveRecord: 1.8ms)
+
+
+Started GET "/groups" for ::1 at 2016-12-07 17:31:31 +0100
+Processing by GroupsController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering groups/index.html.erb within layouts/application
+  [1m[36mGroup Load (0.9ms)[0m  [1m[34mSELECT "groups".* FROM "groups" INNER JOIN "memberships" ON "memberships"."group_id" = "groups"."id" WHERE (memberships.user_id=2)[0m
+  Rendered groups/_modal_form_create_group.html.erb (12.4ms)
+  Rendered groups/index.html.erb within layouts/application (19.8ms)
+  Rendered shared/_navbar.html.erb (2.9ms)
+  Rendered shared/_flashes.html.erb (0.6ms)
+Completed 200 OK in 483ms (Views: 55.4ms | ActiveRecord: 1.6ms)
+
+
+Started POST "/groups" for ::1 at 2016-12-07 17:31:41 +0100
+Processing by GroupsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"aDjoyDPAZHGa9jUv2k4HIynlj1hi7Mv+glZ3z+Tybw0go+D6jb6J3CCkhKvGt6tKBmtDAHjVTby8EN9pmNfVXQ==", "group"=>{"full_name"=>"Innovation 24"}, "commit"=>"Create Group"}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mMembership Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "memberships" WHERE "memberships"."group_id" IS NULL AND "memberships"."user_id" = 2 LIMIT $1[0m  [["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 383ms (ActiveRecord: 1.6ms)
+
+
+Started GET "/" for ::1 at 2016-12-07 17:31:42 +0100
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/_modal_login.html.erb (1.9ms)
+  Rendered pages/home.html.erb within layouts/application (8.1ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered shared/_navbar.html.erb (4.7ms)
+  Rendered shared/_flashes.html.erb (0.8ms)
+Completed 200 OK in 55ms (Views: 52.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for ::1 at 2016-12-07 17:31:48 +0100
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/_modal_login.html.erb (1.1ms)
+  Rendered pages/home.html.erb within layouts/application (6.9ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered shared/_navbar.html.erb (4.9ms)
+  Rendered shared/_flashes.html.erb (0.5ms)
+Completed 200 OK in 48ms (Views: 45.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/groups/2" for ::1 at 2016-12-07 17:33:46 +0100
+Processing by GroupsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mGroup Load (0.7ms)[0m  [1m[34mSELECT  "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mMembership Exists (0.8ms)[0m  [1m[34mSELECT  1 AS one FROM "memberships" WHERE "memberships"."group_id" = 2 AND "memberships"."user_id" = 2 LIMIT $1[0m  [["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 38ms (ActiveRecord: 3.6ms)
+
+
+Started GET "/" for ::1 at 2016-12-07 17:33:46 +0100
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/_modal_login.html.erb (1.6ms)
+  Rendered pages/home.html.erb within layouts/application (23.6ms)
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered shared/_navbar.html.erb (7.6ms)
+  Rendered shared/_flashes.html.erb (0.7ms)
+Completed 200 OK in 363ms (Views: 358.1ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/" for ::1 at 2016-12-07 17:33:50 +0100
+Processing by PagesController#home as HTML
+  Rendering pages/home.html.erb within layouts/application
+  Rendered pages/_modal_login.html.erb (2.2ms)
+  Rendered pages/home.html.erb within layouts/application (7.4ms)
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendered shared/_navbar.html.erb (5.2ms)
+  Rendered shared/_flashes.html.erb (0.5ms)
+Completed 200 OK in 56ms (Views: 53.4ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/yammer" for ::1 at 2016-12-07 17:33:58 +0100
+Processing by Users::OmniauthCallbacksController#yammer as HTML
+  Parameters: {"authenticity_token"=>"rEnUcBCuEjeHH49PRAfeZumHQ8tVM8xXzAurRIhIhpXk0txCrtD/mj1NPstY/nIPxgmPk08KShXyTQPi9G08xQ=="}
+Redirected to https://www.yammer.com/oauth2/authorize?client_id=f74p17xAaTd7oYsjEgLA&response_type=code
+Completed 302 Found in 4ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/yammer/callback?code=0e8uEl8GAqnNQKjPRlNFoA" for ::1 at 2016-12-07 17:33:58 +0100
+Processing by Users::OmniauthCallbacksController#callback as HTML
+  Parameters: {"code"=>"0e8uEl8GAqnNQKjPRlNFoA"}
+  [1m[36mUser Load (2.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "timothee.garcia@wearestim.com"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+Redirected to http://localhost:3000/groups
+Completed 302 Found in 876ms (ActiveRecord: 3.9ms)
+
+
+Started GET "/groups" for ::1 at 2016-12-07 17:33:59 +0100
+Processing by GroupsController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering groups/index.html.erb within layouts/application
+  [1m[36mGroup Load (0.7ms)[0m  [1m[34mSELECT "groups".* FROM "groups" INNER JOIN "memberships" ON "memberships"."group_id" = "groups"."id" WHERE (memberships.user_id=2)[0m
+  Rendered groups/_modal_form_create_group.html.erb (17.4ms)
+  Rendered groups/index.html.erb within layouts/application (27.5ms)
+  Rendered shared/_navbar.html.erb (9.8ms)
+  Rendered shared/_flashes.html.erb (0.9ms)
+Completed 200 OK in 440ms (Views: 95.7ms | ActiveRecord: 1.3ms)
+
+

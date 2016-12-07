@@ -15,7 +15,7 @@ class GroupsController < ApplicationController
   # GET /groups/new
   def new
     @group = Group.new
-    authorize @group
+    # authorize @group
   end
 
   def create

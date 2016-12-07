@@ -1,0 +1,29 @@
+.badge-card {
+  border: grey solid 1px;
+  height: 200px;
+}
+
+.badge-picture {
+  width: 40%;
+}
+
+.badge-reward {
+  margin-top: 5%;
+}
+
+.user-informations {
+  display: flex;
+  margin: 0 0 5% 5%;
+}
+
+.user-informations img {
+  margin-right: 5px;
+}
+
+.badge-card + .badge-card {
+  border-left:none;
+}
+
+.grid {
+  height: 100vh;
+}

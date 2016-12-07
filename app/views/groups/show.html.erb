@@ -1,32 +1,28 @@
-<%= render "groups/dashboard_partials/dashboard_badge" %>
-<div class="sidebar margin-top">
-  <ul>
-    <li>
-      <a href="#summary">
-        <i class="fa fa-info-circle"></i>
-      </a>
-    </li>
-    <li>
-      <a href="#favorite-movies">
-        <i class="fa fa-file-video-o"></i>
-      </a>
-    </li>
-    <li>
-      <a href="#footer">
-        <i class="fa fa-life-ring"></i>
-      </a>
-    </li>
-  </ul>
-</div>
-<div class="content margin-top">
-  <div class="container">
+<div class="margin-top">
+  <div class="container-full grid">
     <div class="row">
-      <div class="col-xs-12">
-        <%= @group[:full_name] %>
+      <div class="col-xs-12 col-sm-6 ">
+      </div>
+      <div class="col-xs-12 col-sm-3">
+        <%= render "groups/dashboard_partials/dashboard_badge" %>
+      </div>
+      <div class="col-xs-12 col-sm-3">
+        <%= render "groups/dashboard_partials/dashboard_badge" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-3 ">
+        <%= render "groups/dashboard_partials/dashboard_badge" %>
+      </div>
+      <div class="col-xs-12 col-sm-3">
+        <%= render "groups/dashboard_partials/dashboard_badge" %>
+      </div>
+      <div class="col-xs-12 col-sm-3">
+        <%= render "groups/dashboard_partials/dashboard_badge" %>
+      </div>
+      <div class="col-xs-12 col-sm-3">
+        <%= render "groups/dashboard_partials/dashboard_badge" %>
       </div>
     </div>
   </div>
 </div>
-
-<%= render "groups/dashboard_partials/dashboard_badge" %>
-

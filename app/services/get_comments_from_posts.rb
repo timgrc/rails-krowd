@@ -9,7 +9,7 @@ class GetCommentsFromPosts
   def call
     yam_posts = @yam.messages_in_thread(@thread_id)
     yam_posts.body[:messages].map do |post|
-      raise
+      # raise
       {
         id:            post[:id],
         sender_id:     post[:sender_id],

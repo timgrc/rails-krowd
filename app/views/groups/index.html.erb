@@ -3,12 +3,13 @@
     <% @groups.each do |group| %>
       <%= link_to group_path(group) do %>
         <div class="col-xs-12 col-sm-4">
-          <div class="card margin-bottom padded" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= path_to_image "card-background.jpg" %>');">
+          <div class="card card-group margin-bottom padded" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= path_to_image "card-background.jpg" %>');">
             <div class="card-category">Popular</div>
-            <div class="card-description">
-              <%= image_tag "card-background.jpg", class: "avatar-square card-picture" %>
-              <h1><%= group.full_name %></h1>
-              <p><%= group.description %></p>
+            <div class="card-group-description">
+              <div class="card-group-picture-absolute">
+                <%= image_tag group.mugshot_url, class: "avatar-square card-group-picture-img" %>
+              </div>
+              <h2><%= group.full_name %></h2>
             </div>
           </div>
         </div>
@@ -17,17 +18,19 @@
 
     <%= link_to '', 'data-toggle' => 'modal', 'data-target' => '#myModal' do %>
       <div class="col-xs-12 col-sm-4">
-        <div class="card margin-bottom padded" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= path_to_image "card-background.jpg" %>');">
+        <div class="card card-group margin-bottom padded" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= path_to_image "card-background.jpg" %>');">
           <div class="card-category">Popular</div>
-            <div class="card-description">
-              <%= image_tag "https://www.bunnyholder.com/50/50", class: "avatar-square card-picture" %>
-              <h1>Create a new challenge</h1>
-              <p>And some additionnal stuff</p>
+            <div class="card-group-description">
+              <div class="card-group-picture-absolute">
+                <%= image_tag "https://www.bunnyholder.com/50/50", class: "avatar-square card-group-picture-img" %>
+              </div>
+                <h2>Create a new challenge</h2>
             </div>
+          </div>
         </div>
-      </div>
     <% end %>
+
   </div>
-</div
+</div>
 
 <%= render 'modal_form_create_group' %>

@@ -61,6 +61,7 @@ body {
 .sidebar-nav li {
     text-indent: 10px;
     line-height: 40px;
+    font-size: 13px;
 }
 
 .sidebar-nav li a {
@@ -70,8 +71,12 @@ body {
     padding-right: 10px;
 }
 
+.sidebar-nav li i {
+  padding-top: 10px;
+}
+
 .sidebar-nav li a span {
-    padding-left: 10px;
+    padding-left: 20px;
 }
 
 .sidebar-nav li a:hover {
@@ -145,7 +150,7 @@ body {
 }
 
 #menu-toggle {
-    position: absolute;
+    position: fixed;
     top: 88px;
     left: 185px;
     font-size: 20px;

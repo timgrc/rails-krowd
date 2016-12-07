@@ -1,12 +1,24 @@
 .card {
-  height: 500px;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
-  background-size: cover !important;
+  display: flex;
+  height: 350px;
   color: white;
-  position: relative;
-  border-radius: 5px;
-  margin-bottom: 20px;
+  // text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+  background-size: cover !important;
+  border-radius: 1px;
+  // margin-bottom: 20px;
 }
+
+
+// Faire un bloc central pour positionner le tire et le sous titre
+
+.card-container {
+  position: relative;
+  background: black;
+  item-align: center;
+}
+// Positionner un placeholder pour le mugshot, carré coins arrondis
+// Que mettre en dessous du bloc central ?
+// Quelle ombre, bordure ....
 
 .card-user {
   position: absolute;
@@ -24,7 +36,7 @@
 
 .card-description {
   position: absolute;
-  bottom: 10px;
+  top: 100px;
   left: 10px;
 }
 .card-description h2 {

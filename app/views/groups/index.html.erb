@@ -1,10 +1,10 @@
-<div class="container margin-top">
+  <div class="container margin-top" >
   <div class="row">
     <% @groups.each do |group| %>
       <%= link_to group_path(group) do %>
         <div class="col-xs-12 col-sm-4">
-          <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('background.jpg');">
-            <div class="card-category">Popular</div>
+          <div class="card" style="background-image: url('<%= path_to_image "card-background.jpg" %>');">
+            <div class="card-container">Popular</div>
             <div class="card-description">
               <h1><%= group.full_name %></h1>
               <p><%= group.description %></p>

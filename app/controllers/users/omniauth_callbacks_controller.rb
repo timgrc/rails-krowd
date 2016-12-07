@@ -14,6 +14,7 @@ class Users::OmniauthCallbacksController < ApplicationController
     res = yammer_client.access_token_from_authorization_code(params[:code])
     user = User.find_for_yammer_oauth(JSON.parse(res.body))
     flash[:notice] = "Successfully authenticated from Yammer"
-    sign_in_and_redirect(user)
+    sign_in(user)
+    redirect_to groups_path
   end
 end

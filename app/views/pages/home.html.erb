@@ -1,5 +1,6 @@
+
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('<%= path_to_image "background.jpg" %>');">
-  <div class="content">
+  <div>
       <h1>Drive your innovation challenges</h1>
       <p>Optimize your entreprise social network and give a voice to your innovation's data</p>
       <%= link_to 'Login with Yammer', yammer_path, method: :post, class: 'btn-sign-in' %>
@@ -12,6 +13,27 @@
   </a>
 </div>
 
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Connect</h4>
+      </div>
+      <div class="modal-body center">
+        <div>
+          <%= link_to new_user_session_path do %>
+            <%= image_tag "yammer-sign-in.png" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!--
 <%= render 'modal_login' %>
  -->
+

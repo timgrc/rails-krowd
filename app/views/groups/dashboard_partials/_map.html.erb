@@ -1,6 +1,6 @@
 <div id="regions_div"></div>
 
-<% content_for :map_js do %>
+<% content_for :after_js do %>
   <script>
     google.charts.load('upcoming', {'packages':['geochart']});
       google.charts.setOnLoadCallback(drawRegionsMap);

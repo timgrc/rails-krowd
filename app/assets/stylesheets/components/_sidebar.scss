@@ -14,6 +14,7 @@ body {
 
 /* Sidebar Styles */
 
+
 #sidebar-wrapper, .sidebar-nav, .sidebar-nav li .sidebar-nav li a, .sidebar-nav li i, .sidebar-nav li a, .sidebar-tab-title {
   width: 100px;
 }
@@ -59,12 +60,13 @@ body {
   position: fixed;
   height: 100%;
   overflow-y: auto;
-  background: $beige;
+  background: #0B1B28;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
   margin-top: 1px;
+  border-right: 1px solid #828282;
 }
 
 
@@ -88,7 +90,7 @@ body {
   flex-direction: column;
   justify-content: center;
   text-decoration: none;
-  color: $black;
+  color: #EFEEEC;
 }
 
 .sidebar-nav li i, .sidebar-tab-title {
@@ -109,12 +111,16 @@ body {
   text-decoration: none;
   color: $green;
   cursor: pointer;
-  background: white;
+  background: #031421;
   border-bottom: 1px solid #E6EAEA;
   -webkit-transition: background 0.3s ease-in-out, border 0.3s ease-in-out, color 0.3s ease-in-out;
   transition: background 0.3s ease-in-out, border 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
+.sidebar-group-picture {
+  border-radius: 20%;
+  padding:10%;
+}
 .sidebar-nav li a:active,
 .sidebar-nav li a:focus {
   text-decoration: none;
@@ -128,13 +134,18 @@ body {
 }
 
 .sidebar-nav .sidebar-brand a {
-  color: $black;
+  color: $green;
 }
 
-.sidebar-nav .sidebar-brand a:hover {
-  color: $black;
+.sidebar-nav  a:hover {
+  color: $green;
   background: none;
   border-bottom: none;
+}
+
+.sidebar-brand {
+  border-bottom: 1px solid #E6EAEA;
+  border-top: none;
 }
 
 .tab, .tab.active { border-bottom: 1px solid #E6EAEA; }
@@ -142,7 +153,7 @@ body {
 .tab.active {
   color: $green;
   cursor: pointer;
-  background: white;
+  background: #031421;
   -webkit-transition: background 0.3s ease-in-out, border 0.3s ease-in-out, color 0.3s ease-in-out;
   transition: background 0.3s ease-in-out, border 0.3s ease-in-out, color 0.3s ease-in-out;
 }

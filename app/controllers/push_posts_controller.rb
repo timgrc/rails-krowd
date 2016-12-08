@@ -13,7 +13,7 @@ class PushPostsController < ApplicationController
   private
 
   def push
-    # raise
+    PostPushPost.new(current_user, @group, @push_post).call
   end
 
   def push_post_params

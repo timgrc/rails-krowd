@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   root to: 'pages#home'
+  get "styleguide", to: "pages#styleguide"
 
   post "yammer", to: "users/omniauth_callbacks#yammer"
   get "yammer/callback", to: "users/omniauth_callbacks#callback"

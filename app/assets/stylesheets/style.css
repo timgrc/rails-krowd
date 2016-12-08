@@ -49,32 +49,32 @@
   box-shadow: 0 1px 0 $green-darker;
 }
 
-.numbers-exo h1{
+.numbers-bungee h1{
+  font-family: 'Bungee', cursive;
+  font-size: 100px;
+}
+
+/*.numbers-exo h1{
   font-family: 'Exo', sans-serif;
   font-weight: 900;
   font-size: 100px;
 }
+*/
 
-.numbers-bungee h1{
-  font-family: 'Bungee', sans-serif;
+/*.numbers-leckerli h1{
+  font-family: 'Leckerli One', cursive;
   font-size: 100px;
 }
+*/
 
 
-.numbers-leckerli h1{
-  font-weight: 900;
-  font-size: 100px;
-}
+h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
 
-
-
-h1 { font-family: 'Lato', sans-serif; }
-
-h2, h3, a { font-family: 'Lato', sans-serif; }
+a { font-family: 'Lato', sans-serif; }
 
 p {
   font-family: 'Lato', sans-serif;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .btn-cancel, .btn-push {

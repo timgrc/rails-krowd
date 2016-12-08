@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :groups, only: [:index, :show, :new, :create, :delete] do
     resources :incentive_templates
     post '/incentive_templates/push_templates', to: 'incentive_templates#push_templates', as: 'push_templates'
+    resources :push_posts, only: [:create]
   end
 
 end

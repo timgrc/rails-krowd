@@ -5,134 +5,199 @@ body {
 /* Toggle Styles */
 
 #wrapper {
-    padding-left: 0;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
+  padding-left: 0;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 
-#wrapper.toggled {
-    padding-left: 250px;
-}
+// #wrapper.toggled {
+//   padding-left: 250px;
+// }
 
-#sidebar-wrapper {
-    z-index: 1000;
-    position: fixed;
-    left: 250px;
-    width: 0;
-    height: 100%;
-    margin-left: -250px;
-    overflow-y: auto;
-    background: $beige;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-    margin-top: 1px;
-}
+// #wrapper.toggled #sidebar-wrapper {
+//   // width: 250px;
+//   width: 0;
+// }
 
-#wrapper.toggled #sidebar-wrapper {
-    width: 250px;
-}
+// #wrapper.toggled #page-content-wrapper {
+//   position: absolute;
+//   margin-right: -250px;
+// }
 
-#page-content-wrapper {
-    width: 100%;
-    position: absolute;
-    padding: 15px;
-}
-
-#wrapper.toggled #page-content-wrapper {
-    position: absolute;
-    margin-right: -250px;
-}
 
 /* Sidebar Styles */
 
+#sidebar-wrapper, .sidebar-nav, .sidebar-nav li .sidebar-nav li a, .sidebar-nav li i, .sidebar-nav li a, .sidebar-tab-title {
+  width: 100px;
+}
+
+.sidebar-nav li, .sidebar-nav li a {
+  height: 100px;
+}
+
+.sidebar-group-picture {
+  width: 95px;
+  height: 95px;
+}
+
+#page-content-wrapper {
+  margin-left: 100px;
+  // width: 100%;
+  // position: absolute;
+  // padding: 15px;
+}
+
+@media (max-width: $screen-sm-max) {
+  .sidebar-tab-title {
+    display: none;
+  }
+
+  #sidebar-wrapper, .sidebar-nav, .sidebar-nav li .sidebar-nav li a, .sidebar-nav li i, .sidebar-nav li a, .sidebar-tab-title {
+    width: 60px;
+  }
+
+  .sidebar-nav li, .sidebar-nav li a {
+    height: 60px;
+  }
+
+  .sidebar-group-picture {
+    width: 55px;
+    height: 55px;
+  }
+
+  #page-content-wrapper {
+    margin-left: 60px;
+  }
+}
+
+#sidebar-wrapper {
+  z-index: 1000;
+  position: fixed;
+  // left: 250px;
+  // left: 250px;
+  // width: 250px;
+  height: 100%;
+  // margin-left: -250px;
+  overflow-y: auto;
+  background: $beige;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  margin-top: 1px;
+}
+
+
 .sidebar-nav {
-    position: absolute;
-    top: 0;
-    width: 250px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
+  position: absolute;
+  top: 0;
+  // width: 250px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .sidebar-nav li {
-    text-indent: 10px;
-    line-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  // text-indent: 10px;
+  // line-height: 40px;
+  // text-align: center;
 }
 
 .sidebar-nav li a {
-    display: block;
-    text-decoration: none;
-    color: $black;
-    padding-right: 10px;
+  display: flex;
+  // align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  text-decoration: none;
+  color: $black;
+  // text-align: center;
+  // padding-right: 10px;
 }
 
-.sidebar-nav li a span {
-    padding-left: 10px;
+.sidebar-nav li i, .sidebar-tab-title {
+  text-align: center;
 }
+
+.sidebar-nav li i {
+  display: block;
+  text-align: center;
+  padding-bottom: 2px;
+}
+
+.sidebar-tab-title {
+  padding-top: 2px;
+}
+
+// .sidebar-nav li a span {
+  // padding-left: 20px;
+// }
 
 .sidebar-nav li a:hover {
-    text-decoration: none;
-    color: $green;
-    cursor: pointer;
-    background: white;
-    border-bottom: 1px solid #E6EAEA;
-    -webkit-transition: background 0.3s ease-in-out, border 0.3s ease-in-out, color 0.3s ease-in-out;
-    transition: background 0.3s ease-in-out, border 0.3s ease-in-out, color 0.3s ease-in-out;
+  text-decoration: none;
+  color: $green;
+  cursor: pointer;
+  background: white;
+  border-bottom: 1px solid #E6EAEA;
+  -webkit-transition: background 0.3s ease-in-out, border 0.3s ease-in-out, color 0.3s ease-in-out;
+  transition: background 0.3s ease-in-out, border 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 .sidebar-nav li a:active,
 .sidebar-nav li a:focus {
-    text-decoration: none;
+  text-decoration: none;
 }
 
-.sidebar-nav > .sidebar-brand {
-    height: 65px;
-    font-size: 18px;
-    line-height: 60px;
-    text-indent: 20px;
+
+.sidebar-nav .sidebar-brand {
+  // height: 65px;
+  font-size: 18px;
+  line-height: 60px;
+  text-indent: 20px;
 }
 
-.sidebar-nav > .sidebar-brand a {
-    color: $black;
+.sidebar-nav .sidebar-brand a {
+  color: $black;
 }
 
-.sidebar-nav > .sidebar-brand a:hover {
-    color: $black;
-    background: none;
-    border-bottom: none;
+.sidebar-nav .sidebar-brand a:hover {
+  color: $black;
+  background: none;
+  border-bottom: none;
 }
 
-@media(min-width:768px) {
-    #wrapper {
-        padding-left: 250px;
-    }
+// @media(min-width:768px) {
+    // #wrapper {
+    //   padding-left: 250px;
+    // }
 
-    #wrapper.toggled {
-        padding-left: 0;
-    }
+    // #wrapper.toggled {
+    //   padding-left: 0;
+    // }
 
-    #sidebar-wrapper {
-        width: 225px;
-    }
+    // #sidebar-wrapper {
+    //   width: 225px;
+    // }
 
-    #wrapper.toggled #sidebar-wrapper {
-        width: 0;
-    }
+    // #wrapper.toggled #sidebar-wrapper {
+    //   width: 0;
+    // }
 
-    #page-content-wrapper {
-        padding: 20px;
-        position: relative;
-    }
+    // #page-content-wrapper {
+    //   padding: 20px;
+    //   position: relative;
+    // }
 
-    #wrapper.toggled #page-content-wrapper {
-        position: relative;
-        margin-right: 0;
-    }
-}
+    // #wrapper.toggled #page-content-wrapper {
+    //   position: relative;
+    //   margin-right: 0;
+    // }
+// }
 
 .tab, .tab.active { border-bottom: 1px solid #E6EAEA; }
 
@@ -144,18 +209,18 @@ body {
   transition: background 0.3s ease-in-out, border 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
-#menu-toggle {
-    position: absolute;
-    top: 88px;
-    left: 185px;
-    font-size: 20px;
-    color: $black;
-    z-index: 1060;
-    -webkit-transition: 0.3s, linear;
-    transition: 0.3s, linear;
-}
+// #menu-toggle {
+//   position: fixed;
+//   top: 88px;
+//   left: 185px;
+//   font-size: 20px;
+//   color: $black;
+//   z-index: 1060;
+//   -webkit-transition: 0.3s, linear;
+//   transition: 0.3s, linear;
+// }
 
-#menu-toggle.clicked {
-    left: 35px;
-}
+// #menu-toggle.clicked {
+//   left: 35px;
+// }
 

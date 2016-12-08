@@ -4,26 +4,19 @@ $(document).ready(function(){
     // Change active tab
     $(".tab").removeClass("active");
     $(this).addClass("active");
+
+    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+      if (target.length) {
+        $('html, body').animate({
+          scrollTop: target.offset().top - 70
+        }, 1000);
+        return false;
+      }
+    }
   });
 
 });
 
-$(document).ready(function(){
-  $('a.tab').bind('click', function(event) {
-    var anchor = $(this).attr('href');
 
-    $('html, body').stop().animate({
-        scrollTop: $(anchor).offset().top
-    }, 1500, 'easeInOutExpo');
-    event.preventDefault();
-  });
-});
-
-// //jQuery to collapse the navbar on scroll
-// $(window).scroll(function() {
-//     if ($(".navbar-wagon").offset().top > 100) {
-//         $(".navbar-wagon").addClass("top-nav-collapse");
-//     } else {
-//         $(".navbar-wagon").removeClass("top-nav-collapse");
-//     }
-// });

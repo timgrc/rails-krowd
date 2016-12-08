@@ -4,24 +4,26 @@ $(document).ready(function(){
     // Change active tab
     $(".tab").removeClass("active");
     $(this).addClass("active");
-
-    // Hide all tab content
-    $(".tab-content").addClass("hidden");
-
-    // Show target tab
-    tabSelector = $(this).data("target");
-    $(tabSelector).removeClass("hidden");
   });
 
 });
 
 $(document).ready(function(){
+  $('a.tab').bind('click', function(event) {
+    var anchor = $(this).attr('href');
 
-  $("#menu-toggle").on("click", function(e){
-    e.preventDefault();
-    $("#wrapper").toggleClass("toggled");
-
-    $(this).toggleClass("clicked")
+    $('html, body').stop().animate({
+        scrollTop: $(anchor).offset().top
+    }, 1500, 'easeInOutExpo');
+    event.preventDefault();
   });
-
 });
+
+// //jQuery to collapse the navbar on scroll
+// $(window).scroll(function() {
+//     if ($(".navbar-wagon").offset().top > 100) {
+//         $(".navbar-wagon").addClass("top-nav-collapse");
+//     } else {
+//         $(".navbar-wagon").removeClass("top-nav-collapse");
+//     }
+// });

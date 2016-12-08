@@ -24,24 +24,29 @@ $base-height: 1.4;
  * Colors
  * ------------------------------------- */
 // Scheme
-$brand-color: #D23333;
+$brand-color: #b30000;
 
-$red-lighter: #D65858;
-$red: #CD3333;
-$red-darker: #A82A2A;
+$red-darker: #b30000;
+$red: #e20d1f;
+$red-lighter: #fe5f55;
 
-$blue-lighter: #58819F;
-$blue: #33658a;
-$blue-darker: #2A5371;
+$blue-darker: #384259;
+$blue: #2b59c3;
+$blue-lighter: #33a1fd;
 
-$yellow: #FDB631;
-$orange: #E67E22;
+$orange: #ef760b;
+$yellow: #fcf11e;
 
-$green: #4CAF50;
-$green-darker: #3F9042;
+$green-darker: #07751E;
+$green: #1fb71f;
+$green-lighter: #15ed47;
 
-$gray: #000000;
+$purple-darker: #611275;
+$purple: #9625a3;
+$purple-lighter: #ca61c3;
 
-$beige: #f4f7f6;
-
+$dark-black: #0f0e0e;
 $black: #1E1D23;
+$gray: #5e5e5e;
+$gray-lighter: #9daa9d;
+$beige: #f4f7f6;

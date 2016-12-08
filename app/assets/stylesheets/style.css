@@ -1,3 +1,5 @@
+@import "config/variables";
+@import "config/bootstrap_variables";
 
 .padded { padding: 50px 0px; }
 
@@ -38,15 +40,15 @@
 
 
 .btn-color-red {
-  background: -webkit-linear-gradient(top,$red 0,$red-darker 100%);
-  background: linear-gradient(to bottom,$red 0,$red-darker 100%);
-  box-shadow: 0 1px 0 $red-darker;
+  background: -webkit-linear-gradient(top, #cd3333 0, #A82A2A 100%);
+  background: linear-gradient(to bottom,#cd3333 0,#A82A2A 100%);
+  box-shadow: 0 1px 0 #A82A2A;
 }
 
 .btn-color-green {
-  background: -webkit-linear-gradient(top,$green 0,$green-darker 100%);
-  background: linear-gradient(to bottom,$green 0,$green-darker 100%);
-  box-shadow: 0 1px 0 $green-darker;
+  background: -webkit-linear-gradient(top, #4caf50 0, #3F9042 100%);
+  background: linear-gradient(to bottom,#4caf50 0,#3F9042 100%);
+  box-shadow: 0 1px 0 #3F9042;
 }
 
 h1 { font-family: 'Droid Sans', sans-serif; }

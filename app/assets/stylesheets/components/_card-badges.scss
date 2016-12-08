@@ -1,23 +1,35 @@
 .badge-card {
-  border: grey solid 1px;
-  height: 200px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 }
 
-.badge-picture {
-  width: 40%;
+.badge-pictures {
+  position: relative;
+}
+
+.badge-pictures .reward-picto {
+  position: absolute;
+  top: 65%;
+  right: 20%;
+  width: 20%;
+  border-radius: 50%;
 }
 
 .badge-reward {
   margin-top: 5%;
 }
 
-.user-informations {
-  display: flex;
-  margin: 0 0 5% 5%;
+.badge-reward h4 {
+  margin-top: 10%;
 }
 
-.user-informations img {
-  margin-right: 5px;
+
+.user-informations {
+  margin-bottom: 10%;
 }
 
 .badge-card + .badge-card {
@@ -25,5 +37,26 @@
 }
 
 .grid {
-  height: 100vh;
+  height: 800px;
 }
+
+.row {
+  height: 50%;
+}
+
+.grid-element {
+  border: grey solid 1px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.grid-donut {
+  padding: 20px;
+}
+
+.avatar-badges {
+  border-radius: 50%;
+  width: 50%;
+}
+

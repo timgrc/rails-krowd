@@ -1,7 +1,7 @@
 <div class="margin-top">
   <div class="container-full grid">
     <div class="row">
-      <div class="col-xs-12 col-sm-6">
+      <div class="grid-element col-xs-12 col-sm-6">
         <% data = {
           labels: [
                 "Business - Stong disruption",
@@ -20,26 +20,26 @@
                     ]
                 }]
         } %>
-        <div style='margin: auto; width: 50%;'><%= doughnut_chart data, legend: { display: false } %></div>
+        <div class="grid-donut" style='margin: auto; height: 50%;'><%= doughnut_chart data, legend: { display: false } %></div>
       </div>
-      <div class="col-xs-12 col-sm-3">
+      <div class="grid-element col-xs-12 col-sm-3">
         <%= render "groups/dashboard_partials/dashboard_badge" %>
       </div>
-      <div class="col-xs-12 col-sm-3">
+      <div class="grid-element col-xs-12 col-sm-3">
         <%= render "groups/dashboard_partials/dashboard_badge" %>
       </div>
     </div>
     <div class="row">
-      <div class="col-xs-12 col-sm-3 ">
+      <div class="grid-element col-xs-12 col-sm-3 ">
         <%= render "groups/dashboard_partials/dashboard_badge" %>
       </div>
-      <div class="col-xs-12 col-sm-3">
+      <div class="grid-element col-xs-12 col-sm-3">
         <%= render "groups/dashboard_partials/dashboard_badge" %>
       </div>
-      <div class="col-xs-12 col-sm-3">
+      <div class="grid-element col-xs-12 col-sm-3">
         <%= render "groups/dashboard_partials/dashboard_badge" %>
       </div>
-      <div class="col-xs-12 col-sm-3">
+      <div class="grid-element col-xs-12 col-sm-3">
         <%= render "groups/dashboard_partials/dashboard_badge" %>
       </div>
     </div>

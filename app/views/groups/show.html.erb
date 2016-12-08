@@ -1,4 +1,4 @@
-<div id="wrapper margin-top">
+<div id="wrapper">
   <%= render 'dashboard_navbar' %>
   <div id="page-content-wrapper">
     <div class="container-fluid">
@@ -46,6 +46,7 @@
           var anchor = window.location.hash
           $('.tab.active').removeClass("active");
           $('a[href="' + anchor + '"]').addClass("active");
+
           // smooth scroll to the anchor id
           $('html, body').animate({
               scrollTop: $(window.location.hash).offset().top - 70

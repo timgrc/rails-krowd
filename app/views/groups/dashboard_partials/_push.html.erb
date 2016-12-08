@@ -1,13 +1,18 @@
-<!-- Awards push post -->
-<%= simple_form_for [@group, @push_post] do |f| %>
-  <%= f.input :title %>
-  <%= f.input :body %>
-  <%= f.submit %>
-<% end %>
-
-<!-- Incentive push post -->
-<%= simple_form_for [@group, @push_post] do |f| %>
-  <%= f.input :title %>
-  <%= f.input :body %>
-  <%= f.submit %>
-<% end %>
+<section>
+    <div id="award_message">
+      <!-- Awards push post -->
+      <%= simple_form_for [@group, @push_post] do |f| %>
+        <%= f.input :title %>
+        <%= f.input :body %>
+        <%= f.submit %>
+      <% end %>
+    </div>
+    <div id="incentive_message">
+      <!-- Incentive push post -->
+      <%= simple_form_for [@group, @push_post] do |f| %>
+        <%= f.input :title %>
+        <%= f.input :body %>
+        <%= f.submit %>
+      <% end %>
+    </div>
+</section>

@@ -3,15 +3,10 @@
   <div id="page-content-wrapper">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-12">
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-xs-12">
-                <div id="general" class="tab-content"><%= render 'general' %></div>
-                <div id="innovation" class="tab-content hidden"><%= render 'innovation' %></div>
-              </div>
-            </div>
-          </div>
+        <div class="col-xs-12">
+          <div id="general" class="tab-content"><%= render 'groups/dashboard_partials/general' %></div>
+          <div id="innovation" class="tab-content hidden"><%= render 'groups/dashboard_partials/innovation' %></div>
+          <div id="map" class="tab-content hidden"><%= render 'groups/dashboard_partials/map' %></div>
         </div>
       </div>
     </div>

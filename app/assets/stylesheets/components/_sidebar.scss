@@ -90,7 +90,7 @@ body {
   flex-direction: column;
   justify-content: center;
   text-decoration: none;
-  color: #EFEEEC;
+  color: #89949B;
 }
 
 .sidebar-nav li i, .sidebar-tab-title {
@@ -112,7 +112,7 @@ body {
   color: $green;
   cursor: pointer;
   background: #031421;
-  border-bottom: 1px solid #E6EAEA;
+  border-bottom: 1px solid #89949B;
   -webkit-transition: background 0.3s ease-in-out, border 0.3s ease-in-out, color 0.3s ease-in-out;
   transition: background 0.3s ease-in-out, border 0.3s ease-in-out, color 0.3s ease-in-out;
 }
@@ -144,11 +144,11 @@ body {
 }
 
 .sidebar-brand {
-  border-bottom: 1px solid #E6EAEA;
+  border-bottom: 1px solid #89949B;
   border-top: none;
 }
 
-.tab, .tab.active { border-bottom: 1px solid #E6EAEA; }
+.tab, .tab.active { border-bottom: 1px solid #89949B; }
 
 .tab.active {
   color: $green;

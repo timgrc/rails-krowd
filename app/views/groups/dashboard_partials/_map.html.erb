@@ -1,17 +1,4 @@
-<div id="regions_div" style="width: 900px; height: 500px; border: 1px solid black;"></div>
-<% data = {
-          labels: [
-                "Business - Stong disruption",
-                "Business - Weak disruption",
-                "Technology - Stong disruption",
-                "Technology - Weak disruption"
-            ],
-            datasets: [
-                {
-                    data: [['France', 600], ['United States', 300]]
-                }]
-        } %>
-<div><%= geo_chart data %></div>
+<div id="regions_div"></div>
 
 <% content_for :map_js do %>
   <script>

@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
 
+  authenticated :user do
+    root to: 'groups#index'
+  end
+
   root to: 'pages#home'
   get "styleguide", to: "pages#styleguide"
 

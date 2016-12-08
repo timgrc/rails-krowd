@@ -7,7 +7,7 @@ class GetPrivatesMessages
     yam_private_messages = @yam.private_messages.body[:messages]
     yam_private_messages.map do |private_message|
       {
-        sender_id: private_message[:sender_id]
+        sender_id: private_message[:sender_id],
         plain:     private_message[:body][:plain]
       }
     end

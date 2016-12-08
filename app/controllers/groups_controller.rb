@@ -10,9 +10,7 @@ class GroupsController < ApplicationController
   end
 
   def show
-    post_id               = 810024598
-    @yam_comments_in_post = GetCommentsFromPosts.new(current_user, post_id).call
-    # raise
+    @push_post = PushPost.new
   end
 
   def create
@@ -28,7 +26,7 @@ class GroupsController < ApplicationController
       redirect_to groups_path
       # redirect_to group_path(@group)
     else
-      render 'new'
+      # render 'new'
     end
   end
 

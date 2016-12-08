@@ -1,3 +1,4 @@
+
 .padded { padding: 50px 0px; }
 
 .square {
@@ -7,34 +8,67 @@
 
 .inline-block { display: inline-block; }
 
-.beige { background-color: #e0dfc5; }
+.beige { background-color: $beige; }
 
-.green { background-color: #4caf50; }
-.green-bis { background-color: #3F9042; }
+.green { background-color: $green-lighter; }
+.green-bis { background-color: $green; }
+.green-ter { background-color: $green-darker; }
 
-.blue { background-color: #33658a; }
-.blue-bis { background-color: #58819F; }
-.blue-ter { background-color: #2A5371; }
+.blue { background-color: $blue-lighter; }
+.blue-bis { background-color: $blue; }
+.blue-ter { background-color: $blue-darker; }
 
-.red { background-color: #cd3333; }
-.red-bis { background-color: #D65858; }
-.red-ter { background-color: #A82A2A; }
+.red { background-color: $red-lighter; }
+.red-bis { background-color: $red; }
+.red-ter { background-color: $red-darker; }
 
-.black { background-color: #1e1d23; }
+.purple { background-color: $purple-lighter; }
+.purple-bis { background-color: $purple; }
+.purple-ter  { background-color: $purple-darker; }
+
+
+.black { background-color: $black; }
+.black-bis { background-color: $dark-black; }
+.gray { background-color: $gray-lighter; }
+.gray-bis { background-color: $gray; }
+
+
+.orange { background-color: $orange; }
+.yellow { background-color: $yellow; }
+
 
 .btn-color-red {
-  background: -webkit-linear-gradient(top, #cd3333 0, #A82A2A 100%);
-  background: linear-gradient(to bottom,#cd3333 0,#A82A2A 100%);
-  box-shadow: 0 1px 0 #A82A2A;
+  background: -webkit-linear-gradient(top,$red 0,$red-darker 100%);
+  background: linear-gradient(to bottom,$red 0,$red-darker 100%);
+  box-shadow: 0 1px 0 $red-darker;
 }
 
 .btn-color-green {
-  background: -webkit-linear-gradient(top, #4caf50 0, #3F9042 100%);
-  background: linear-gradient(to bottom,#4caf50 0,#3F9042 100%);
-  box-shadow: 0 1px 0 #3F9042;
+  background: -webkit-linear-gradient(top,$green 0,$green-darker 100%);
+  background: linear-gradient(to bottom,$green 0,$green-darker 100%);
+  box-shadow: 0 1px 0 $green-darker;
 }
 
-h1 { font-family: 'Droid Sans', sans-serif; }
+.numbers-exo h1{
+  font-family: 'Exo', sans-serif;
+  font-weight: 900;
+  font-size: 100px;
+}
+
+.numbers-bungee h1{
+  font-family: 'Bungee', sans-serif;
+  font-size: 100px;
+}
+
+
+.numbers-leckerli h1{
+  font-weight: 900;
+  font-size: 100px;
+}
+
+
+
+h1 { font-family: 'Lato', sans-serif; }
 
 h2, h3, a { font-family: 'Lato', sans-serif; }
 

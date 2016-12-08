@@ -13,7 +13,7 @@ class PushPostsController < ApplicationController
   private
 
   def push
-    raise
+    # raise
   end
 
   def push_post_params

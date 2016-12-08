@@ -1,47 +1,46 @@
-<div class="margin-top">
-  <div class="container-full grid">
-    <div class="row">
-      <div class="grid-element col-xs-12 col-sm-6">
-        <% data = {
-          labels: [
-                "Business - Stong disruption",
-                "Business - Weak disruption",
-                "Technology - Stong disruption",
-                "Technology - Weak disruption"
-            ],
-            datasets: [
-                {
-                    data: [200, 100, 50, 100],
-                    backgroundColor: [
-                        "#ef5d7c",
-                        "#FF6384",
-                        "#2b88c6",
-                        "#36A2EB"
-                    ]
-                }]
-        } %>
-        <div class="grid-donut" style='margin: auto; height: 50%;'><%= doughnut_chart data, legend: { display: false } %></div>
-      </div>
-      <div class="grid-element col-xs-12 col-sm-3">
-        <%= render "groups/dashboard_partials/dashboard_badge" %>
-      </div>
-      <div class="grid-element col-xs-12 col-sm-3">
-        <%= render "groups/dashboard_partials/dashboard_badge" %>
-      </div>
+<div class="container-full grid">
+  <div class="row">
+    <div class="grid-element col-xs-12 col-sm-6 blue-dam-1">
+      <% data = {
+        labels: [
+              "Business - Stong disruption",
+              "Business - Weak disruption",
+              "Technology - Stong disruption",
+              "Technology - Weak disruption"
+          ],
+          datasets: [
+              {
+                  data: [200, 100, 50, 100],
+                  backgroundColor: [
+                      "#9625a3",
+                      "#ca61c3",
+                      "#2b59c3",
+                      "#33a1fd"
+                  ]
+              }]
+      } %>
+      <div class="grid-donut" style='margin: auto; height: 50%;'><%= doughnut_chart data, legend: { display: false } %></div>
     </div>
-    <div class="row">
-      <div class="grid-element col-xs-12 col-sm-3 ">
-        <%= render "groups/dashboard_partials/dashboard_badge" %>
-      </div>
-      <div class="grid-element col-xs-12 col-sm-3">
-        <%= render "groups/dashboard_partials/dashboard_badge" %>
-      </div>
-      <div class="grid-element col-xs-12 col-sm-3">
-        <%= render "groups/dashboard_partials/dashboard_badge" %>
-      </div>
-      <div class="grid-element col-xs-12 col-sm-3">
-        <%= render "groups/dashboard_partials/dashboard_badge" %>
-      </div>
+    <div class="grid-element col-xs-12 col-sm-3 blue-dam-2">
+      <%= render "groups/dashboard_partials/dashboard_badge" %>
+    </div>
+    <div class="grid-element col-xs-12 col-sm-3 blue-dam-1">
+      <%= render "groups/dashboard_partials/dashboard_badge" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="grid-element col-xs-12 col-sm-3 blue-dam-1">
+      <%= render "groups/dashboard_partials/dashboard_badge" %>
+    </div>
+    <div class="grid-element col-xs-12 col-sm-3 blue-dam-2">
+      <%= render "groups/dashboard_partials/dashboard_badge" %>
+    </div>
+    <div class="grid-element col-xs-12 col-sm-3 blue-dam-1">
+      <%= render "groups/dashboard_partials/dashboard_badge" %>
+    </div>
+    <div class="grid-element col-xs-12 col-sm-3 blue-dam-2">
+      <%= render "groups/dashboard_partials/dashboard_badge" %>
     </div>
   </div>
 </div>
+

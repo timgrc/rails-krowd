@@ -37,7 +37,8 @@
 }
 
 .grid {
-  height: 800px;
+  height: 900px;
+  color: #E6E6E6;
 }
 
 .row {
@@ -45,7 +46,7 @@
 }
 
 .grid-element {
-  border: grey solid 1px;
+  //border: grey solid 0.5px;
   height: 100%;
   display: flex;
   align-items: center;

@@ -151,7 +151,7 @@ body {
 .tab, .tab.active { border-bottom: 1px solid #89949B; }
 
 .tab.active {
-  color: $green;
+  color: #35F0F0;
   cursor: pointer;
   background: #031421;
   -webkit-transition: background 0.3s ease-in-out, border 0.3s ease-in-out, color 0.3s ease-in-out;

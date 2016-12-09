@@ -1,4 +1,18 @@
 <section>
-  <div id="award_message"><%= render 'groups/dashboard_partials/push_partial/push_form' %></div>
-  <div id="incentive_message"><%= render 'groups/dashboard_partials/push_partial/push_form' %></div>
+  <div id="award_message">
+    <ul class="post-types">
+      <li class="post-type">
+        <a class="status"><i class="icon icon-file"></i> Award Message</a>
+      </li>
+    </ul>
+    <%= render 'groups/dashboard_partials/push_partial/push_form' %>
+  </div>
+  <div id="incentive_message">
+    <ul class="post-types">
+      <li class="post-type">
+        <a class="status"><i class="icon icon-file"></i> Incentive Message</a>
+      </li>
+    </ul>
+    <%= render 'groups/dashboard_partials/push_partial/push_form' %>
+  </div>
 </section>

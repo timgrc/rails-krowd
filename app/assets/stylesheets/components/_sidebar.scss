@@ -60,12 +60,11 @@ body {
   position: fixed;
   height: 100%;
   overflow-y: auto;
-  background: #0B1B28;
+  background: #212F3B;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
-  border-right: 1px solid #828282;
   margin-top: 70px;
 }
 
@@ -90,7 +89,7 @@ body {
   flex-direction: column;
   justify-content: center;
   text-decoration: none;
-  color: #89949B;
+  color: $gray;
 }
 
 .sidebar-nav li i, .sidebar-tab-title {
@@ -109,18 +108,13 @@ body {
 
 .sidebar-nav li a:hover {
   text-decoration: none;
-  color: #35F0F0;
+  color: white;
   cursor: pointer;
-  background: #031421;
-  border-bottom: 1px solid #89949B;
+  background: $blue-dam-1;
   -webkit-transition: background 0.3s ease-in-out, border 0.3s ease-in-out, color 0.3s ease-in-out;
   transition: background 0.3s ease-in-out, border 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
-.sidebar-group-picture {
-  border-radius: 20%;
-  padding:10%;
-}
 .sidebar-nav li a:active,
 .sidebar-nav li a:focus {
   text-decoration: none;
@@ -134,26 +128,25 @@ body {
 }
 
 .sidebar-nav .sidebar-brand a {
-  color: #35F0F0;
+  color: white;
 }
 
 .sidebar-nav  a:hover {
-  color: #35F0F0;
+  color: white;
   background: none;
   border-bottom: none;
 }
 
 .sidebar-brand {
-  border-bottom: 1px solid #89949B;
   border-top: none;
 }
 
-.tab, .tab.active { border-bottom: 1px solid #89949B; }
+.tab.active { border-left: 3px solid $red; }
 
 .tab.active {
-  color: #35F0F0;
+  color: white;
   cursor: pointer;
-  background: #031421;
+  background: $blue-dam-1;
   -webkit-transition: background 0.3s ease-in-out, border 0.3s ease-in-out, color 0.3s ease-in-out;
   transition: background 0.3s ease-in-out, border 0.3s ease-in-out, color 0.3s ease-in-out;
 }

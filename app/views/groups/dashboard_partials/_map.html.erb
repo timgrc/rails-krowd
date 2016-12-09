@@ -1,29 +1,42 @@
-<div id="regions_div"></div>
-
+<div id="regions_div">
 <% content_for :after_js do %>
   <script>
-    google.charts.load('upcoming', {'packages':['geochart']});
-      google.charts.setOnLoadCallback(drawRegionsMap);
+    $(function() {
+      geoChartMap();
+    });
 
-      function drawRegionsMap() {
+    $( window ).resize(function() {
+      geoChartMap();
+    });
 
-        var data = google.visualization.arrayToDataTable([
-          ['Country', 'Popularity'],
-          ['Germany', 200],
-          ['United States', 300],
-          ['Brazil', 400],
-          ['Canada', 500],
-          ['France', 600],
-          ['RU', 700]
-        ]);
+    function geoChartMap() {
+      google.charts.load('upcoming', {'packages':['geochart']});
+        google.charts.setOnLoadCallback(drawRegionsMap);
 
-        var options = {
-          backgroundColor: '#35F0F0'
-        };
+        function drawRegionsMap() {
 
-        var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+          var data = google.visualization.arrayToDataTable([
+            ['Country', 'Popularity'],
+            ['Germany', 200],
+            ['United States', 300],
+            ['Brazil', 400],
+            ['Canada', 500],
+            ['France', 600],
+            ['RU', 700]
+          ]);
 
-        chart.draw(data, options);
-      }
+          var options = {
+            backgroundColor: 'white',
+            colorAxis: {colors: ["#00bc66","#abfaa9"]},
+            datalessRegionColor: "#e5e3df", legend:'none'
+          };
+
+          var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+
+          chart.draw(data, options);
+        }
+    }
   </script>
 <% end %>
+
+</div>

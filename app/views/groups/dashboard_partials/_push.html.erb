@@ -1,16 +1,4 @@
 <section>
-    <div id="award_message">
-      <!-- Awards push post -->
-      <%= simple_form_for [@group, @push_post] do |f| %>
-        <%= f.input :body %>
-        <%= f.submit %>
-      <% end %>
-    </div>
-    <div id="incentive_message">
-      <!-- Incentive push post -->
-      <%= simple_form_for [@group, @push_post] do |f| %>
-        <%= f.input :body %>
-        <%= f.submit %>
-      <% end %>
-    </div>
+  <div id="award_message"><%= render 'groups/dashboard_partials/push_partial/push_form' %></div>
+  <div id="incentive_message"><%= render 'groups/dashboard_partials/push_partial/push_form' %></div>
 </section>

@@ -1,0 +1,25 @@
+<%= simple_form_for [@group, @push_post], html: { class: 'facebook-share-box' } do |f| %>
+  <ul class="post-types">
+    <li class="post-type">
+      <a class="status" title="" href="#"><i class="icon icon-file"></i> Award Message</a>
+    </li>
+  </ul>
+  <div class="share">
+    <div class="arrow"></div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <%= image_tag current_user.mugshot_url, class: "avatar-square" %>
+      </div>
+        <div class="panel-body">
+          <div class="">
+            <%= f.input :body, as: :text, label: false, input_html: { name: "message", cols: 40, rows: 10, id: "status_message", class: "form-control message", style: "height: 62px; overflow: hidden;", placeholder: "What's your message?" } %>
+          </div>
+        </div>
+      <div class="panel-footer">
+        <div class="form-group">
+          <%= f.submit 'Create Push post', name: "submit", class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

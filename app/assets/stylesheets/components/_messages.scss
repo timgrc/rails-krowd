@@ -11,10 +11,10 @@ div#award_message, div#incentive_message {
   height: auto;
 }
 
-.facebook-share-box {
+.krowd-share-box {
     width: 100%;
 }
-.facebook-share-box .share {
+.krowd-share-box .share {
     -webkit-transition: 0.1s ease-out height;
     -moz-transition: 0.1s ease-out height;
     -ms-transition: 0.1s ease-out height;
@@ -27,8 +27,8 @@ div#award_message, div#incentive_message {
     position: relative;
 }
 
-.facebook-share-box .share .arrow {
-    background: url(arrow.png) no-repeat #dddddd;
+.krowd-share-box .share .arrow {
+    background: url(asset-path('arrow.png')) no-repeat #dddddd;
     position: absolute;
     width: 14px;
     height: 10px;
@@ -42,25 +42,25 @@ div#award_message, div#incentive_message {
     transition: 0.3s ease-out all;
 }
 
-.facebook-share-box .post-types li a {
+.krowd-share-box .post-types li a {
     color: #085083;
     text-decoration: none;
 }
 
-.facebook-share-box .post-types li a.active {
+.krowd-share-box .post-types li a.active {
     color: #404040;
 }
 
-.facebook-share-box .post-types {
+.krowd-share-box .post-types {
     padding-left: 5px;
 }
 
-.facebook-share-box ul {
+.krowd-share-box ul {
     list-style: none;
     margin-bottom: 9px;
 }
 
-.facebook-share-box .post-types li {
+.krowd-share-box .post-types li {
     display: inline;
     margin-right: 10px;
 }

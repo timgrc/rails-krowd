@@ -1,4 +1,4 @@
-class GetCommentsFromPosts
+class Yammer::GetThread
   def initialize(user, thread_id)
     @yam       = Yammer::Client.new(access_token: user.access_token)
     @thread_id = thread_id

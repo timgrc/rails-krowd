@@ -18,7 +18,6 @@ class PushPostsController < ApplicationController
 
   def push_post_params
     params.require(:push_post).permit(
-      :title,
       :body
     )
   end

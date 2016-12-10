@@ -1,9 +1,102 @@
 section {
   height: 100vh;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-around;
+  background-color: $blue-dam-1;
 }
+
 div#award_message, div#incentive_message {
-  width: 200px;
+  margin-top: 100px;
+  width: 30em;
+  height: auto;
+}
+
+.krowd-share-box {
+  width: 100%;
+}
+.krowd-share-box .share {
+  -webkit-transition: 0.1s ease-out height;
+  -moz-transition: 0.1s ease-out height;
+  -ms-transition: 0.1s ease-out height;
+  -o-transition: 0.1s ease-out height;
+  transition: 0.1s ease-out height;
+  clear: both;
+  background: white;
+  // border: 2px solid #dddddd;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4);
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.krowd-share-box .share .arrow {
+  // background: url(asset-path('arrow.png')) no-repeat;
+  position: absolute;
+  width: 14px;
+  height: 10px;
+  left: 4px;
+  display: inline;
+  top: -10px;
+  -webkit-transition: 0.3s ease-out all;
+  -moz-transition: 0.3s ease-out all;
+  -ms-transition: 0.3s ease-out all;
+  -o-transition: 0.3s ease-out all;
+  transition: 0.3s ease-out all;
+}
+
+.post-types li {
+  color: white;
+  margin-right: 10px;
+}
+
+.post-types li span {
+  padding-left: 7px;
+}
+
+.post-types {
+  padding-left: 5px;
+  list-style: none;
+  margin-bottom: 9px;
+}
+
+.message {
+  resize: none;
+  overflow: hidden;
+  border-radius: 0;
+  border: none;
+  background-color: #212F3B;
+  color: white;
+}
+
+.form-control:focus {
+  border-color: none;
+  outline: none;
+  box-shadow: none;
+}
+
+.panel {
+  border-radius: 0;
+  border: none;
+  margin-bottom: 0;
+}
+
+.privacy-dropdown {
+  width: 100px;
+}
+
+.form-group {
+  margin-bottom: 0;
+}
+
+.panel-footer {
+  padding: 15px;
+}
+
+.panel-body {
+  padding: 0;
+}
+
+.panel-default > .panel-heading, .panel-footer {
+  background-color: #1C2731;
+  border: none;
 }

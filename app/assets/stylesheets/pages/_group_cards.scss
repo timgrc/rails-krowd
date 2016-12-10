@@ -1,14 +1,14 @@
 .card-group {
   display: flex;
   height: 350px;
-  max-width: 300px;
-  border-radius: 3px;
+  max-width: 350px;
+  border-radius: 1px;
   align-items: center;
 }
 .card-group-description {
   position: inherit;
   display: flex;
-  background: $blue;
+  background: $gray-lighter;
   height: 125px;
   width: 100%;
   align-items: center;

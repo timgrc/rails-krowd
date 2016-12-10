@@ -1,0 +1,30 @@
+<%= simple_form_for [@group, @push_post], html: { class: 'krowd-share-box' } do |f| %>
+  <div class="share">
+    <div class="arrow"></div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-xs-1 margin-right">
+            <%= image_tag current_user.mugshot_url, class: "avatar-square" %>
+          </div>
+          <div class="col-xs-6 col-sm-6">
+            <div>
+              Some title
+            </div>
+            <div>
+              <%= (Time.now.to_i - Time.at(current_user.created_at.to_i).to_i) / (60*60*24) %> days ago
+            </div>
+          </div>
+        </div>
+      </div>
+        <div class="panel-body">
+          <%= f.input :body, as: :text, label: false, input_html: { cols: 40, rows: 10, id: "status_message", class: "form-control message", placeholder: "What's your message?" } %>
+        </div>
+      <div class="panel-footer">
+        <div class="form-group">
+          <%= f.button :button, "Create Push post", class: "btn btn-primary", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Sending Push post..."} %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

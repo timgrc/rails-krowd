@@ -111,8 +111,11 @@ body {
   color: white;
   cursor: pointer;
   background: $blue-dam-1;
-  -webkit-transition: background 0.3s ease-in-out, border 0.3s ease-in-out, color 0.3s ease-in-out;
-  transition: background 0.3s ease-in-out, border 0.3s ease-in-out, color 0.3s ease-in-out;
+  border-bottom: none;
+  border-left: 4px solid #2b59c3;
+  transition: all .15s ease;
+  -webkit-transition: background 0.15s ease-in-out, border 0.15s ease-in-out, color 0.15s ease-in-out;
+  transition: background 0.15s ease-in-out, border 0.15s ease-in-out, color 0.15s ease-in-out;
 }
 
 .sidebar-nav li a:active,
@@ -120,34 +123,25 @@ body {
   text-decoration: none;
 }
 
-
 .sidebar-nav .sidebar-brand {
   font-size: 18px;
   line-height: 60px;
   text-indent: 20px;
 }
 
-.sidebar-nav .sidebar-brand a {
-  color: white;
-}
-
-.sidebar-nav  a:hover {
-  color: white;
-  background: none;
-  border-bottom: none;
-}
-
 .sidebar-brand {
   border-top: none;
 }
 
-.tab.active { border-left: 3px solid #2b59c3; }
-
 .tab.active {
+  text-decoration: none;
   color: white;
   cursor: pointer;
   background: $blue-dam-1;
-  -webkit-transition: background 0.3s ease-in-out, border 0.3s ease-in-out, color 0.3s ease-in-out;
-  transition: background 0.3s ease-in-out, border 0.3s ease-in-out, color 0.3s ease-in-out;
+  border-bottom: none;
+  border-left: 4px solid #2b59c3;
+  transition: all .15s ease;
+  -webkit-transition: background 0.15s ease-in-out, border 0.15s ease-in-out, color 0.15s ease-in-out;
+  transition: background 0.15s ease-in-out, border 0.15s ease-in-out, color 0.15s ease-in-out;
 }
 

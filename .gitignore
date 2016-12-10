@@ -11,3 +11,5 @@ public/assets
 /config/application.yml
 
 .clever.json
+
+apps/services/yammer/transfer/transfer.csv

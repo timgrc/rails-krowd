@@ -1,0 +1,2 @@
+class TechnipUser < ApplicationRecord
+end

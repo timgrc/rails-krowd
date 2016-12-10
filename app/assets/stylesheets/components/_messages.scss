@@ -3,6 +3,7 @@ section {
   display: flex;
   align-items: flex-start;
   justify-content: space-around;
+  background-color: $blue-dam-1;
 }
 
 div#award_message, div#incentive_message {
@@ -22,13 +23,14 @@ div#award_message, div#incentive_message {
   transition: 0.1s ease-out height;
   clear: both;
   background: white;
-  border: 2px solid #dddddd;
+  // border: 2px solid #dddddd;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4);
   margin-bottom: 10px;
   position: relative;
 }
 
 .krowd-share-box .share .arrow {
-  background: url(asset-path('arrow.png')) no-repeat #dddddd;
+  // background: url(asset-path('arrow.png')) no-repeat;
   position: absolute;
   width: 14px;
   height: 10px;
@@ -42,9 +44,13 @@ div#award_message, div#incentive_message {
   transition: 0.3s ease-out all;
 }
 
-.post-types li a {
-  color: $blue;
-  text-decoration: none;
+.post-types li {
+  color: white;
+  margin-right: 10px;
+}
+
+.post-types li span {
+  padding-left: 7px;
 }
 
 .post-types {
@@ -53,14 +59,19 @@ div#award_message, div#incentive_message {
   margin-bottom: 9px;
 }
 
-.post-types li {
-  display: inline;
-  margin-right: 10px;
-}
-
 .message {
+  resize: none;
+  overflow: hidden;
   border-radius: 0;
   border: none;
+  background-color: #212F3B;
+  color: white;
+}
+
+.form-control:focus {
+  border-color: none;
+  outline: none;
+  box-shadow: none;
 }
 
 .panel {
@@ -83,4 +94,9 @@ div#award_message, div#incentive_message {
 
 .panel-body {
   padding: 0;
+}
+
+.panel-default > .panel-heading, .panel-footer {
+  background-color: #1C2731;
+  border: none;
 }

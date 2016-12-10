@@ -12,4 +12,4 @@ public/assets
 
 .clever.json
 
-apps/services/yammer/transfer/transfer.csv
+app/services/yammer/transfer/transfer.csv

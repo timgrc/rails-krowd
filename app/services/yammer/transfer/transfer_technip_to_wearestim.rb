@@ -33,6 +33,7 @@ class Yammer::Transfer::TransferTechnipToWearestim
 
   def call
     @wearestim_users
+
   end
 end
 

@@ -3,6 +3,7 @@ section {
   display: flex;
   align-items: flex-start;
   justify-content: space-around;
+  background-color: $blue-dam-1;
 }
 
 div#award_message, div#incentive_message {
@@ -11,72 +12,76 @@ div#award_message, div#incentive_message {
   height: auto;
 }
 
-.facebook-share-box {
-    width: 100%;
+.krowd-share-box {
+  width: 100%;
 }
-.facebook-share-box .share {
-    -webkit-transition: 0.1s ease-out height;
-    -moz-transition: 0.1s ease-out height;
-    -ms-transition: 0.1s ease-out height;
-    -o-transition: 0.1s ease-out height;
-    transition: 0.1s ease-out height;
-    clear: both;
-    background: white;
-    border: 2px solid #dddddd;
-    margin-bottom: 10px;
-    position: relative;
-}
-
-.facebook-share-box .share .arrow {
-    background: url(arrow.png) no-repeat #dddddd;
-    position: absolute;
-    width: 14px;
-    height: 10px;
-    left: 4px;
-    display: inline;
-    top: -10px;
-    -webkit-transition: 0.3s ease-out all;
-    -moz-transition: 0.3s ease-out all;
-    -ms-transition: 0.3s ease-out all;
-    -o-transition: 0.3s ease-out all;
-    transition: 0.3s ease-out all;
+.krowd-share-box .share {
+  -webkit-transition: 0.1s ease-out height;
+  -moz-transition: 0.1s ease-out height;
+  -ms-transition: 0.1s ease-out height;
+  -o-transition: 0.1s ease-out height;
+  transition: 0.1s ease-out height;
+  clear: both;
+  background: white;
+  // border: 2px solid #dddddd;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4);
+  margin-bottom: 10px;
+  position: relative;
 }
 
-.facebook-share-box .post-types li a {
-    color: #085083;
-    text-decoration: none;
+.krowd-share-box .share .arrow {
+  // background: url(asset-path('arrow.png')) no-repeat;
+  position: absolute;
+  width: 14px;
+  height: 10px;
+  left: 4px;
+  display: inline;
+  top: -10px;
+  -webkit-transition: 0.3s ease-out all;
+  -moz-transition: 0.3s ease-out all;
+  -ms-transition: 0.3s ease-out all;
+  -o-transition: 0.3s ease-out all;
+  transition: 0.3s ease-out all;
 }
 
-.facebook-share-box .post-types li a.active {
-    color: #404040;
+.post-types li {
+  color: white;
+  margin-right: 10px;
 }
 
-.facebook-share-box .post-types {
-    padding-left: 5px;
+.post-types li span {
+  padding-left: 7px;
 }
 
-.facebook-share-box ul {
-    list-style: none;
-    margin-bottom: 9px;
-}
-
-.facebook-share-box .post-types li {
-    display: inline;
-    margin-right: 10px;
+.post-types {
+  padding-left: 5px;
+  list-style: none;
+  margin-bottom: 9px;
 }
 
 .message {
-    border-radius: 0;
-    border: none;
+  resize: none;
+  overflow: hidden;
+  border-radius: 0;
+  border: none;
+  background-color: #212F3B;
+  color: white;
 }
+
+.form-control:focus {
+  border-color: none;
+  outline: none;
+  box-shadow: none;
+}
+
 .panel {
-    border-radius: 0;
-    border: none;
-    margin-bottom: 0;
+  border-radius: 0;
+  border: none;
+  margin-bottom: 0;
 }
 
 .privacy-dropdown {
-    width: 100px;
+  width: 100px;
 }
 
 .form-group {
@@ -85,4 +90,13 @@ div#award_message, div#incentive_message {
 
 .panel-footer {
   padding: 15px;
+}
+
+.panel-body {
+  padding: 0;
+}
+
+.panel-default > .panel-heading, .panel-footer {
+  background-color: #1C2731;
+  border: none;
 }

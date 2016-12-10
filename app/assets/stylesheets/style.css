@@ -17,7 +17,7 @@
 .blue { background-color: $blue-lighter; }
 .blue-bis { background-color: $blue; }
 .blue-ter { background-color: $blue-darker; }
-.blue-dam-1 { background-color: #0B1B28;}
+.blue-dam-1 { background-color: $blue-dam-1;}
 .blue-dam-2 { background-color: #031421;}
 
 .red { background-color: $red-lighter; }

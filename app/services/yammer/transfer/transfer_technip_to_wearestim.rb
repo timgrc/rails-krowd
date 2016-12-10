@@ -33,20 +33,24 @@ class Yammer::Transfer::TransferTechnipToWearestim
 
   def call
     @wearestim_users
+  end
 
+  private
+
+  def associate_technip_to_wearestim_users
+    csv_options = { col_sep: ',', headers: :first_row }
+    filepath    = 'technip_export.csv'
+
+    rse_messages_id = []
+
+    CSV.foreach(filepath, csv_options) do |row|
+      rse_message_id = row['id'].to_i
+      # Yammer::GetMessage.new(technip_user, rse_messages_id).call
+    end
   end
 end
 
 
-# csv_options = { col_sep: ',', headers: :first_row }
-# filepath    = 'db/fixtures/technip_export.csv'
-
-# rse_messages_id = []
-
-# CSV.foreach(filepath, csv_options) do |row|
-#   rse_message_id = row['id'].to_i
-#   # Yammer::GetMessage.new(technip_user, rse_messages_id).call
-# end
 
 # {
 #   keyword: '/wagon/',

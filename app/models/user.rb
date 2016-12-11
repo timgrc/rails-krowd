@@ -7,16 +7,16 @@ class User < ApplicationRecord
   has_many :memberships, dependent: :destroy
   has_many :groups, through: :memberships
 
-  has_many :user_badges
+  has_many :user_badges, dependent: :destroy
   has_many :badges, through: :user_badges
 
-  has_many :posts
+  has_many :posts, dependent: :destroy
 
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
-  has_many :incentive_templates
+  has_many :incentive_templates, dependent: :destroy
 
-  has_many :push_posts
+  has_many :push_posts, dependent: :destroy
 
   def self.find_for_yammer_oauth(auth)
     user_params = {

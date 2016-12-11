@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161206170447) do
+ActiveRecord::Schema.define(version: 20161210155942) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,7 +40,6 @@ ActiveRecord::Schema.define(version: 20161206170447) do
   create_table "groups", force: :cascade do |t|
     t.string   "rse_group_id"
     t.string   "rse_network_id"
-    t.string   "network_name"
     t.string   "full_name"
     t.string   "description"
     t.string   "web_url"
@@ -95,6 +94,24 @@ ActiveRecord::Schema.define(version: 20161206170447) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_push_posts_on_user_id", using: :btree
+  end
+
+  create_table "technip_users", force: :cascade do |t|
+    t.integer  "rse_id"
+    t.string   "email"
+    t.string   "job_title"
+    t.string   "location"
+    t.string   "expertise"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "name"
+    t.string   "mugshot_url"
+    t.string   "timezone"
+    t.string   "department"
+    t.string   "contact"
+    t.string   "network_name"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "user_badges", force: :cascade do |t|

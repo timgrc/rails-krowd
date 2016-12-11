@@ -5,15 +5,15 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <h4 class="modal-title" id="myModalLabel">Connect</h4>
+        <h4 class="modal-title" id="myModalLabel">Create a new challenge</h4>
       </div>
       <div class="modal-body">
         <div>
           <%= simple_form_for @group do |f| %>
             <%= f.input :full_name,
               collection: @yam_groups.map { |yam_group| yam_group[:full_name] },
-              selected: @yam_groups.first[:full_name]  %>
-            <%= f.submit %>
+              selected: @yam_groups.first[:full_name], label: false  %>
+            <%= f.button :button, "Create Group", class: "btn btn-primary margin-top-two", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Creating a group..."} %>
           <% end %>
         </div>
       </div>

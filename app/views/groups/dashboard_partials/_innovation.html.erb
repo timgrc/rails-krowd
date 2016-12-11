@@ -1,85 +1,19 @@
-<div class="container-full">
-  <h1>Innovation</h1>
-  <div>
-    <div class="row">
-      <div class="grid-element col-xs-12 col-sm-4 blue-dam-1">
-        <div class="grid-donut">
-          <% data = {
-            labels: [
-              "Business - Stong disruption",
-              "Business - Weak disruption",
-              "Technology - Stong disruption",
-              "Technology - Weak disruption"
-            ],
-            datasets: [
-              {
-                data: [200, 100, 50, 100],
-                backgroundColor: [
-                    "#9625a3",
-                    "#ca61c3",
-                    "#2b59c3",
-                    "#33a1fd"
-                ]
-              }
-            ]
-          } %>
-          <h2>IDEAS</h2>
-          <div class="grid-donut"><%= doughnut_chart data, legend: { display: false } %></div>
-        </div>
-      </div>
-
-      <div class="grid-element col-xs-12 col-sm-4 blue-dam-2">
-        <div class="grid-donut">
-          <% data = {
-            labels: [
-              "Business - Stong disruption",
-              "Business - Weak disruption",
-              "Technology - Stong disruption",
-              "Technology - Weak disruption"
-            ],
-            datasets: [
-              {
-                data: [200, 100, 50, 100],
-                backgroundColor: [
-                    "#9625a3",
-                    "#ca61c3",
-                    "#2b59c3",
-                    "#33a1fd"
-                ]
-              }
-            ]
-          } %>
-          <h2>KNOLEDGES INSIDE THE INDUSTRIE</h2>
-          <div class="grid-donut"><%= doughnut_chart data, legend: { display: false } %></div>
-        </div>
-      </div>
-
-      <div class="grid-element col-xs-12 col-sm-4 blue-dam-1">
-        <div class="grid-donut">
-          <% data = {
-            labels: [
-              "Business - Stong disruption",
-              "Business - Weak disruption",
-              "Technology - Stong disruption",
-              "Technology - Weak disruption"
-            ],
-            datasets: [
-              {
-                data: [200, 100, 50, 100],
-                backgroundColor: [
-                    "#9625a3",
-                    "#ca61c3",
-                    "#2b59c3",
-                    "#33a1fd"
-                ]
-              }
-            ]
-          } %>
-          <h2>KNOLEDGES INSIDE THE INDUSTRIE</h2>
-          <div class="grid-donut"><%= doughnut_chart data, legend: { display: false } %></div>
-        </div>
-      </div>
-    </div>
-
-  </div>
+<h1>Innovation</h1>
+<% data = {
+  labels: [
+    'good'
+  ],
+  datasets: [
+    {
+      data: [60],
+      backgroundColor: '#00FF00',
+      borderWidth: 0
+    }
+  ]
+}
+ %>
+<div class="grid-donut" style="width: 200px;"><%= doughnut_chart data, circumference: 1 * 2 * Math::PI, cutoutPercentage: 95, legend: { display: false }, width: "auto", responsive: true, class: 'donut-chart' %><div class="donut-inner">
+      <div class="donut-title" style:'color: red;'>60 %</div>
+      <div class="donut-subtitle">25 active members</div>
 </div>
+

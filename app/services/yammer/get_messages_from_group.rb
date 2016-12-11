@@ -1,13 +1,12 @@
-class GetCommentsFromPosts
-  def initialize(user, thread_id)
-    @yam       = Yammer::Client.new(access_token: user.access_token)
-    @thread_id = thread_id
+class Yammer::GetMessagesFromGroup
+  def initialize(user, group_id)
+    @yam      = Yammer::Client.new(access_token: user.access_token)
+    @group_id = group_id
   end
 
   def call
-    yam_posts = @yam.messages_in_thread(@thread_id)
-    yam_posts.body[:messages].map do |post|
-      # raise
+    message = @yam.messages_in_group(@group_id)
+    message.body[:messages].map do |post|
       {
         id:            post[:id],
         sender_id:     post[:sender_id],

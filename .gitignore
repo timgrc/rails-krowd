@@ -11,3 +11,5 @@ public/assets
 /config/application.yml
 
 .clever.json
+
+app/services/yammer/transfer/technip_export.csv

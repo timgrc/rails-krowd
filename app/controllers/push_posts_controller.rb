@@ -13,7 +13,7 @@ class PushPostsController < ApplicationController
   private
 
   def push
-    PostPushPost.new(current_user, @group, @push_post).call
+    Yammer::PostMessage.new(current_user, @group, @push_post.body).call
   end
 
   def push_post_params

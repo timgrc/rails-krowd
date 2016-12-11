@@ -1,4 +1,4 @@
-class GetAllGroups
+class Yammer::GetAllGroups
   def initialize(user)
     @yam = Yammer::Client.new(access_token: user.access_token)
   end

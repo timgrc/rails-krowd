@@ -4,23 +4,27 @@
     <div class="grid-element col-xs-12 col-sm-6 blue-dam-1">
       <% data = {
         labels: [
-              "Business - Stong disruption",
-              "Business - Weak disruption",
-              "Technology - Stong disruption",
-              "Technology - Weak disruption"
-          ],
-          datasets: [
-              {
-                  data: [200, 100, 50, 100],
-                  backgroundColor: [
-                      "#9625a3",
-                      "#ca61c3",
-                      "#2b59c3",
-                      "#33a1fd"
-                  ]
-              }]
-      } %>
-      <div class="grid-donut"><%= doughnut_chart data, legend: { display: false }, width: "auto" %></div>
+          'good',
+          'bad'
+        ],
+        datasets: [
+          {
+            data: [70, 30],
+            backgroundColor: [
+              '#00FF00',
+              '#0B1B28'
+            ],
+            borderWidth: 0
+          }
+        ]
+      }
+       %>
+      <div class="grid-donut"><%= doughnut_chart data, circumference: 1 * 2 * Math::PI, cutoutPercentage: 95, legend: { display: false }, width: "auto", responsive: true, id: 'retention-rate', class: 'donut-chart' %>
+        <div class="donut-inner">
+            <div class="donut-title">70 %</div>
+            <div class="donut-subtitle">25 active members</div>
+        </div>
+      </div>
     </div>
     <div class="grid-element col-xs-12 col-sm-3 blue-dam-2">
       <%= render "groups/dashboard_partials/dashboard_badge" %>

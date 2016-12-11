@@ -6,7 +6,7 @@ class GroupsController < ApplicationController
   def index
     @groups     = policy_scope(Group)
     @group      = Group.new
-    @yam_groups = GetAllGroups.new(current_user).call
+    @yam_groups = Yammer::GetAllGroups.new(current_user).call
   end
 
   def show
@@ -14,7 +14,7 @@ class GroupsController < ApplicationController
   end
 
   def create
-    yam_groups            = GetAllGroups.new(current_user).call
+    yam_groups            = Yammer::GetAllGroups.new(current_user).call
     group_params_from_api = yam_groups.find do |yam_group|
       yam_group[:full_name] == params[:group][:full_name]
     end

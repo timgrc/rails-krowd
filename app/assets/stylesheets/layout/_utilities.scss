@@ -28,10 +28,23 @@
   margin-top: 70px;
 }
 
+.margin-top-two {
+  margin-top: 20px;
+}
+
 .margin-bottom {
   margin-bottom : 30px;
 }
 
 .margin-right{
   margin-right: 20px;
+}
+
+.modal-body, .modal-title{
+  text-align: left;
+}
+
+.modal-title {
+  text-shadow: none;
+  color: $black;
 }

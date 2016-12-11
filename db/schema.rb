@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20161210155942) do
   create_table "groups", force: :cascade do |t|
     t.string   "rse_group_id"
     t.string   "rse_network_id"
+    t.string   "network_name"
     t.string   "full_name"
     t.string   "description"
     t.string   "web_url"

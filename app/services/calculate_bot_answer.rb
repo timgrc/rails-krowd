@@ -12,6 +12,30 @@ class CalculateBotAnswer
       {
         regex:  /active members/i,
         answer: '30%'
+      },
+      {
+        regex:  /total members/i,
+        answer: '100 collaborators invited'
+      },
+      {
+        regex:  /most active/i,
+        answer: 'Jean-Louis David is the activist of the week'
+      },
+      {
+        regex:  /most notifications/i,
+        answer: 'Jacques Dessange is the networker of the week'
+      },
+      {
+        regex:  /most ideas/i,
+        answer: 'Frank Provost is the inventor of the week'
+      },
+      {
+        regex:  /most knowledges/i,
+        answer: 'Sergio Bossi is the mastermind of the week'
+      },
+      {
+        regex:  /most likes comments/i,
+        answer: 'Jean-Claud Biguine is the influencer of the week'
       }
     ]
 

@@ -5,6 +5,6 @@ class Yammer::LikeMessage
   end
 
   def call
-    p @yam.post('/api/v1/messages/liked_by/current.json', message_id: @message_id)
+    @yam.like_message @message_id
   end
 end

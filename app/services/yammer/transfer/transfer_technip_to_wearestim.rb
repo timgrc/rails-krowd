@@ -82,16 +82,22 @@ class Yammer::Transfer::TransferTechnipToWearestim
 
   def post_technip_messages_on_wearestim
     # Get all messages
-    [669107552].each_with_index do |message_id, index|
+    [669009942].each_with_index do |message_id, index|
     # technip_messages_id.each_with_index do |message_id, index|
-      # 669009942 post
-      # 669037310 comment with attchment
 
-      technip_message = Yammer::GetMessage.new(@technip_user, message_id).call
-      technip_sender = Yammer::GetTechnipUser.new(@technip_user, technip_message[:sender_id]).call
+      technip_message  = Yammer::GetMessage.new(@technip_user, message_id).call
+      liked_by_message = Yammer::GetLikesFromMessage.new(@technip_user, message_id).call
       @opts = { group_id: @challenge_group.rse_group_id }
 
-      message_body = generate_message_body(technip_message[:sender_id], technip_message[:body], technip_message[:notified_user_ids])
+      message_body = generate_message_body(
+        technip_message[:sender_id],
+        technip_message[:body],
+        technip_message[:notified_user_ids],
+        liked_by_message
+      )
+
+      p technip_message[:attachments] ## WORK IN PROGRESS
+      next
 
       if technip_message[:replied_to_id].nil?
         # Post - Thread
@@ -103,34 +109,35 @@ class Yammer::Transfer::TransferTechnipToWearestim
         #Comment
         @assoc_next_turn = assoc_turn @assoc_next_turn
         wearestim_sender = @wearestim_users_without_bot[@assoc_next_turn][:wearestim_user]
+        # @opts[:replied_to_id] = 1
       end
 
+      # Attachments
+      attachment = RestClient::Resource.new("https://www.yammer.com/api/v1/uploaded_files/76267736/download")
+      response = attachment.get(authorization: "Bearer #{@wearestim_users.first[:wearestim_user].access_token}")
+      File.write('image.jpg', response, mode: 'wb')
+
+      @opts[:attachment1] = File.open('image.jpg')
+
       # Send the message
-      # Yammer::PostMessage.new(
-      #   wearestim_sender,
-      #   message_body,
-      #   @opts
+      Yammer::PostMessage.new(
+        wearestim_sender,
+        message_body,
+        @opts
+      ).call
+
+      # Message sent
+      # message_sent = Yammer::GetLastMessageFromGroup.new(
+      #   @wearestim_users.first[:wearestim_user],
+      #   @challenge_group.rse_group_id
       # ).call
 
       # Like the message
-      Yammer::LikeMessage.new(
-        wearestim_sender,
-        812623339
-      ).call
+      # assocs_likes_message = post_like_to_message(technip_message[:id], liked_by_message)
+      # assocs_likes_message.each do |assoc_like|
+      #   Yammer::LikeMessage.new(assoc_like, message_sent[:id]).call
+      # end
     end
-
-
-
-    # Yammer::PostMessage.new(
-    #   @wearestim_users.first[:wearestim_user],
-    #   "test topic tim",
-    #   group_id: @challenge_group.rse_group_id,
-    #   topic1: 'tim'
-    # ).call
-
-    # like
-
-
   end
 
   def assoc_turn(turn)
@@ -156,23 +163,33 @@ class Yammer::Transfer::TransferTechnipToWearestim
     end
   end
 
-  def convert_tag_in_message
-
-  end
-
-  def generate_message_body(sender_id, message_body, cc)
-    res_message_body     = message_body[:plain]
+  def generate_message_body(sender_id, message_body, cc, liked_by)
+    cc_text              = ''
+    likes_text           = ''
     cc_in_message_array  = generate_body_with_cc_converted_in(message_body[:parsed])
     cc_out_message_array = generate_body_with_cc_converted_out(cc)
     cc_message_array     = (cc_in_message_array + cc_out_message_array).uniq
 
+    liked_by_technip_users_text = liked_by_technip_users(liked_by)
+
+    res_message_body = convert_notified_user_in_message_body(message_body[:plain], message_body[:parsed])
+
     unless cc_message_array.empty?
-      message_body     = convert_notified_user_in_message_body(message_body[:plain])
       @opts[:cc]       = convert_notified_user_in_cc(cc)
-      res_message_body = "#{message_body}\ncc: #{cc_message_array.join(', ')}"
+      cc_text = "\ncc: #{cc_message_array.join(', ')}"
     end
 
-    "#{hash_tag_technip_user(sender_id)}: #{res_message_body}"
+    res_message_body = " #{res_message_body}"
+
+    unless liked_by_technip_users_text.nil?
+      likes_text = liked_by_technip_users_text
+    end
+
+    unless cc_message_array.empty? && liked_by_technip_users_text.nil?
+      "#{hash_tag_technip_user(sender_id)}: #{res_message_body}\n\nTechnip Innovation Challenge data:#{cc_text}#{likes_text}"
+    else
+      message_body[:plain]
+    end
   end
 
   def convert_notified_user_in_cc(cc)
@@ -181,12 +198,12 @@ class Yammer::Transfer::TransferTechnipToWearestim
     end
   end
 
-  def convert_notified_user_in_message_body(message_body)
-    res = message_body
+  def convert_notified_user_in_message_body(message_body_plain, message_body_parsed)
+    res = message_body_plain
 
-    message_body.scan(/\[\[user:(\d+)\]\]/).each do |user_id_array|
-      user_id = user_id_array.first
-      user    = Yammer::GetTechnipUser(user_id)
+    message_body_parsed.scan(/\[\[user:(\d+)\]\]/).each do |user_id_array|
+      user_id = user_id_array.first.to_i
+      user    = Yammer::GetTechnipUser.new(@technip_user, user_id).call
       assoc_wearestim_id = wearestim_user_associated(user_id).rse_user_id
 
       res = res.gsub(
@@ -221,10 +238,27 @@ class Yammer::Transfer::TransferTechnipToWearestim
 
   def get_topics(topics)
     unless topics.empty?
-      topics_name = topics.map { |topic| Yammer::GetTopic.new(@technip_user, topic.to_i).call }.uniq
+      topics_name = topics.map { |topic| Yammer::GetTopic.new(@technip_user, topic).call }.uniq
       topics_name.each_with_index do |topic_name, index|
-        @opts["topic#{index + 1}".to_sym] = topic_name
+        @opts["topic#{index + 1}".to_sym] = topic_name[:normalized_name]
       end
+    end
+  end
+
+  def liked_by_technip_users(liked_by)
+    liked_by_array = liked_by.map do |like|
+      hash_tag_technip_user(like[:id])
+    end
+
+    unless liked_by_array.empty?
+      likes_text = liked_by_array.count > 1 ? "likes:" : "like:"
+      "\n#{likes_text} #{liked_by_array.join(', ')}"
+    end
+  end
+
+  def post_like_to_message(message_id, liked_by)
+    liked_by.map do |like|
+      wearestim_user_associated(like[:id])
     end
   end
 end

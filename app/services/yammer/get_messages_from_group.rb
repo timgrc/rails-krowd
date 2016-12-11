@@ -1,12 +1,12 @@
-class Yammer::GetMessagesInThread
-  def initialize(user, thread_id)
-    @yam       = Yammer::Client.new(access_token: user.access_token)
-    @thread_id = thread_id
+class Yammer::GetMessagesFromGroup
+  def initialize(user, group_id)
+    @yam      = Yammer::Client.new(access_token: user.access_token)
+    @group_id = group_id
   end
 
   def call
-    thread = @yam.messages_in_thread(@thread_id)
-    thread.body[:messages].map do |post|
+    message = @yam.messages_in_group(@group_id)
+    message.body[:messages].map do |post|
       {
         id:            post[:id],
         sender_id:     post[:sender_id],

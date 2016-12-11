@@ -1,1 +1,19 @@
 <h1>Innovation</h1>
+<% data = {
+  labels: [
+    'good'
+  ],
+  datasets: [
+    {
+      data: [60],
+      backgroundColor: '#00FF00',
+      borderWidth: 0
+    }
+  ]
+}
+ %>
+<div class="grid-donut" style="width: 200px;"><%= doughnut_chart data, circumference: 1 * 2 * Math::PI, cutoutPercentage: 95, legend: { display: false }, width: "auto", responsive: true, class: 'donut-chart' %><div class="donut-inner">
+      <div class="donut-title" style:'color: red;'>60 %</div>
+      <div class="donut-subtitle">25 active members</div>
+  </div>
+</div>

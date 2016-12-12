@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161210155942) do
+ActiveRecord::Schema.define(version: 20161212064620) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,21 +24,16 @@ ActiveRecord::Schema.define(version: 20161210155942) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "comments", force: :cascade do |t|
-    t.string   "plain"
-    t.string   "rich"
-    t.string   "liked_by"
-    t.string   "kind"
+  create_table "bot_users", force: :cascade do |t|
+    t.integer  "latest_rse_replied_id"
     t.integer  "user_id"
-    t.integer  "post_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["post_id"], name: "index_comments_on_post_id", using: :btree
-    t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.index ["user_id"], name: "index_bot_users_on_user_id", using: :btree
   end
 
   create_table "groups", force: :cascade do |t|
-    t.string   "rse_group_id"
+    t.string   "rse_id"
     t.string   "rse_network_id"
     t.string   "network_name"
     t.string   "full_name"
@@ -50,7 +45,6 @@ ActiveRecord::Schema.define(version: 20161210155942) do
   end
 
   create_table "incentive_templates", force: :cascade do |t|
-    t.string   "title"
     t.string   "body"
     t.integer  "group_id"
     t.integer  "user_id"
@@ -69,32 +63,37 @@ ActiveRecord::Schema.define(version: 20161210155942) do
     t.index ["user_id"], name: "index_memberships_on_user_id", using: :btree
   end
 
-  create_table "posts", force: :cascade do |t|
-    t.integer  "rse_post_id"
-    t.string   "rse_created_at"
-    t.string   "message_type"
-    t.string   "web_url"
-    t.string   "title"
+  create_table "messages", force: :cascade do |t|
     t.string   "plain"
-    t.string   "rich"
-    t.string   "liked_by"
-    t.string   "disruption"
-    t.string   "kind"
+    t.string   "idea_kint_kext_social"
     t.integer  "user_id"
-    t.integer  "group_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.index ["group_id"], name: "index_posts_on_group_id", using: :btree
-    t.index ["user_id"], name: "index_posts_on_user_id", using: :btree
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.integer  "rse_id"
+    t.integer  "rse_replied_to_id"
+    t.string   "rse_created_at"
+    t.string   "web_url"
+    t.string   "parsed"
+    t.integer  "liked_by"
+    t.integer  "notified_by"
+    t.integer  "thread_post_id"
+    t.index ["thread_post_id"], name: "index_messages_on_thread_post_id", using: :btree
+    t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
   end
 
-  create_table "push_posts", force: :cascade do |t|
-    t.string   "title"
+  create_table "push_messages", force: :cascade do |t|
     t.string   "body"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_push_posts_on_user_id", using: :btree
+    t.index ["user_id"], name: "index_push_messages_on_user_id", using: :btree
+  end
+
+  create_table "technip_to_wearestim_ids", force: :cascade do |t|
+    t.integer  "technip_message_id"
+    t.integer  "wearestim_message_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   create_table "technip_users", force: :cascade do |t|
@@ -113,6 +112,22 @@ ActiveRecord::Schema.define(version: 20161210155942) do
     t.string   "network_name"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+  end
+
+  create_table "thread_posts", force: :cascade do |t|
+    t.integer  "rse_id"
+    t.string   "web_url"
+    t.string   "innovation_disruption"
+    t.string   "business_technology"
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.integer  "updates"
+    t.integer  "first_reply_id"
+    t.integer  "latest_reply_id"
+    t.index ["group_id"], name: "index_thread_posts_on_group_id", using: :btree
+    t.index ["user_id"], name: "index_thread_posts_on_user_id", using: :btree
   end
 
   create_table "user_badges", force: :cascade do |t|
@@ -139,7 +154,7 @@ ActiveRecord::Schema.define(version: 20161210155942) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.integer  "rse_user_id"
+    t.integer  "rse_id"
     t.string   "username"
     t.string   "first_name"
     t.string   "last_name"
@@ -157,15 +172,16 @@ ActiveRecord::Schema.define(version: 20161210155942) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
-  add_foreign_key "comments", "posts"
-  add_foreign_key "comments", "users"
+  add_foreign_key "bot_users", "users"
   add_foreign_key "incentive_templates", "groups"
   add_foreign_key "incentive_templates", "users"
   add_foreign_key "memberships", "groups"
   add_foreign_key "memberships", "users"
-  add_foreign_key "posts", "groups"
-  add_foreign_key "posts", "users"
-  add_foreign_key "push_posts", "users"
+  add_foreign_key "messages", "thread_posts"
+  add_foreign_key "messages", "users"
+  add_foreign_key "push_messages", "users"
+  add_foreign_key "thread_posts", "groups"
+  add_foreign_key "thread_posts", "users"
   add_foreign_key "user_badges", "badges"
   add_foreign_key "user_badges", "groups"
   add_foreign_key "user_badges", "users"

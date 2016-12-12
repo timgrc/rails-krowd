@@ -21,5 +21,10 @@ class Yammer::GetMessage
     ]
 
     message.select { |key, _| message_keys_needed.include? key }
+    message[:plain]  = message[:body][:plain]
+    message[:parsed] = message[:body][:parsed]
+    message.delete(:body)
+
+    message
   end
 end

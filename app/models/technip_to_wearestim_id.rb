@@ -1,0 +1,2 @@
+class TechnipToWearestimId < ApplicationRecord
+end

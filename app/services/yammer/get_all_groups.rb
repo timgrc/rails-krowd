@@ -7,7 +7,7 @@ class Yammer::GetAllGroups
     yam_groups = @yam.all_groups
     yam_groups.body.map do |yam_group|
       {
-        rse_group_id:   yam_group[:id],
+        rse_id:         yam_group[:id],
         rse_network_id: yam_group[:network_id],
         full_name:      yam_group[:full_name],
         description:    yam_group[:description],

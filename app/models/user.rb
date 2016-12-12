@@ -10,18 +10,20 @@ class User < ApplicationRecord
   has_many :user_badges, dependent: :destroy
   has_many :badges, through: :user_badges
 
-  has_many :posts, dependent: :destroy
+  has_many :thread_posts
 
-  has_many :comments, dependent: :destroy
+  has_one :bot_user, dependent: :destroy
+
+  has_many :messages, dependent: :destroy
 
   has_many :incentive_templates, dependent: :destroy
 
-  has_many :push_posts, dependent: :destroy
+  has_many :push_messages, dependent: :destroy
 
   def self.find_for_yammer_oauth(auth)
     user_params = {
       access_token: auth["access_token"]["token"],
-      rse_user_id: auth["access_token"]["user_id"],
+      rse_id: auth["access_token"]["user_id"],
       email: auth["user"]["email"],
       username: auth["user"]["name"],
       first_name: auth["user"]["first_name"],

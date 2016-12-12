@@ -10,7 +10,7 @@ class GroupsController < ApplicationController
   end
 
   def show
-    @push_post = PushPost.new
+    @push_message = PushMessage.new
   end
 
   def create
@@ -37,7 +37,7 @@ class GroupsController < ApplicationController
 
   def group_params
     params.require(:group).permit(
-      :rse_group_id,
+      :rse_id,
       :rse_network_id,
       :full_name,
       :description,

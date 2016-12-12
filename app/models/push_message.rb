@@ -1,4 +1,4 @@
-class PushPost < ApplicationRecord
+class PushMessage < ApplicationRecord
   belongs_to :user
 
   validates :body, presence: true

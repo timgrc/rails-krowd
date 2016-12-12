@@ -11,10 +11,15 @@ class Yammer::GetThread
       :group_id,
       :stats,
       :web_url,
-      :topics
+      :topics,
     ]
     thread.select { |key, _| thread_keys_needed.include? key }
     thread[:topics] = thread[:topics].map { |topic| topic[:id] }
+
+    thread[:updates]         = thread[:stats][:updates]
+    thread[:first_reply_id]  = thread[:stats][:first_reply_id]
+    thread[:latest_reply_id] = thread[:stats][:latest_reply_id]
+    thread.delete(:updates)
 
     thread
   end

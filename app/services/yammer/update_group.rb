@@ -54,35 +54,38 @@ class Yammer::UpdateGroup
 
       # Catch messages
       message_rse_ids.each do |message_id|
-        # if Message.find_by_rse_id(message_id)
-        #   new_message = Message.find_by_rse_id(message_id)
-        # else
-          likes = @yam.get("/api/v1/users/liked_message/#{message_id}.json").body[:users].count
+        likes = @yam.get("/api/v1/users/liked_message/#{message_id}.json").body[:users].count
 
-          message = @yam.get_message(message_id).body
-          message_db = {
-            rse_id:            message[:id],
-            rse_replied_to_id: message[:replied_to_id],
-            web_url:           message[:web_url],
-            plain:             message[:body][:plain],
-            parsed:            message[:body][:parsed],
-            notified_by:       message[:notified_user_ids].count,
-            liked_by:          likes
-          }
+        message = @yam.get_message(message_id).body
+        message_db = {
+          rse_id:            message[:id],
+          rse_replied_to_id: message[:replied_to_id],
+          web_url:           message[:web_url],
+          plain:             message[:body][:plain],
+          parsed:            message[:body][:parsed],
+          notified_by:       message[:notified_user_ids].count,
+          liked_by:          likes
+        }
 
-          new_message             = Message.new(message_db)
-          message_sender          = Yammer::GetUser.new(@yam, message[:sender_id]).call
+        new_message             = Message.new(message_db)
+        message_sender          = Yammer::GetUser.new(@yam, message[:sender_id]).call
 
-          new_message.thread_post = new_thread
-          new_message.user        = message_sender
-          new_message.save
-        # end
+        new_message.thread_post = new_thread
+        new_message.user        = message_sender
+        new_message.save
 
         i += 1
         percentage = "#{( ( i.to_f / 253.to_f ) * 100 ).round(1)}%"
         puts "#{percentage} - #{i}/253"
         sleep(5)
       end
+    end
+
+    comments = Message.where.not(rse_replied_to_id: nil).order('id desc')
+    comments.each_with_index do |comment, index|
+      comment.replied_to_id = Message.find_by_rse_id(comment.rse_replied_to_id).id
+      comment.save!
+      puts "-- #{index + 1}/#{comments.count} --"
     end
 
     puts '-- Update finished - 100% Good Style'

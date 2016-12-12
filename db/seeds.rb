@@ -1,6 +1,11 @@
-# Initial Import
+# Yammer::Transfer::LoadInWearestimNetwork.new.call
 
-Yammer::Transfer::LoadInWearestimNetwork.new.call
+# p Yammer::GetLastPrivateMessagesFromBotUser.new.call
+# puts CalculateBotAnswer.new('yolo').call
+# puts CalculateBotAnswer.new('wagon').call
+
+UseBot.new(BotUser.first).call
+
 
 # 1- The activist - Celui qui a le plus commenté
 # activists = User.joins(:messages)

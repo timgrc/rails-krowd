@@ -43,6 +43,12 @@ class CalculateBotAnswer
       bot_answer[:answer] if @user_question =~ bot_answer[:regex]
     end
 
-    bot_correct_answers.join('\n')
+    bot_correct_answers = bot_correct_answers.select { |bot_answer| !bot_answer.nil? }
+
+    if !bot_correct_answers.empty?
+      bot_correct_answers.join('\n')
+    else
+      "For this question \"#{@user_question}\" : Sorry, I did not understand the question ^^.\nTry Again ..."
+    end
   end
 end

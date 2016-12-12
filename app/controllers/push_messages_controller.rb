@@ -4,9 +4,7 @@ class PushMessagesController < ApplicationController
     @push_message = current_user.push_messages.build(push_message_params)
     if @push_message.save
       push
-      redirect_to group_path(@group)
     else
-      # render ''
     end
   end
 

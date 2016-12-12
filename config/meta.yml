@@ -1,0 +1,5 @@
+# config/meta.yml
+meta_title: "The Krowd, innovation project dashboard"
+meta_description: "Optimize your entreprise social network and give a voice to your innovation's data."
+meta_image: "logo.png" # Une image dans votre dossier app/assets/images/
+twitter_account: "@TimGrc" # indispensable pour les Twitter Cards

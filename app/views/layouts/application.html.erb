@@ -3,6 +3,8 @@
   <head>
     <title><%= meta_title %></title>
     <meta name="description" content="<%= meta_description %>">
+    <%= favicon_link_tag %>
+    <!-- <link href="assets/favicon.ico" rel="shortcut icon" type="image/x-icon" /> -->
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
 
@@ -14,7 +16,7 @@
     <meta property="og:description" content="<%= meta_description %>" />
     <meta property="og:site_name" content="<%= meta_title %>" />
 
-    <!-- Twitter Card data -->
+    <!-- Twitter Card data <--></-->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="<%= DEFAULT_META['twitter_account'] %>">
     <meta name="twitter:title" content="<%= meta_title %>">

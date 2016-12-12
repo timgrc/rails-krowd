@@ -13,12 +13,15 @@
 .green { background-color: $green-lighter; }
 .green-bis { background-color: $green; }
 .green-ter { background-color: $green-darker; }
+.green-1 { background-color: #02AD83;}
 
 .blue { background-color: $blue-lighter; }
 .blue-bis { background-color: $blue; }
 .blue-ter { background-color: $blue-darker;}
 .blue-dam-1 { background-color: $blue-dam-1;}
 .blue-dam-2 { background-color: $blue-dam-2;}
+.blue-dam-3 {background-color: #212F3B}
+.turquoise-1 { background-color: #26BCD5; }
 
 .red { background-color: $red-lighter; }
 .red-bis { background-color: $red; }
@@ -33,6 +36,7 @@
 .black-bis { background-color: $dark-black; }
 .gray { background-color: $gray-lighter; }
 .gray-bis { background-color: $gray; }
+.gray-dam-1 { background-color: #89949B; }
 
 
 .orange { background-color: $orange; }

@@ -1,36 +1,88 @@
 <div class="margin-top"></div>
 <div class="container-full grid">
   <div class="row">
-    <div class="grid-element col-xs-12 col-sm-6 blue-dam-1">
-      <% data = {
-        labels: [
-          'good',
-          'bad'
-        ],
-        datasets: [
-          {
-            data: [70, 30],
-            backgroundColor: [
-              '#00FF00',
-              '#0B1B28'
-            ],
-            borderWidth: 0
-          }
-        ]
-      }
-       %>
-      <div class="grid-donut"><%= doughnut_chart data, circumference: 1 * 2 * Math::PI, cutoutPercentage: 95, legend: { display: false }, width: "auto", responsive: true, id: 'retention-rate', class: 'donut-chart' %>
-        <div class="donut-inner">
-            <div class="donut-title">70 %</div>
-            <div class="donut-subtitle">25 active members</div>
+    <div class="element-donut col-xs-12 col-sm-3 blue-dam-1">
+      <div class="comment-row">
+        <div class="badge-comment gray-dam-1">
+          <p>75</p>
+          <p>Likes</p>
+        </div>
+        <div class="badge-comment blue-dam-3">
+          <p>75</p>
+          <p>Comments</p>
+        </div>
+      </div>
+      <div class="donut">
+        <div class="  grid-donut">
+          <canvas class='donut-chart' id="retention-rate"></canvas>
+          <%= content_for :donuts_js do %>
+            <script>
+              function donut() {
+                var ctx = document.getElementById("retention-rate").getContext("2d");
+                var gradient = ctx.createLinearGradient(0, 0, 200, 0);
+                gradient.addColorStop(0, '#26BCD5');
+                gradient.addColorStop(1, '#02AD83');
+
+                var myChart = new Chart(ctx, {
+                  type: 'doughnut',
+                  data: {
+                    labels: [
+                    'good',
+                    'bad'
+                    ],
+                    datasets: [{
+                        // label: '# of Votes',
+                        data: [70, 30],
+                        backgroundColor: [
+                        gradient,
+                        '#0B1B28'
+                        ],
+                        borderWidth: 0,
+                    }]
+                  },
+                  options: {
+                    cutoutPercentage: 93,
+                    legend: { display: false }
+                  }
+                });
+              }
+            </script>
+            <% end %>
+          <div class="donut-inner">
+              <div class="donut-title">70 %</div>
+              <div class="donut-subtitle">25 active members</div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="grid-element col-xs-12 col-sm-3 blue-dam-2">
-      <%= render "groups/dashboard_partials/dashboard_badge" %>
+    <div class="grid-element col-xs-12 col-sm-3 turquoise-1">
     </div>
-    <div class="grid-element col-xs-12 col-sm-3 blue-dam-1">
-      <%= render "groups/dashboard_partials/dashboard_badge" %>
+    <div class="grid-element col-xs-12 col-sm-3 green-1">
+    </div>
+    <div class="grid-element col-xs-12 col-sm-3 white-card">
+      <div class="badge-card best-reward">
+        <div class="best-reward-picture">
+          <div class="badge-reward text-center">
+            <div class="badge-pictures">
+              <%= image_tag current_user.mugshot_url, class: "avatar-badges" %>
+              <img class="reward-picto" src="<%= path_to_image "The_activist.jpg" %>">
+            </div>
+            <h3>The Influencer</h3>
+            <h4>The most linked post</h4>
+            <h4>Jean Louis David</h4>
+          </div>
+        </div>
+        <div class="like-row">
+          <div class="badge-like turquoise-1">
+            <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+            103
+          </div>
+          <div class="badge-like green-1">
+            <i class="fa fa-comment-o" aria-hidden="true"></i>
+            85
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="row">

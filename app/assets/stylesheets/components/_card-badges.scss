@@ -7,6 +7,10 @@
   align-items: center;
 }
 
+.white-card {
+  color: black;
+}
+
 .badge-pictures {
   position: relative;
 }
@@ -23,19 +27,6 @@
   margin-top: 5%;
 }
 
-.badge-reward h4 {
-  margin-top: 10%;
-}
-
-
-.user-informations {
-  margin-bottom: 10%;
-}
-
-.badge-card + .badge-card {
-  border-left:none;
-}
-
 .grid {
   height: 92vh;
   color: #E6E6E6;
@@ -46,23 +37,45 @@
 }
 
 .grid-element {
-  //border: grey solid 0.5px;
   height: 100%;
   display: flex;
   align-items: center;
 }
 
-// <<<<<<< HEAD
-// .grid-donut {
-//   height: 100%;
-//   margin: auto;
-//   height: 100%;
-// }
-
-// =======
-// >>>>>>> master
 .avatar-badges {
   border-radius: 50%;
   width: 50%;
 }
+
+.best-reward {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.best-reward-picture {
+  height: 90%;
+}
+
+.like-row {
+  display: flex;
+  width: 100%;
+  flex-grow: 1;
+}
+
+.badge-like {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.badge-like i {
+  font-size: 200%;
+  padding-right: 5%;
+}
+
+
+
 

@@ -1,11 +1,3 @@
-$(function() {
-  centerDonutInner();
-});
-
-$(window).resize(function() {
-  centerDonutInner();
-});
-
 function centerDonutInner() {
   var donutInner,
     donutTop,
@@ -13,8 +5,15 @@ function centerDonutInner() {
     donutInnerTop,
     donutInnerHeight,
     FromDonutTopToDonutInnerTop,
-    marginTopdonutInner;
+    marginTopdonutInner,
+    gridDonutHeight;
+
+    gridDonutHeight = $('.grid-donut').height();
+    DonutDiameter   = 0.8 * gridDonutHeight;
+
   $('.donut-chart').each(function() {
+    $(this).css({height: DonutDiameter, width: DonutDiameter});
+
     donutInner       = $(this).parent().find('.donut-inner')
 
     donutTop         = $(this).position().top;

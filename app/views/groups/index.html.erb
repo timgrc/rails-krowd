@@ -3,11 +3,22 @@
     <h1>Welcome <%= @current_user.first_name + " " + @current_user.last_name %></h1>
     <p><em>Pick a challenge or create a new one</em></p>
       <div class="row">
-        <% @groups.each do |group| %>
+      <%= link_to '', 'data-toggle' => 'modal', 'data-target' => '#myModal' do %>
+        <div class="col-xs-12 col-sm-4">
+          <div class="card card-group create-border margin-bottom padded">
+            <div class="card-group-btn">
+              +<span>New challenge</span>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <% @groups.each do |group| %>
         <%= link_to group_path(group) do %>
           <div class="col-xs-12 col-sm-4">
             <div class="card card-group challenge-card margin-bottom padded" style="background-image: linear-gradient(to bottom left, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 50%), url('<%= path_to_image "background-2.jpg" %>');">
-            <div class="card-category">Popular</div>
+            <div class="card-category">
+              Popular
+            </div>
             <div class="card-group-description ">
               <div class="card-group-picture-absolute">
                 <%= image_tag group.mugshot_url, class: "avatar-square card-group-picture-img" %>
@@ -15,18 +26,12 @@
                 <h2><%= group.full_name %></h2>
             </div>
           </div>
-      </div>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
-
-  <%= link_to '', 'data-toggle' => 'modal', 'data-target' => '#myModal' do %>
-    <div class="col-xs-12 col-sm-4">
-      <div class="card card-group create-border margin-bottom padded">
-        <div class="card-group-btn">+<span>New challenge</span></div>
-      </div>
-    </div>
   </div>
-<% end %>
+</div>
+
 
 <%= render 'modal_form_create_group' %>
 

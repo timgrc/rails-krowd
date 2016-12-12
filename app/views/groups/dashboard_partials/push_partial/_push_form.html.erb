@@ -9,22 +9,53 @@
           </div>
           <div class="col-xs-6 col-sm-6">
             <div>
-              Some title
+              <%= @group.full_name %>
             </div>
             <div>
-              <%= (Time.now.to_i - Time.at(current_user.created_at.to_i).to_i) / (60*60*24) %> days ago
+              created <%= (Time.now.to_i - Time.at(current_user.created_at.to_i).to_i) / (60*60*24) %> days ago
             </div>
           </div>
         </div>
       </div>
         <div class="panel-body">
-          <%= f.input :body, as: :text, label: false, input_html: { cols: 40, rows: 10, id: "status_message", class: "form-control message", placeholder: "What's your message?" } %>
+          <%= f.input :body, as: :text, label: false, input_html: { cols: 40, rows: 10, class: "form-control message", placeholder: "What's your message?" } %>
         </div>
       <div class="panel-footer">
+      <%= link_to '<i class="fa fa-refresh" aria-hidden="true"></i>'.html_safe, group_incentive_templates_path(@group), remote: true %>
         <div class="form-group">
-          <%= f.button :button, "Create Push post", class: "btn btn-primary", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Sending Push post..."} %>
+          <div class="button-holder">
+            <div class="submit-button">
+              <div class="krowd-hidden fa fa-check done"></div>
+              <%= f.button :button, "Create Push post", class: "btn btn-primary" %>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
+<% end %>
+
+<% content_for(:after_js) do %>
+  <script>
+$(document).ready(function() {
+  $(".btn-primary").click(function() {
+    var button, parent;
+    $(this).addClass("loading");
+    $('.loading:focus').blur()
+    button = $(this)
+    parent  = $(this).parent();
+
+    setTimeout(function() {
+      button.addClass("hide-loading");
+      parent.find(".done").addClass("finish");
+    }, 3000);
+
+    setTimeout(function() {
+      button.removeClass("loading");
+      button.removeClass("hide-loading");
+      parent.find(".done").removeClass("finish");
+    }, 5000);
+  })
+});
+  </script>
 <% end %>

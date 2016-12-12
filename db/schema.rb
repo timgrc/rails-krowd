@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161212003644) do
+ActiveRecord::Schema.define(version: 20161212064620) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,10 +64,10 @@ ActiveRecord::Schema.define(version: 20161212003644) do
 
   create_table "messages", force: :cascade do |t|
     t.string   "plain"
-    t.string   "kind"
+    t.string   "idea_kint_kext_social"
     t.integer  "user_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
     t.integer  "rse_id"
     t.integer  "rse_replied_to_id"
     t.string   "rse_created_at"

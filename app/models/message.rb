@@ -7,6 +7,6 @@ class Message < ApplicationRecord
   private
 
   def kind
-    self.kind = KindOfMessage.new(self.plain).call
+    self.idea_kint_kext_social = KindOfMessage.new(self.plain).call
   end
 end

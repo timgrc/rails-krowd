@@ -43,8 +43,14 @@
 }
 
 .avatar-badges {
+  border: 5px solid #212F3B;
   border-radius: 50%;
   width: 50%;
+}
+
+.avatar-badges-best {
+  border-radius: 50%;
+  width: 100%;
 }
 
 .best-reward {
@@ -74,6 +80,29 @@
 .badge-like i {
   font-size: 200%;
   padding-right: 5%;
+}
+
+.grad-border {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  position: relative;
+  margin: auto;
+  margin-top: 15%;
+  border-radius: 50%;
+  background: #fff;
+}
+.grad-border:after {
+  content: '';
+  position: absolute;
+  top: -10px;
+  bottom: -10px;
+  right: -10px;
+  left: -10px;
+  background-image: linear-gradient(to bottom left, #26BCD5 0%, #02AD83 100%);
+  z-index: -1;
+  border-radius: inherit;
 }
 
 

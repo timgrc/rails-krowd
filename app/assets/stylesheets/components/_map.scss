@@ -1,4 +1,25 @@
 #regions_div{
-  height: 92vh;
-  margin-top: 3%;
+  height: 85vh;
+  position: relative;
+  // margin-top: 3%;
 }
+
+.map-legend {
+  background-color: $gray;
+  position: absolute;
+  top: -20px;
+  left: 20px;
+  background-color: white;
+  width: 500px;
+}
+
+// .map-div{
+//   flex: left;
+// }
+// .map-style h1 {
+//   background-color: $blue-dam-1;
+//   color: white;
+//   margin: 0px;
+//   padding: 10px;
+// }
+

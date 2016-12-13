@@ -20,7 +20,7 @@
 .blue-ter { background-color: $blue-darker;}
 .blue-dam-1 { background-color: $blue-dam-1;}
 .blue-dam-2 { background-color: $blue-dam-2;}
-.blue-dam-3 {background-color: #212F3B}
+.blue-dam-3 {background-color: $blue-dam-3; }
 .turquoise-1 { background-color: #5BC5F1; }
 
 .red { background-color: $red-lighter; }

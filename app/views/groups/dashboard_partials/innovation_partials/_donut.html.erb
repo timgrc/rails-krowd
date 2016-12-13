@@ -1,0 +1,38 @@
+<div class="grid-donut">
+  <canvas class='donut-chart' id=<%= donut_id %>></canvas>
+  <%= content_for :donuts_js do %>
+    <script>
+      function <%= donut_id %>() {
+        var ctx = document.getElementById("<%= donut_id %>").getContext("2d");
+        var myChart = new Chart(ctx, {
+          type: 'doughnut',
+          data: {
+            labels: [
+            'good',
+            'bad'
+            ],
+            datasets: [{
+                // label: '# of Votes',
+                data: [50, 20, 15, 15],
+                backgroundColor: [
+                'red',
+                '#0B1B28',
+                'blue',
+                'green'
+                ],
+                borderWidth: 0,
+            }]
+          },
+          options: {
+            cutoutPercentage: 75,
+            legend: { display: false }
+          }
+        });
+      }
+    </script>
+    <% end %>
+  <div class="donut-inner">
+      <div class="donut-title">70 %</div>
+      <div class="donut-subtitle">25 active members</div>
+  </div>
+</div>

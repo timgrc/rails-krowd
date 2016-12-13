@@ -48,7 +48,7 @@ class CalculateBotAnswer
     if !bot_correct_answers.empty?
       bot_correct_answers.join('\n')
     else
-      "For this question \"#{@user_question}\" : Sorry, I did not understand the question ^^.\nTry Again ..."
+      "For this question \"#{@user_question}\" :\nSorry, I did not understand the question ^^.\nTry Again ..."
     end
   end
 end

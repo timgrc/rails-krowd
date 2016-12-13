@@ -12,6 +12,12 @@ gem 'pundit'
 gem 'omniauth'
 gem 'yam'
 gem 'enumerize'
+gem 'sidekiq'
+gem 'sidekiq-failures'
+
+# Dependency for the Sidekiq Web UI
+#   => https://github.com/mperham/sidekiq/wiki/Monitoring
+gem 'sinatra', ">= 2.0.0.beta2", require: false
 
 gem 'sass-rails'
 gem 'jquery-rails'

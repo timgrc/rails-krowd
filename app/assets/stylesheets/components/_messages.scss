@@ -1,4 +1,4 @@
-section {
+.section-message {
   height: 100vh;
   display: flex;
   align-items: flex-start;
@@ -12,6 +12,18 @@ div#award_message, div#incentive_message {
   height: auto;
 }
 
+.background-color-one, .background-color-two{
+  flex: 1;
+  height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+
+.background-color-two{
+    background-color: $blue-dam-2;
+}
+
 .krowd-share-box {
   width: 100%;
 }
@@ -23,14 +35,12 @@ div#award_message, div#incentive_message {
   transition: 0.1s ease-out height;
   clear: both;
   background: white;
-  // border: 2px solid #dddddd;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4);
   margin-bottom: 10px;
   position: relative;
 }
 
 .krowd-share-box .share .arrow {
-  // background: url(asset-path('arrow.png')) no-repeat;
   position: absolute;
   width: 14px;
   height: 10px;
@@ -99,4 +109,15 @@ div#award_message, div#incentive_message {
 .panel-default > .panel-heading, .panel-footer {
   background-color: #1C2731;
   border: none;
+}
+
+#award_message .panel-footer .fa-refresh{
+  display: none;
+}
+
+#incentive_message .panel-footer .fa-refresh{
+  position: absolute;
+  font-size: 35px;
+  left: 25px;
+  bottom: 20px;
 }

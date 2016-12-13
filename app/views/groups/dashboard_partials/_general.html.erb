@@ -13,7 +13,7 @@
         </div>
       </div>
       <div class="donut">
-        <div class="  grid-donut">
+        <div class="grid-donut">
           <canvas class='donut-chart' id="retention-rate"></canvas>
           <%= content_for :donuts_js do %>
             <script>
@@ -64,7 +64,9 @@
         <div class="best-reward-picture">
           <div class="badge-reward text-center">
             <div class="badge-pictures">
-              <%= image_tag current_user.mugshot_url, class: "avatar-badges" %>
+              <div class="grad-border">
+                <%= image_tag current_user.mugshot_url, class: "avatar-badges-best" %>
+              </div>
               <img class="reward-picto" src="<%= path_to_image "The_activist.jpg" %>">
             </div>
             <h3>The Influencer</h3>
@@ -87,16 +89,16 @@
   </div>
   <div class="row">
     <div class="grid-element col-xs-12 col-sm-3 blue-dam-1">
-      <%= render "groups/dashboard_partials/dashboard_badge" %>
+      <%= render "groups/dashboard_partials/dashboard_badge", title: "The Activist" , description: "The Serial Commentator: 30 messages", name: "Jean Louis David" %>
     </div>
     <div class="grid-element col-xs-12 col-sm-3 blue-dam-2">
-      <%= render "groups/dashboard_partials/dashboard_badge" %>
+      <%= render "groups/dashboard_partials/dashboard_badge", title: "The Networker", description: "The Serial Notifier: 30 notified users", name: "Jean Louis David" %>
     </div>
     <div class="grid-element col-xs-12 col-sm-3 blue-dam-1">
-      <%= render "groups/dashboard_partials/dashboard_badge" %>
+      <%= render "groups/dashboard_partials/dashboard_badge", title: "The Inventor", description: "The most posted ideas: 30 ideas posted", name: "Jean Louis David" %>
     </div>
     <div class="grid-element col-xs-12 col-sm-3 blue-dam-2">
-      <%= render "groups/dashboard_partials/dashboard_badge" %>
+      <%= render "groups/dashboard_partials/dashboard_badge", title: "The Mastermind", description: "The best knowledges: 30 knowledges", name: "Jean Louis David" %>
     </div>
   </div>
 </div>

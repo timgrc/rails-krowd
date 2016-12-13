@@ -1,9 +1,7 @@
-<div class="bg-grey">
+<!-- <div class="bg-grey">
   <h1>Title</h1>
-</div>
+</div> -->
   <div id="regions_div">
-    <div class="map-legend">
-      Let's display some statistics
   <% content_for :after_js do %>
     <script>
       function geoChartMap() {
@@ -35,5 +33,10 @@
       }
     </script>
   <% end %>
-    </div>
 </div>
+    <div class="map-legend-box">
+      <h4>Let's display some statistics</h4>
+      <p>1. USA</p>
+      <p>2. France</p>
+      <p>3. Russia</p>
+    </div>

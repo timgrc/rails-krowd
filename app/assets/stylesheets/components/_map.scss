@@ -1,25 +1,19 @@
 #regions_div{
-  height: 85vh;
+  height: 92vh;
   position: relative;
-  // margin-top: 3%;
+  margin-top: 3%;
 }
 
-.map-legend {
-  background-color: $gray;
+.map-legend-box {
+  color: white;
+  background-color: $blue-dam-2;
+  opacity: 0.7;
+  border-radius: 4px;
+  padding: 10px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4);
+  border: 1px solid $blue-dam-1;
   position: absolute;
-  top: -20px;
+  bottom: 20px;
   left: 20px;
-  background-color: white;
-  width: 500px;
 }
-
-// .map-div{
-//   flex: left;
-// }
-// .map-style h1 {
-//   background-color: $blue-dam-1;
-//   color: white;
-//   margin: 0px;
-//   padding: 10px;
-// }
 

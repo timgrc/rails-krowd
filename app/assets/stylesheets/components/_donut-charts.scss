@@ -1,14 +1,13 @@
 .grid-donut {
+  height: 80%;
   margin: auto;
-}
-#retention-rate {
-  height: 100%;
-}
-.donut-chart {
-  margin-bottom: 0;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  // justify-content: center;
 }
 .donut-inner {
-  margin-top: 0px;
+  // margin-top: 0px;
 }
 .donut-inner .donut-title {
   text-align: center;

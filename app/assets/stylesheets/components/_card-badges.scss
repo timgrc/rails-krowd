@@ -33,12 +33,13 @@
 
 .grid .row {
   height: 50%;
+  min-height: 425px;
 }
 
 .grid-element {
   height: 100%;
-  display: flex;
-  align-items: center;
+  // display: flex;
+  // align-items: center;
 }
 
 .avatar-badges {

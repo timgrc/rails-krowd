@@ -5,27 +5,18 @@ function centerDonutInner() {
     donutInnerTop,
     donutInnerHeight,
     FromDonutTopToDonutInnerTop,
-    marginTopdonutInner,
-    gridDonutHeight;
+    marginTopdonutInner;
 
-    gridDonutHeight = $('.grid-donut').height();
-    DonutDiameter   = 0.8 * gridDonutHeight;
+  donutInner       = $('.donut-chart-general').parent().find('.donut-inner')
 
-  $('.donut-chart').each(function() {
-    $(this).css({height: DonutDiameter, width: DonutDiameter});
+  donutTop         = $('.donut-chart-general').position().top;
+  donutHeight      = $('.donut-chart-general').height();
 
-    donutInner       = $(this).parent().find('.donut-inner')
+  donutInnerTop    = donutInner.position().top;
+  donutInnerHeight = donutInner.height();
 
-    donutTop         = $(this).position().top;
-    donutHeight      = $(this).height();
+  FromDonutTopToDonutInnerTop = donutHeight / 2 - donutInnerHeight / 2;
+  marginTopdonutInner = -(donutInnerTop - (donutTop + FromDonutTopToDonutInnerTop));
 
-    donutInnerTop    = donutInner.position().top;
-    donutInnerHeight = donutInner.height();
-
-    FromDonutTopToDonutInnerTop = donutHeight / 2 - donutInnerHeight / 2;
-    marginTopdonutInner = -(donutInnerTop - (donutTop + FromDonutTopToDonutInnerTop));
-
-    donutInner.css({marginTop: marginTopdonutInner});
-  });
-
+  donutInner.css({marginTop: marginTopdonutInner});
 }

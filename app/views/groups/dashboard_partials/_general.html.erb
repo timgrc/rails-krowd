@@ -1,7 +1,7 @@
 <div class="margin-top"></div>
 <div class="container-full grid">
   <div class="row">
-    <div class="element-donut col-xs-12 col-sm-3 blue-dam-1">
+    <div class="grid-element element-donut col-xs-12 col-sm-6 col-md-3 blue-dam-1">
       <div class="comment-row">
         <div class="badge-comment gray-dam-1">
           <p>75</p>
@@ -12,54 +12,52 @@
           <p>Comments</p>
         </div>
       </div>
-      <div class="donut">
-        <div class="grid-donut">
-          <canvas class='donut-chart' id="retention-rate"></canvas>
-          <%= content_for :donuts_js do %>
-            <script>
-              function donut() {
-                var ctx = document.getElementById("retention-rate").getContext("2d");
-                var gradient = ctx.createLinearGradient(0, 0, 200, 0);
-                gradient.addColorStop(0, '#36AD7E');
-                gradient.addColorStop(1, '#5BC5F1');
+      <div class="grid-donut">
+        <canvas class='donut-chart donut-chart-general' id="retention-rate"></canvas>
+        <%= content_for :donuts_js do %>
+          <script>
+            function donut() {
+              var ctx = document.getElementById("retention-rate").getContext("2d");
+              var gradient = ctx.createLinearGradient(0, 0, 200, 0);
+              gradient.addColorStop(0, '#36AD7E');
+              gradient.addColorStop(1, '#5BC5F1');
 
-                var myChart = new Chart(ctx, {
-                  type: 'doughnut',
-                  data: {
-                    labels: [
-                    'good',
-                    'bad'
-                    ],
-                    datasets: [{
-                        // label: '# of Votes',
-                        data: [70, 30],
-                        backgroundColor: [
-                        gradient,
-                        '#0B1B28'
-                        ],
-                        borderWidth: 0,
-                    }]
-                  },
-                  options: {
-                    cutoutPercentage: 93,
-                    legend: { display: false }
-                  }
-                });
-              }
-            </script>
-            <% end %>
-          <div class="donut-inner">
-              <div class="donut-title">70 %</div>
-              <div class="donut-subtitle">25 active members</div>
-          </div>
+              var myChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                  labels: [
+                  'good',
+                  'bad'
+                  ],
+                  datasets: [{
+                      // label: '# of Votes',
+                      data: [70, 30],
+                      backgroundColor: [
+                      gradient,
+                      '#0B1B28'
+                      ],
+                      borderWidth: 0,
+                  }]
+                },
+                options: {
+                  cutoutPercentage: 93,
+                  legend: { display: false }
+                }
+              });
+            }
+          </script>
+          <% end %>
+        <div class="donut-inner">
+            <div class="donut-title">70 %</div>
+            <div class="donut-subtitle">25 active members</div>
         </div>
       </div>
     </div>
-    <div class="grid-element col-xs-12 col-sm-3 turquoise-1">
+    <div class="grid-element col-xs-12 col-sm-6 col-md-3 turquoise-1">
     </div>
-    <div class="grid-element col-xs-12 col-sm-3 green-1">
+    <div class="grid-element col-xs-12 col-sm-6 col-md-3 green-1">
     </div>
-    <div class="grid-element col-xs-12 col-sm-3 white-card">
+    <div class="grid-element col-xs-12 col-sm-6 col-md-3 white-card">
       <div class="badge-card best-reward">
         <div class="best-reward-picture">
           <div class="badge-reward text-center">
@@ -88,16 +86,16 @@
     </div>
   </div>
   <div class="row">
-    <div class="grid-element col-xs-12 col-sm-3 blue-dam-1">
+    <div class="grid-element col-xs-12 col-sm-6 col-md-3 blue-dam-1">
       <%= render "groups/dashboard_partials/dashboard_badge", title: "The Activist" , description: "The Serial Commentator: 30 messages", name: "Jean Louis David", picture: "activist.svg"%>
     </div>
-    <div class="grid-element col-xs-12 col-sm-3 blue-dam-2">
+    <div class="grid-element col-xs-12 col-sm-6 col-md-3 blue-dam-2">
       <%= render "groups/dashboard_partials/dashboard_badge", title: "The Networker", description: "The Serial Notifier: 30 notified users", name: "Jean Louis David", picture: "networker.svg"%>
     </div>
-    <div class="grid-element col-xs-12 col-sm-3 blue-dam-1">
+    <div class="grid-element col-xs-12 col-sm-6 col-md-3 blue-dam-1">
       <%= render "groups/dashboard_partials/dashboard_badge", title: "The Inventor", description: "The most posted ideas: 30 ideas posted", name: "Jean Louis David", picture: "inventor.svg"%>
     </div>
-    <div class="grid-element col-xs-12 col-sm-3 blue-dam-2">
+    <div class="grid-element col-xs-12 col-sm-6 col-md-3 blue-dam-2">
       <%= render "groups/dashboard_partials/dashboard_badge", title: "The Mastermind", description: "The best knowledges: 30 knoledges", name: "Jean Louis David", picture: "mastermind.svg"%>
     </div>
   </div>

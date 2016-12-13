@@ -1,4 +1,6 @@
-class Yammer::GetPrivatesMessages
+require 'yammer'
+
+class Yammer::GetPrivateMessages
   def initialize(bot_user)
     @yam = Yammer::Client.new(access_token: bot_user.access_token)
   end

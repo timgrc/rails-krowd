@@ -1,22 +1,29 @@
 .section-message {
-  height: 100vh;
+  height: 92vh;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-around;
   background-color: $blue-dam-1;
 }
 
+.section-title{
+  position: absolute;
+  color: white;
+  top: 0px;
+  padding: 0px 15px 10px 15px;
+  background-color: $blue-dam-3;
+}
+
 div#award_message, div#incentive_message {
-  margin-top: 100px;
   width: 30em;
   height: auto;
 }
 
 .background-color-one, .background-color-two{
   flex: 1;
-  height: 100vh;
+  height: 92vh;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-around;
 }
 
@@ -74,7 +81,7 @@ div#award_message, div#incentive_message {
   overflow: hidden;
   border-radius: 0;
   border: none;
-  background-color: #212F3B;
+  background-color: $blue-dam-3;
   color: white;
 }
 

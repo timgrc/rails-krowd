@@ -1,22 +1,29 @@
 .section-message {
-  height: 100vh;
+  height: 92vh;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-around;
   background-color: $blue-dam-1;
 }
 
+.section-title{
+  position: absolute;
+  color: white;
+  top: 0px;
+  padding: 0px 15px 10px 15px;
+  background-color: $blue-dam-3;
+}
+
 div#award_message, div#incentive_message {
-  margin-top: 100px;
   width: 30em;
   height: auto;
 }
 
 .background-color-one, .background-color-two{
   flex: 1;
-  height: 100vh;
+  height: 92vh;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-around;
 }
 
@@ -74,7 +81,7 @@ div#award_message, div#incentive_message {
   overflow: hidden;
   border-radius: 0;
   border: none;
-  background-color: #212F3B;
+  background-color: $blue-dam-3;
   color: white;
 }
 
@@ -121,3 +128,178 @@ div#award_message, div#incentive_message {
   left: 25px;
   bottom: 20px;
 }
+
+.rubbon {
+  box-sizing: border-box;
+  width: 25%;
+  max-width: 500px;
+  height: 80px;
+  margin: 40px auto;
+  position: absolute;
+  top: -50px;
+}
+
+.one > div {
+  box-sizing: border-box;
+  height: 50px;
+}
+
+.rubbon-main {
+  box-sizing: border-box;
+  background: #212F3B;
+  position: relative;
+  display: block;
+  width: 90%;
+  left: 50%;
+  top: 0;
+  padding: 5px;
+  margin-left: -45%;
+  z-index: 10;
+}
+
+.rubbon-main h3{
+  line-height: 0px;
+  text-align: center;
+  color: white;
+  margin-top: 19px;
+  // font-family: Lato;
+}
+
+.rubbon-main > div {
+  box-sizing: border-box;
+  // border: 1px dashed #fff;
+  border-color: rgba(255, 255, 255, 0.5);
+  height: 40px;
+}
+
+.bk {
+ box-sizing: border-box;
+ background: #1C2731;
+ position: absolute;
+ width: 8%;
+ top: 12px;
+}
+
+.bk.l {
+ box-sizing: border-box;
+ left: 0;
+}
+
+.bk.r {
+ box-sizing: border-box;
+ right: 0;
+}
+
+.skew {
+  box-sizing: border-box;
+  position: absolute;
+  background: #151E26;
+  width: 3%;
+  top: 6px;
+  z-index: 5;
+}
+
+.skew.l {
+  box-sizing: border-box;
+  left: 5%;
+  transform: skew(00deg,20deg);
+}
+
+.skew.r {
+  box-sizing: border-box;
+  right: 5%;
+  transform: skew(00deg,-20deg);
+}
+
+.bk.l > div {
+  box-sizing: border-box;
+  left: -30px;
+}
+
+.bk.r > div {
+  box-sizing: border-box;
+  right: -30px;
+}
+
+.arrow {
+  box-sizing: border-box;
+  height: 25px !important;
+  position: absolute;
+  z-index: 2;
+  width: 0;
+  height: 0;
+}
+
+.arrow.top {
+  box-sizing: border-box;
+  top: 0px;
+  border-top: 0px solid transparent;
+  border-bottom: 25px solid transparent;
+  border-right: 30px solid #1C2731;
+}
+
+.arrow.bottom {
+  box-sizing: border-box;
+  top: 25px;
+  border-top: 25px solid transparent;
+  border-bottom:0px solid transparent;
+  border-right: 30px solid #1C2731;
+}
+
+.r .bottom {
+  box-sizing: border-box;
+  border-top: 25px solid transparent;
+  border-bottom: 0px solid transparent;
+  border-left: 30px solid #1C2731;
+  border-right: none;
+}
+
+.r .top {
+  box-sizing: border-box;
+  border-bottom: 25px solid transparent;
+  border-top: 0px solid transparent;
+  border-left: 30px solid #1C2731;
+  border-right: none;
+}
+
+@media all and (max-width: 1020px) {
+  .skew.l {
+    box-sizing: border-box;
+    left: 5%;
+    transform: skew(00deg,25deg);
+  }
+
+  .skew.r {
+    box-sizing: border-box;
+    right: 5%;
+    transform: skew(00deg,-25deg);
+  }
+}
+
+@media all and (max-width: 680px) {
+  .skew.l {
+    box-sizing: border-box;
+    left: 5%;
+    transform: skew(00deg,30deg);
+  }
+
+  .skew.r {
+    box-sizing: border-box;
+    right: 5%;
+    transform: skew(00deg,-30deg);
+  }
+}
+
+@media all and (max-width: 460px) {
+  .skew.l {
+    box-sizing: border-box;
+    left: 5%;
+    transform: skew(00deg,40deg);
+  }
+  .skew.r {
+    box-sizing: border-box;
+    right: 5%;
+    transform: skew(00deg,-40deg);
+  }
+}
+

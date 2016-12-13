@@ -2,7 +2,7 @@
   "deploy": {
     "env": "production",
     "rakegoals": ["db:migrate", "assets:precompile"],
-    "static": "/public"
-    // "sidekiq": true
+    "static": "/public",
+    "sidekiq": true
   }
 }

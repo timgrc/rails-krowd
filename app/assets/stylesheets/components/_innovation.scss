@@ -1,1 +1,16 @@
-_innovation.scss
+.innovation-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 7%;
+  padding-top: 7%;
+}
+
+.innovation-title i{
+  font-size: 250%;
+  padding-right: 3%;
+}
+
+.title {
+  padding-top: 1%;
+}

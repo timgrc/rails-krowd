@@ -1,4 +1,39 @@
 #regions_div{
   height: 92vh;
+  position: relative;
   margin-top: 3%;
+}
+
+.map-legend-box {
+  color: white;
+  background-color: $blue-dam-2;
+  opacity: 0.7;
+  width: 320px;
+  border-radius: 4px;
+  padding: 15px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4);
+  border: 1px solid $blue-dam-1;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
+
+.map-legend-key {
+  display: flex;
+  align-items: center;
+  height: 20px;
+}
+
+.map-legend-min-max {
+  // flex: 0 0 10%;
+  align-items: center;
+  justify-content: space-around;
+  padding: 5px;
+}
+
+.map-legend-key-color {
+  flex: 1 0 auto;
+  height: 100%;
+  background: linear-gradient(90deg, #abfaa9, #22C873);
+  border-radius: 1px;
 }

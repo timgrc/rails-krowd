@@ -1,7 +1,7 @@
 <div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.5) 50%), url('<%= path_to_image "background.jpg" %>');">
   <div class="container margin-top padded home home-font-shadow" >
     <h1>Welcome <%= @current_user.first_name + " " + @current_user.last_name %></h1>
-    <p><em>Pick a challenge or create a new one</em></p>
+    <p>Pick a challenge or create a new one</p>
       <div class="row">
       <% @groups.each do |group| %>
         <%= link_to group_path(group) do %>

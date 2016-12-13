@@ -37,25 +37,38 @@
 
 <% content_for(:after_js) do %>
   <script>
-$(document).ready(function() {
-  $(".btn-primary").click(function() {
-    var button, parent;
-    $(this).addClass("loading");
-    $('.loading:focus').blur()
-    button = $(this)
-    parent  = $(this).parent();
+    $(document).ready(function() {
+      $(".btn-primary").click(function() {
+        var button, parent;
+        $(this).addClass("loading");
+        $('.loading:focus').blur()
+        button = $(this)
+        parent  = $(this).parent();
 
-    setTimeout(function() {
-      button.addClass("hide-loading");
-      parent.find(".done").addClass("finish");
-    }, 3000);
+        setTimeout(function() {
+          button.addClass("hide-loading");
+          parent.find(".done").addClass("finish");
+        }, 3000);
 
-    setTimeout(function() {
-      button.removeClass("loading");
-      button.removeClass("hide-loading");
-      parent.find(".done").removeClass("finish");
-    }, 5000);
-  })
-});
+        setTimeout(function() {
+          button.removeClass("loading");
+          button.removeClass("hide-loading");
+          parent.find(".done").removeClass("finish");
+        }, 5000);
+      })
+    });
+  </script>
+
+  <script>
+    $(document).ready(function() {
+      $(".fa-refresh").click(function() {
+        $(this).addClass("fa-spin");
+        button = $(this)
+
+        setTimeout(function() {
+        button.removeClass("fa-spin");
+        }, 3000);
+      })
+    });
   </script>
 <% end %>

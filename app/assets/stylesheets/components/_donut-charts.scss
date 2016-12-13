@@ -13,10 +13,16 @@
 .donut-inner .donut-title {
   text-align: center;
   font-size: 60px;
+  background: -webkit-linear-gradient(#5BC5F1, #36AD7E);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .donut-inner .donut-subtitle {
   text-align: center;
   font-size: 20px;
+  background: -webkit-linear-gradient(#36AD7E, #5BC5F1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .comment-row {

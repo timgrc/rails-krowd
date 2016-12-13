@@ -16,6 +16,15 @@
   border-bottom: 1px solid #828282;
 }
 
+.navbar-wagon span{
+  font-size: 20px;
+  padding-left: 15px;
+}
+
+.navbar-wagon span span{
+  padding-left: 5px;
+}
+
 /* Optional class to fix the navbar on top */
 .navbar-wagon-fixed {
   position: fixed;

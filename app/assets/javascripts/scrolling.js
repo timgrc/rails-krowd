@@ -24,7 +24,7 @@ function scrolling() {
   innovationHeight = $('#innovation').height();
   pushHeight = $('#push').height();
 
-  if (windowTop <= (generalHeight / 2)) {
+  if (windowTop <= (generalHeight / 2)){
     $(".tab").removeClass("active");
     $(".tab-general").addClass("active");
     $('#navbar-wagon span').html('<i class="fa fa-tachometer" aria-hidden="true"></i><span>General</span>');

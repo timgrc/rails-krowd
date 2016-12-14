@@ -1,13 +1,18 @@
 .grid-donut {
   height: 80%;
   margin: auto;
-  // display: flex;
-  // flex-direction: column;
-  // align-items: center;
-  // justify-content: center;
+  display: flex;
+  //flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 .donut-inner {
+  width: 100%;
   // margin-top: 0px;
+  position: absolute;
+  right: 0%;
+  bottom: 37%;
 }
 .donut-inner .donut-title {
   text-align: center;

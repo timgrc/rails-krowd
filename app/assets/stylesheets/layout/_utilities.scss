@@ -40,6 +40,10 @@
   margin-top: 20px;
 }
 
+.margin-top-two-bis{
+  margin-top: -20px;
+}
+
 .margin-bottom {
   margin-bottom : 30px;
 }
@@ -55,4 +59,36 @@
 .modal-title {
   text-shadow: none;
   color: $black;
+}
+
+.padding-text{
+  padding: 10px;
+}
+
+.blockquote{
+  display:block;
+  padding: 15px 20px 15px 45px;
+  margin: 0 0 20px;
+  position: relative;
+
+  font-size: 18px;
+  color: #fff;
+  text-align: left;
+}
+
+.blockquote::before{
+  content: "\201C";
+
+  font-family: Georgia, serif;
+  font-size: 60px;
+  font-weight: bold;
+  color: #999;
+
+  position: absolute;
+  left: 10px;
+  top:5px;
+}
+
+.blockquote::after{
+  content: "";
 }

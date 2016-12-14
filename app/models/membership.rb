@@ -3,6 +3,8 @@ class Membership < ApplicationRecord
   belongs_to :group
 
   def destroy
-    Membership.find(params[:id]), params[:id].delete
+    @membership = Membership.find(params[:id]) #which id will it find ?
+    @membership.destroy
   end
+    # redirect_to groups_path (will it access from here ?)
 end

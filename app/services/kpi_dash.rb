@@ -40,16 +40,11 @@ class KpiDash
   end
 
   def members
-    active = User.joins(:messages)
-                 .where('messages.replied_to_id!=?', 0)
-                 .group('users.id')
-                 .count
-
-    active = active.select do |user_id, _|
-      User.find(user_id).groups.include? @group
-    end
-
-    active = active.count
+    active = User.
+      joins(:messages, :groups).
+      where('groups.id=1 and messages.rse_replied_to_id!=0').
+      group('users.id').
+      count.count
 
     inactive = @group.total_members - active
     ratio = (100 * active.to_f / @group.total_members).round
@@ -88,26 +83,55 @@ class KpiDash
 
   def influencer
     messages = Message.joins(:group).
-                      where('replied_to_id != 0 and groups.id = ?', @group.id)
+            where('replied_to_id != 0 and groups.id = ?', @group.id)
 
-    messages = messages.map do |message|
-      messages_replied = messages.count { |message_selected| message_selected.replied_to_id == message.id }
-      {
-        message: message,
-        user: message.user,
-        likes: message.liked_by,
-        comments: messages_replied
-      }
-    end
+    # messages = messages.map do |message|
+    #   messages_replied = messages.count { |message_selected| message_selected.replied_to_id == message.id }
+    #   {
+    #     message: message,
+    #     user: message.user,
+    #     likes: message.liked_by,
+    #     comments: messages_replied
+    #   }
+    # end
 
 
-    influencing_message = messages.max_by do |message|
-      message[:likes] + message[:comments]
-    end
+    # influencing_message = messages.max_by do |message|
+    #   message[:likes] + message[:comments]
+    # end
 
-    @influencer = influencing_message[:user]
 
-    influencing_message
+    # influencing_message
+
+    message = Message.first
+    messages_replied = 12
+
+    influencing_message_id = Message.
+      joins(:group).
+      where('groups.id=? and replied_to_id!=0', @group.id).
+      group('messages.replied_to_id').
+      order('sum_liked_by desc').
+      limit(1).
+      sum('liked_by').
+      first.
+      first
+
+    influencing_message = Message.find(influencing_message_id)
+
+    messages_replied = Message.
+      where('replied_to_id = ?', influencing_message_id).
+      count
+
+    @influencer = influencing_message.user
+
+    {
+      message: influencing_message,
+      user: influencing_message.user,
+      likes: influencing_message.liked_by,
+      comments: messages_replied
+    }
+
+
   end
 
   def activist

@@ -6,7 +6,8 @@ $(function() {
   second_donut();
   third_donut();
 
-  ftest();
+  displayDonut();
+
 });
 
 $( window ).resize(function() {
@@ -16,10 +17,11 @@ $( window ).resize(function() {
   first_donut();
   second_donut();
   third_donut();
-  ftest();
+  displayDonut();
+  alert('ok');
 });
 
-function ftest() {
+function displayDonut() {
   var donutGeneralWidth, donutGeneralHeight, gridDonutWidth, gridDonutHeight, widthHeightDonut, percentageGrid;
   percentageGrid = 0.80;
   gridDonutWidth  = $('.grid-donut').width();

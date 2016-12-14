@@ -32,18 +32,23 @@ class KpiDash
       mastermind
     when 'countries'
       countries
-
-#     when 'kext'
-
-#     when ''
-
+    when 'organisation_business'
+      organisation_business
+    when 'organisation_technology'
+      organisation_technology
+    when 'innovation_ideas'
+      innovation_ideas
+    when 'innovation_kint'
+      innovation_kint
+    when 'innovation_kext'
+      innovation_kext
     end
   end
 
   def members
     active = User.
       joins(:messages, :groups).
-      where('groups.id=1 and messages.rse_replied_to_id is not null').
+      where('groups.id=? and messages.rse_replied_to_id is not null', @group.id).
       group('users.id').
       count.count
 
@@ -190,5 +195,166 @@ class KpiDash
       count
   end
 
+  def organisation_business
+    likes = Message.joins(:group, :thread_post).
+              where('replied_to_id is not null and groups.id = ? and thread_posts.business_technology = ?', @group.id, 'business').
+              sum('liked_by')
 
+    comments = Message.joins(:group, :thread_post).
+              where('replied_to_id is not null and groups.id = ? and thread_posts.business_technology = ?', @group.id, 'business').
+              count
+
+    # departments = User.joins(:groups, :thread_posts, :messages).
+    #           where('replied_to_id is not null and groups.id = ? and thread_posts.business_technology = ?', @group.id, 'business').
+    #           group('thread_posts.id').
+    #           count
+
+    thread_business1 = Message.where("plain LIKE '%Post2 Week1%'").first
+    thread_business1_countries = User.joins(:groups, :thread_posts, :messages).
+      where('replied_to_id is not null and groups.id = ? and thread_posts.business_technology = ? and thread_posts.id = ?', @group.id, 'business', thread_business1.thread_post.id)
+      .group('location').count.count
+    thread_business1_departments = User.joins(:groups, :thread_posts, :messages).
+      where('replied_to_id is not null and groups.id = ? and thread_posts.business_technology = ? and thread_posts.id = ?', @group.id, 'business', thread_business1.thread_post.id)
+      .group('department').count.count
+
+    thread_business2 = Message.where("plain LIKE '%Post10 Week1%'").first
+    thread_business2_countries = thread_business1_countries + User.joins(:groups, :thread_posts, :messages).
+      where('replied_to_id is not null and groups.id = ? and thread_posts.business_technology = ? and thread_posts.id = ?', @group.id, 'business', thread_business2.thread_post.id)
+      .group('location').count.count
+    thread_business2_departments = thread_business1_departments + User.joins(:groups, :thread_posts, :messages).
+      where('replied_to_id is not null and groups.id = ? and thread_posts.business_technology = ? and thread_posts.id = ?', @group.id, 'business', thread_business2.thread_post.id)
+      .group('department').count.count
+
+    thread_business3 = Message.where("plain LIKE '%Post13 Week2%'").first
+    thread_business3_countries = thread_business2_countries + User.joins(:groups, :thread_posts, :messages).
+      where('replied_to_id is not null and groups.id = ? and thread_posts.business_technology = ? and thread_posts.id = ?', @group.id, 'business', thread_business3.thread_post.id)
+      .group('location').count.count
+    thread_business3_departments = thread_business2_departments + User.joins(:groups, :thread_posts, :messages).
+      where('replied_to_id is not null and groups.id = ? and thread_posts.business_technology = ? and thread_posts.id = ?', @group.id, 'business', thread_business3.thread_post.id)
+      .group('department').count.count
+
+    thread_business4 = Message.where("plain LIKE '%Post24 Week3%'").first
+    thread_business4_countries = thread_business3_countries + User.joins(:groups, :thread_posts, :messages).
+      where('replied_to_id is not null and groups.id = ? and thread_posts.business_technology = ? and thread_posts.id = ?', @group.id, 'business', thread_business4.thread_post.id)
+      .group('location').count.count
+    thread_business4_departments = thread_business3_departments + User.joins(:groups, :thread_posts, :messages).
+      where('replied_to_id is not null and groups.id = ? and thread_posts.business_technology = ? and thread_posts.id = ?', @group.id, 'business', thread_business4.thread_post.id)
+      .group('department').count.count
+
+
+    {
+      likes_comments: [likes, comments],
+      departments_countries1: [thread_business1_countries, thread_business1_departments],
+      departments_countries2: [thread_business2_countries, thread_business2_departments],
+      departments_countries3: [thread_business3_countries, thread_business3_departments],
+      departments_countries4: [thread_business4_countries, thread_business4_departments]
+    }
+  end
+
+  def organisation_technology
+    likes = Message.joins(:group, :thread_post).
+          where('replied_to_id is not null and groups.id = ? and thread_posts.business_technology = ?', @group.id, 'technology').
+          sum('liked_by')
+
+    comments = Message.joins(:group, :thread_post).
+          where('replied_to_id is not null and groups.id = ? and thread_posts.business_technology = ?', @group.id, 'technology').
+          count
+
+    thread_technology1 = Message.where("plain LIKE '%Post4 Week1%'").first
+    thread_technology1_countries = User.joins(:groups, :thread_posts, :messages).
+      where('replied_to_id is not null and groups.id = ? and thread_posts.business_technology = ? and thread_posts.id = ?', @group.id, 'technology', thread_technology1.thread_post.id)
+      .group('location').count.count
+    thread_technology1_departments = User.joins(:groups, :thread_posts, :messages).
+      where('replied_to_id is not null and groups.id = ? and thread_posts.business_technology = ? and thread_posts.id = ?', @group.id, 'technology', thread_technology1.thread_post.id)
+      .group('department').count.count
+
+    thread_technology2 = Message.where("plain LIKE '%Post14 Week2%'").first
+    thread_technology2_countries = User.joins(:groups, :thread_posts, :messages).
+      where('replied_to_id is not null and groups.id = ? and thread_posts.business_technology = ? and thread_posts.id = ?', @group.id, 'technology', thread_technology2.thread_post.id)
+      .group('location').count.count
+    thread_technology2_departments = User.joins(:groups, :thread_posts, :messages).
+      where('replied_to_id is not null and groups.id = ? and thread_posts.business_technology = ? and thread_posts.id = ?', @group.id, 'technology', thread_technology2.thread_post.id)
+      .group('department').count.count
+
+    thread_technology3 = Message.where("plain LIKE '%Post15 Week2%'").first
+    thread_technology3_countries = thread_technology2_countries + User.joins(:groups, :thread_posts, :messages).
+      where('replied_to_id is not null and groups.id = ? and thread_posts.business_technology = ? and thread_posts.id = ?', @group.id, 'technology', thread_technology3.thread_post.id)
+      .group('location').count.count
+    thread_technology3_departments = thread_technology2_departments + User.joins(:groups, :thread_posts, :messages).
+      where('replied_to_id is not null and groups.id = ? and thread_posts.business_technology = ? and thread_posts.id = ?', @group.id, 'technology', thread_technology3.thread_post.id)
+      .group('department').count.count
+
+    thread_technology4 = Message.where("plain LIKE '%Post22 Week3%'").first
+    thread_technology4_countries = thread_technology3_countries + User.joins(:groups, :thread_posts, :messages).
+      where('replied_to_id is not null and groups.id = ? and thread_posts.business_technology = ? and thread_posts.id = ?', @group.id, 'technology', thread_technology4.thread_post.id)
+      .group('location').count.count
+    thread_technology4_departments = thread_technology3_departments + User.joins(:groups, :thread_posts, :messages).
+      where('replied_to_id is not null and groups.id = ? and thread_posts.business_technology = ? and thread_posts.id = ?', @group.id, 'technology', thread_technology4.thread_post.id)
+      .group('department').count.count
+
+    {
+      likes_comments: [likes, comments],
+      departments_countries1: [thread_technology1_countries, thread_technology1_departments],
+      departments_countries2: [thread_technology2_countries, thread_technology2_departments],
+      departments_countries3: [thread_technology3_countries, thread_technology3_departments],
+      departments_countries4: [thread_technology4_countries, thread_technology4_departments]
+    }
+  end
+
+  def innovation_ideas
+    business_ideas = Message.joins(:group, :thread_post).
+      where('replied_to_id is not null and groups.id = ? and messages.idea_kint_kext_social = ? and thread_posts.business_technology = ?', @group.id, 'idea', 'business').
+      group('thread_posts.innovation_disruption').
+      count
+
+    technology_ideas = Message.joins(:group, :thread_post).
+      where('replied_to_id is not null and groups.id = ? and messages.idea_kint_kext_social = ? and thread_posts.business_technology = ?', @group.id, 'idea', 'technology').
+      group('thread_posts.innovation_disruption').
+      count
+
+    {
+      business_innovation:   business_ideas["innovation"],
+      business_disruption:   business_ideas["disruption"],
+      technology_innovation: technology_ideas["innovation"],
+      technology_disruption: technology_ideas["disruption"]
+    }
+  end
+
+  def innovation_kint
+    business_kint = Message.joins(:group, :thread_post).
+      where('replied_to_id is not null and groups.id = ? and messages.idea_kint_kext_social = ? and thread_posts.business_technology = ?', @group.id, 'kint', 'business').
+      group('thread_posts.innovation_disruption').
+      count
+
+    technology_kint = Message.joins(:group, :thread_post).
+      where('replied_to_id is not null and groups.id = ? and messages.idea_kint_kext_social = ? and thread_posts.business_technology = ?', @group.id, 'kint', 'technology').
+      group('thread_posts.innovation_disruption').
+      count
+
+    {
+      business_innovation:   business_kint["innovation"],
+      business_disruption:   business_kint["disruption"],
+      technology_innovation: technology_kint["innovation"],
+      technology_disruption: technology_kint["disruption"]
+    }
+  end
+
+  def innovation_kext
+    business_kext = Message.joins(:group, :thread_post).
+      where('replied_to_id is not null and groups.id = ? and messages.idea_kint_kext_social = ? and thread_posts.business_technology = ?', @group.id, 'kext', 'business').
+      group('thread_posts.innovation_disruption').
+      count
+
+    technology_kext = Message.joins(:group, :thread_post).
+      where('replied_to_id is not null and groups.id = ? and messages.idea_kint_kext_social = ? and thread_posts.business_technology = ?', @group.id, 'kext', 'technology').
+      group('thread_posts.innovation_disruption').
+      count
+
+    {
+      business_innovation:   business_kext["innovation"],
+      business_disruption:   business_kext["disruption"],
+      technology_innovation: technology_kext["innovation"],
+      technology_disruption: technology_kext["disruption"]
+    }
+  end
 end

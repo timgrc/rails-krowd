@@ -12,6 +12,7 @@ class User < ApplicationRecord
 
   has_one :bot_user, dependent: :destroy
 
+  has_many :thread_posts, through: :groups
   has_many :messages, dependent: :destroy
 
   has_many :incentive_templates, dependent: :destroy

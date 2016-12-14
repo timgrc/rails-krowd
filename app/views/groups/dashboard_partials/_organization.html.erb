@@ -1,59 +1,12 @@
-<!-- <div class="section-message">
-  <div class="background-color-one">
-    <span style="color: white">Left side business</span>
-  </div>
-  <div class="background-color-two">
-    <span style="color: white">Right side technology</span>
-  </div>
-</div> -->
-
-<div class="container-fluid section-message">
-  <div class="row">
-    <div class="col-md-6 background-color-one">
-      <div class="row">
-        <div class="col-md-6">
-        </div>
-        <div class="col-md-6">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-        </div>
-        <div class="col-md-6">
-        </div>
-      </div>
-      <h2>
-        Heading
-      </h2>
-      <p>
-        <span style="color: white">Left side business</span>
-      </p>
-      <p>
-        <a class="btn" href="#">View details »</a>
-      </p>
+<div class="container-fluid">
+  <div class="row grid-orga bg-blue-dam-2">
+    <div class="col-md-6">
+      <%= render 'groups/dashboard_partials/organization_partials/organization_business_up_card' %>
+      <%= render 'groups/dashboard_partials/organization_partials/organization_business_down_card' %>
     </div>
-    <div class="col-md-6 background-color-two">
-      <div class="row">
-        <div class="col-md-6">
-        </div>
-        <div class="col-md-6">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-        </div>
-        <div class="col-md-6">
-        </div>
-      </div>
-      <h2>
-        Heading
-      </h2>
-      <p>
-        <span style="color: white">Right side technology</span>
-      </p>
-      <p>
-        <a class="btn" href="#">View details »</a>
-      </p>
+    <div class="col-md-6">
+      <%= render 'groups/dashboard_partials/organization_partials/organization_tech_up_card' %>
+      <%= render 'groups/dashboard_partials/organization_partials/organization_tech_down_card' %>
     </div>
   </div>
 </div>

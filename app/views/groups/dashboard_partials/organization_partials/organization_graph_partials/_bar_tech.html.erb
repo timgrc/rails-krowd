@@ -1,0 +1,33 @@
+<canvas id="tech-bars"></canvas>
+<%= content_for :business_bars_js do %>
+  <script>
+    var ctx = document.getElementById("tech-bars").getContext("2d");
+    var gradient = ctx.createLinearGradient(0, 0, 200, 0);
+    gradient.addColorStop(0, '#36AD7E');
+    gradient.addColorStop(1, '#5BC5F1');
+
+    var data = {
+        labels: ["January", "February"],
+        datasets: [
+            {
+                label: "My First dataset",
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)'
+                ],
+                borderWidth: 1,
+                data: [65, 59],
+            }
+        ]
+    };
+
+    var myBarChart = new Chart(ctx, {
+        type: 'bar',
+        data: data
+    });
+  </script>
+<% end %>

@@ -1,7 +1,7 @@
 class Group < ApplicationRecord
   has_many :incentive_templates
 
-  has_many :messages, through: :threads, dependent: :destroy
+  has_many :messages, through: :thread_posts, dependent: :destroy
 
   has_many :thread_posts, dependent: :destroy
 

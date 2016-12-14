@@ -1,0 +1,32 @@
+<canvas id="top3_departments_bars"></canvas>
+<% content_for :departments_bars_js do %>
+  <script>
+    var ctx = document.getElementById("top3_departments_bars").getContext("2d");
+    var data = {
+      // labels: ["tim","tom","tum"],
+      labels: <%= raw KpiDash.new(@group, 'top3_departments_labels').call.to_json %>,
+      datasets: [
+        {
+          label: "My First dataset",
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+          ],
+          borderColor: [
+            'rgba(255,99,132,1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+          ],
+          borderWidth: 1,
+          data: <%= KpiDash.new(@group, 'top3_departments_data').call %>,
+        }
+      ]
+    };
+
+    var myBarChart = new Chart(ctx, {
+        type: 'bar',
+        data: data
+    });
+  </script>
+<% end %>

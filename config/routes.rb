@@ -6,16 +6,18 @@ Rails.application.routes.draw do
   end
 
   root to: 'pages#home'
-  get "styleguide", to: "pages#styleguide"
+  # get "styleguide", to: "pages#styleguide"
 
   post "yammer", to: "users/omniauth_callbacks#yammer"
   get "yammer/callback", to: "users/omniauth_callbacks#callback"
 
-  resources :groups, only: [:index, :show, :new, :create, :delete] do
+  resources :groups, only: [:index, :show, :new, :create, :destroys] do
     resources :incentive_templates
     resources :push_messages, only: [:create]
-    resources :memberships, only: [:delete] #do we only nest here in groups or users too ??
   end
+
+  resources :memberships, only: [:destroy]
+
 
   # Sidekiq Web UI, only for admins.
   require "sidekiq/web"

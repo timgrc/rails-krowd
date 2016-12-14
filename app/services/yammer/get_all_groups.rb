@@ -12,7 +12,8 @@ class Yammer::GetAllGroups
         full_name:      yam_group[:full_name],
         description:    yam_group[:description],
         web_url:        yam_group[:web_url],
-        mugshot_url:    yam_group[:mugshot_url_template].sub('{width}x{height}', '400x400')
+        mugshot_url:    yam_group[:mugshot_url_template].sub('{width}x{height}', '400x400'),
+        total_members:  yam_group[:stats][:members]
       }
     end
   end

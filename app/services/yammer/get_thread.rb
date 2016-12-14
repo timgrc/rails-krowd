@@ -11,7 +11,7 @@ class Yammer::GetThread
       :group_id,
       :stats,
       :web_url,
-      :topics,
+      :topics
     ]
     thread.select { |key, _| thread_keys_needed.include? key }
     thread[:topics] = thread[:topics].map { |topic| topic[:id] }

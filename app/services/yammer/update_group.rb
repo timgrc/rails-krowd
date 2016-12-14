@@ -1,93 +1,191 @@
 require 'yammer'
 
 class Yammer::UpdateGroup
-  def initialize(user, group_id)
-    @yam      = Yammer::Client.new(access_token: user.access_token)
-    @user     = user
-    @group_id = group_id
+  def initialize(user, group)
+    @yam   = Yammer::Client.new(access_token: user.access_token)
+    @user  = user
+    @group = group
+    @new_messages_rse_ids = []
+
+    timer_count = {
+      timer: Time.now,
+      count: 0
+    }
+    @count_api_limits = {
+      user:    timer_count.dup,
+      thread:  timer_count.dup,
+      message: timer_count.dup
+    }
   end
 
   def call
     puts "-- Update start --"
-    threads = @yam.messages_in_group(@group_id, threaded: true).body[:messages]
 
-    i = 0
-    threads.each do |thread, index|
-      # Create or get a thread
-      if ThreadPost.find_by_rse_id(thread[:id])
-        new_thread = ThreadPost.find_by_rse_id(thread[:id])
+    thread_posts_rse_id = get_all_thread_posts_rse_id
+    puts "#{thread_posts_rse_id.count} new threads to fetch"
+
+    update_thread_posts
+    save_messages_in_db
+
+    puts '-- Update finished - 100% Good Style --'
+  end
+
+  def get_all_thread_posts_rse_id
+    @new_thread_posts_rse_id = []
+    opts                     = {threaded: true}
+    up_to_date               = false
+
+    begin
+      thread_posts = manage_api_limits :message do
+        @yam.messages_in_group(@group.rse_id, opts).body[:messages]
+      end
+
+      thread_posts.each do |thread_post|
+        if ThreadPost.where(rse_id: thread_post[:id]).empty?
+          @new_thread_posts_rse_id.push thread_post[:id]
+        else
+          up_to_date = true
+          break
+        end
+      end
+      opts[:older_than] = thread_posts.last[:id] unless thread_posts.empty?
+    end until thread_posts.empty? || up_to_date
+
+    @new_thread_posts_rse_id
+  end
+
+  def update_thread_posts
+    thread_posts_rse_id_in_db = ThreadPost.select('rse_id').where('group_id = ?', 1).order('id desc').map { |thread_post| thread_post.rse_id }
+    @thread_posts_rse_id = @new_thread_posts_rse_id + thread_posts_rse_id_in_db
+    @thread_posts_rse_id.each_with_index do |thread_post_rse_id, index|
+
+      if ThreadPost.where(rse_id: thread_post_rse_id).empty?
+        @thread_post_fetched = manage_api_limits :thread do
+          @yam.get_thread(thread_post_rse_id).body
+        end
+
+        @thread_post = ThreadPost.new(rse_id: @thread_post_fetched[:id])
+
+        qualify_thread
+        @thread_post.group = @group
+        @thread_post.save!
+
       else
-        yam_thread = @yam.get_thread(thread[:id]).body
-
-        thread_db = {
-          rse_id:          yam_thread[:id],
-          web_url:         yam_thread[:web_url],
-          updates:         yam_thread[:stats][:updates],
-          first_reply_id:  yam_thread[:stats][:first_reply_id],
-          latest_reply_id: yam_thread[:stats][:latest_reply_id]
-        }
-
-        thread_sender = Yammer::GetUser.new(@yam, thread[:sender_id]).call
-
-        new_thread = ThreadPost.new(thread_db)
-        new_thread.user = thread_sender
-        new_thread.group = Group.find_by_rse_id(@group_id)
-
-        first_reply = Yammer::GetMessage.new(@yam, yam_thread[:id]).call
-        innovation_disruption = InnovationDisruptionThread.new(first_reply[:plain], []).call
-        business_technology   = BusinessTechnologyThread.new(first_reply[:plain], []).call
-
-        new_thread.innovation_disruption = innovation_disruption
-        new_thread.business_technology   = business_technology
-
-        new_thread.save
+        @thread_post = ThreadPost.find_by_rse_id(thread_post_rse_id)
       end
 
-      # Catch message ids
-      message_rse_ids = []
-      while message_rse_ids.count < new_thread[:updates]
-        opts = message_rse_ids.empty? ? {} : { older_than: message_rse_ids.last }
+      plural = @thread_posts_rse_id.count > 1 ? 's' : ''
+      puts "#{index + 1}/#{@thread_posts_rse_id.count} thread#{plural} fetched"
 
-        messages = @yam.messages_in_thread(new_thread[:rse_id], opts).body[:messages]
-        message_rse_ids += messages.map { |message| message[:id] }
-      end
+      get_new_messages_ids_from_thread
+    end
+  end
 
-      # Catch messages
-      message_rse_ids.each do |message_id|
-        likes = @yam.get("/api/v1/users/liked_message/#{message_id}.json").body[:users].count
-
-        message = @yam.get_message(message_id).body
-        message_db = {
-          rse_id:            message[:id],
-          rse_replied_to_id: message[:replied_to_id],
-          web_url:           message[:web_url],
-          plain:             message[:body][:plain],
-          parsed:            message[:body][:parsed],
-          notified_by:       message[:notified_user_ids].count,
-          liked_by:          likes
-        }
-
-        new_message             = Message.new(message_db)
-        message_sender          = Yammer::GetUser.new(@yam, message[:sender_id]).call
-
-        new_message.thread_post = new_thread
-        new_message.user        = message_sender
-        new_message.save
-
-        i += 1
-        percentage = "#{( ( i.to_f / 253.to_f ) * 100 ).round(1)}%"
-        puts "#{percentage} - #{i}/253"
-        sleep(5)
-      end
+  def qualify_thread
+    first_reply = manage_api_limits :message do
+      Yammer::GetMessage.new(@user, @thread_post.rse_id).call
     end
 
-    comments = Message.where.not(rse_replied_to_id: nil).order('id desc')
-    comments.each_with_index do |comment, index|
-      comment.replied_to_id = Message.find_by_rse_id(comment.rse_replied_to_id).id
-      comment.save!
-      puts "-- #{index + 1}/#{comments.count} --"
+    innovation_disruption = InnovationDisruptionThread.new(first_reply[:plain]).call
+    business_technology   = BusinessTechnologyThread.new(first_reply[:plain]).call
+
+    @thread_post.innovation_disruption = innovation_disruption[1] unless innovation_disruption.nil?
+    @thread_post.business_technology   = business_technology[1] unless business_technology.nil?
+  end
+
+  def get_new_messages_ids_from_thread
+    @new_messages_rse_ids = []
+    opts = {}
+    up_to_date = false
+
+    begin
+      messages_in_thread = manage_api_limits :message do
+        @yam.messages_in_thread(@thread_post.rse_id, opts).body[:messages]
+      end
+
+      messages_in_thread.each do |message_in_thread|
+        if Message.where(rse_id: message_in_thread[:id]).empty?
+          @new_messages_rse_ids.push message_in_thread[:id]
+        else
+          up_to_date = true
+          break
+        end
+      end
+      opts[:older_than] = messages_in_thread.last[:id] unless messages_in_thread.empty?
+    end until messages_in_thread.empty? || up_to_date
+
+    @new_messages_rse_ids
+  end
+
+  def save_messages_in_db
+    if @new_messages_rse_ids.empty?
+      puts 'DB up to date'
+      return
+    else
+      plural = @new_messages_rse_ids.count > 1 ? 's' : ''
+      puts "-- #{@new_messages_rse_ids.count} Message#{plural} to fetch --"
+    end
+    @new_messages_rse_ids.reverse.each_with_index do |message_id, index|
+      get_message(message_id)
+      get_likes(message_id)
+
+      new_message = Message.new(@message)
+
+      message_sender = manage_api_limits :user do
+        Yammer::GetUser.new(@user, @message_fetched[:sender_id]).call
+      end
+
+      new_message.thread_post = ThreadPost.find_by_rse_id(@message_fetched[:thread_id])
+      new_message.replied_to_id = Message.where(rse_replied_to_id: @message_fetched[:replied_to_id])
+      new_message.user = message_sender
+      new_message.save!
+
+      puts "#{index + 1} / #{@new_messages_rse_ids.count}"
+    end
+  end
+
+  def get_message(message_id)
+    @message_fetched = manage_api_limits :message do
+      @yam.get_message(message_id).body
     end
 
-    puts '-- Update finished - 100% Good Style'
+    @message = {
+      rse_id:            @message_fetched[:id],
+      rse_replied_to_id: @message_fetched[:replied_to_id],
+      web_url:           @message_fetched[:web_url],
+      plain:             @message_fetched[:body][:plain],
+      parsed:            @message_fetched[:body][:parsed],
+      notified_by:       @message_fetched[:notified_user_ids].count
+    }
+  end
+
+  def get_likes(message_id)
+    @message[:liked_by] = manage_api_limits :user do
+      @yam.get("/api/v1/users/liked_message/#{message_id}.json").body[:users].count
+    end
+  end
+
+  def manage_api_limits(type_of_limit)
+    tempo_max = 30 + (5..10).to_a.sample
+    rate_limits = 10
+
+    puts "#{type_of_limit.to_s} #{@count_api_limits[type_of_limit][:count]}"
+    if @count_api_limits[type_of_limit][:count] == rate_limits
+
+      tempo = [0, tempo_max - (Time.now - @count_api_limits[type_of_limit][:timer]).round].max
+
+      puts "-- Waiting #{tempo} sec because of API #{type_of_limit.to_s}'s rate limits --"
+      sleep(tempo)
+
+      @count_api_limits[type_of_limit][:timer] = Time.now
+      @count_api_limits[type_of_limit][:count] = 0
+    else
+      if @count_api_limits[type_of_limit][:count] == 0
+        @count_api_limits[type_of_limit][:timer] = Time.now
+      end
+      @count_api_limits[type_of_limit][:count] += 1
+    end
+
+    yield
   end
 end

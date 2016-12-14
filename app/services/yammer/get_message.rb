@@ -1,3 +1,5 @@
+require 'yammer'
+
 class Yammer::GetMessage
   def initialize(user, message_id)
     @yam        = Yammer::Client.new(access_token: user.access_token)
@@ -5,7 +7,7 @@ class Yammer::GetMessage
   end
 
   def call
-    message = @yam.get_message(@message_id).body
+    message =  @yam.get_message(@message_id).body
     message_keys_needed = [
       :id,
       :sender_id,

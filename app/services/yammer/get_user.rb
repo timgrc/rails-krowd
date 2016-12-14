@@ -1,6 +1,6 @@
 class Yammer::GetUser
   def initialize(user, user_id)
-    @yam        = Yammer::Client.new(access_token: user.access_token)
+    @yam = Yammer::Client.new(access_token: user.access_token)
     @user_id = user_id
   end
 

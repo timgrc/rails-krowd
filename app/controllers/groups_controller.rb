@@ -35,17 +35,6 @@ class GroupsController < ApplicationController
 
   private
 
-  def group_params
-    params.require(:group).permit(
-      :rse_id,
-      :rse_network_id,
-      :full_name,
-      :description,
-      :web_url,
-      :mugshot_url
-    )
-  end
-
   def find_group
     @group = Group.find(params[:id])
     authorize @group

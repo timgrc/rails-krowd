@@ -1,14 +1,16 @@
 class KpiDash
-  def initialize(kpi)
-    @kpi = kpi
+  def initialize(group, kpi)
+    @group = group
+    @kpi   = kpi
   end
 
   def call
-#     case @kpi
-#     when ''
+    case @kpi
+    when 'members'
+      members
 
-#     when 'badges'
-
+    when 'badges'
+      badges
 #     when 'ideas'
 
 #     when 'kint'
@@ -17,17 +19,42 @@ class KpiDash
 
 #     when ''
 
-#     end
+    end
+  end
+
+  def members
+    members_active = User.joins(:messages)
+                         .where('messages.rse_replied_to_id!=?', 0)
+                         .group('users.id')
+                         .order('count_all desc')
+                         .count
+
+    members_active = members_active.select { |user_id, _| User.find(user_id).groups.include? @group }
+    members_non_active = 0
+    members_ratio = 0
+    {
+      members_active: members_active,
+      members_non_active: members_non_active,
+      members_ratio: members_ratio
+    }
+  end
+
+  def badges
+    activists = User.joins(:messages)
+                    .where('messages.rse_replied_to_id!=?', 0)
+                    .group('users.id')
+                    .order('count_all desc')
+                    .count
+    {
+      activists: activists
+    }
+  end
 #   end
 
 #   def badges
 #     badges = {}
 #     # 1- The activist - The one who commented the most
-#     activists = User.joins(:messages)
-#                     .where('messages.rse_replied_to_id!=?', 0)
-#                     .group('users.id')
-#                     .order('count_all desc')
-#                     .count
+#
 
 #     activists.map { |key, _| User.find(key) }
 
@@ -79,6 +106,4 @@ class KpiDash
 #     puts "Influencer : #{influencer.first_name}"
 #     puts "#{influencing_message_hash[:liked]} likes and #{influencing_message_hash[:commented]} comments"
 #     puts "Influencing message : #{influencing_message.plain}"
-
-  end
 end

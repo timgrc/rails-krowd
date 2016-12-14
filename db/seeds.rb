@@ -1,4 +1,11 @@
-user = User.first
-group = Group.find_by_full_name('Innovation Challenge - The Company')
+require 'yammer'
 
-Yammer::UpdateGroup.new(user, group.rse_id).call
+user  = User.find_by_email('hello@wearestim.com')
+group = Group.find(3)
+
+# opts = {}
+# yam = Yammer::Client.new(access_token: user.access_token)
+# p yam.messages_in_thread(813963771, opts).body[:messages]
+
+# yam.
+Yammer::UpdateGroup.new(user, group).call

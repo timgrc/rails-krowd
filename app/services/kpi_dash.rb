@@ -7,12 +7,29 @@ class KpiDash
   def call
     case @kpi
     when 'members'
-      members
-
-    when 'badges'
-      badges
-#     when 'ideas'
-
+      [members[:active], members[:inactive]]
+    when 'members_ratio'
+      members[:ratio]
+    when 'members_active'
+      members[:active]
+    when 'likes'
+      likes
+    when 'comments'
+      comments
+    when 'top3_departments_data'
+      top3_departments[:data]
+    when 'top3_departments_labels'
+      top3_departments[:labels]
+    when 'influencer'
+      influencer
+    when 'activist'
+      activist
+    when 'networker'
+      networker
+    when 'inventor'
+      inventor
+    when 'mastermind'
+      mastermind
 #     when 'kint'
 
 #     when 'kext'
@@ -23,32 +40,154 @@ class KpiDash
   end
 
   def members
-    members_active = User.joins(:messages)
-                         .where('messages.rse_replied_to_id!=?', 0)
-                         .group('users.id')
-                         .order('count_all desc')
-                         .count
+    active = User.joins(:messages)
+                 .where('messages.replied_to_id!=?', 0)
+                 .group('users.id')
+                 .count
 
-    members_active = members_active.select { |user_id, _| User.find(user_id).groups.include? @group }
-    members_non_active = 0
-    members_ratio = 0
+    active = active.select do |user_id, _|
+      User.find(user_id).groups.include? @group
+    end
+
+    active = active.count
+
+    inactive = @group.total_members - active
+    ratio = (100 * active.to_f / @group.total_members).round
     {
-      members_active: members_active,
-      members_non_active: members_non_active,
-      members_ratio: members_ratio
+      active: active,
+      inactive: inactive,
+      ratio: ratio
     }
   end
 
-  def badges
-    activists = User.joins(:messages)
-                    .where('messages.rse_replied_to_id!=?', 0)
-                    .group('users.id')
-                    .order('count_all desc')
-                    .count
+  def likes
+    Message.joins(thread_post: :group)
+           .where('messages.replied_to_id!=? and groups.id=?', 0, @group.id)
+           .sum(:liked_by)
+  end
+
+  def comments
+    Message.joins(thread_post: :group)
+           .where('messages.replied_to_id!=? and groups.id=?', 0, @group.id)
+           .count
+  end
+
+  def top3_departments
+    departments = User.joins(:groups).
+                      where('users.email != ? and groups.id = ?', 'hello@wearestim.com', @group.id).
+                      group(:department).
+                      order('count_all desc').
+                      limit(3).
+                      count
+
     {
-      activists: activists
+      data: departments.values,
+      labels: departments.keys
     }
   end
+
+  def influencer
+    messages = Message.joins(:group).
+                      where('replied_to_id != 0 and groups.id = ?', @group.id)
+
+    messages = messages.map do |message|
+      messages_replied = messages.count { |message_selected| message_selected.replied_to_id == message.id }
+      {
+        message: message,
+        user: message.user,
+        likes: message.liked_by,
+        comments: messages_replied
+      }
+    end
+
+
+    influencing_message = messages.max_by do |message|
+      message[:likes] + message[:comments]
+    end
+
+    @influencer = influencing_message[:user]
+
+    influencing_message
+  end
+
+  def activist
+    influencer
+
+    activists = Message.joins(:group, :user).
+                       where('replied_to_id != 0 and groups.id = ? and users.id != ?', @group.id, @influencer.id ).
+                       group('users.id').
+                       order('count_all desc').
+                       limit(1).
+                       count
+
+    @activist = User.find(activists.keys.first)
+
+    {
+      user: @activist,
+      comments: activists.values.first
+    }
+  end
+
+  def networker
+    influencer
+    activist
+
+    networkers = Message.joins(:group, :user).
+                       where('replied_to_id != 0 and groups.id = ? and users.id != ? and users.id != ?', @group.id, @influencer.id, @activist.id ).
+                       group('users.id').
+                       order('sum_notified_by desc').
+                       limit(1).
+                       sum('notified_by')
+
+    @networker = User.find(networkers.keys.first)
+
+    {
+      user: @networker,
+      notified_by: networkers.values.first
+    }
+  end
+
+  def inventor
+    influencer
+    activist
+    networker
+
+    inventors = User.joins(:messages, :groups).
+        where('replied_to_id != 0 and groups.id = ? and idea_kint_kext_social=? and users.id != ? and users.id != ? and users.id != ?', @group.id, 'idea', @influencer.id, @activist.id, @networker.id).
+        group('users.id').
+        order('count_all desc').
+        limit(1).
+        count
+
+    @inventor = User.find(inventors.keys.first)
+
+    {
+      user: @inventor,
+      ideas: inventors.values.first
+    }
+  end
+
+  def mastermind
+    influencer
+    activist
+    networker
+    inventor
+
+    masterminds = User.joins(:messages, :groups).
+        where('replied_to_id != 0 and groups.id = ? and (idea_kint_kext_social=? or idea_kint_kext_social=?) and users.id != ? and users.id != ? and users.id != ? and users.id != ?', @group.id, 'kint', 'kext', @influencer.id, @activist.id, @networker.id, @inventor.id).
+        group('users.id').
+        order('count_all desc').
+        limit(1).
+        count
+
+    @mastermind = User.find(masterminds.keys.first)
+
+    {
+      user: @mastermind,
+      knowledges: masterminds.values.first
+    }
+  end
+
 #   end
 
 #   def badges
@@ -58,12 +197,6 @@ class KpiDash
 
 #     activists.map { |key, _| User.find(key) }
 
-#     # 2- The networker - Celui qui a le plus notifié de personnes
-#     networkers = User.joins(:messages)
-#                       .where('messages.rse_replied_to_id!=?', 0)
-#                       .group('users.id')
-#                       .sum('notified_by')
-#     p networkers.map { |key, _| User.find(key) }
 
 #     3- The inventor - Celui qui a le plus posté d'idées
 #     inventors = User.joins(:messages)
@@ -83,25 +216,6 @@ class KpiDash
 
 #     masterminds.map { |key, _| User.find(key) }
 
-#     5- The influencer - Celui qui a le post qui a été le plus (liké + commenté)
-#     messages_without_thread_messages = Message.where('messages.rse_replied_to_id!=?', 0)
-
-#     influencing_messages = messages_without_thread_messages.map do |message|
-#       messages_replied = messages_without_thread_messages.select do |message_selected|
-#         message.rse_id == message_selected.rse_replied_to_id
-#       end
-#       {
-#         id:        message.id,
-#         liked:     message.liked_by,
-#         commented: messages_replied.count,
-#       }
-#     end
-
-#     influencing_message_hash = influencing_messages.max_by do |message|
-#       message[:liked] + message[:commented]
-#     end
-#     influencing_message = Message.find(influencing_message_hash[:id])
-#     influencer          = influencing_message.user
 
 #     puts "Influencer : #{influencer.first_name}"
 #     puts "#{influencing_message_hash[:liked]} likes and #{influencing_message_hash[:commented]} comments"

@@ -84,7 +84,7 @@
 
 .grid .row {
   height: 50%;
-  min-height: 425px;
+  min-height: 359px;
 }
 
 .grid-element {
@@ -103,7 +103,7 @@
 }
 
 .best-reward {
-  background-image: url('triangle-vert.png');
+  background-image: image_url('triangle-vert.png');
   background-size: 10%;
   background-repeat: no-repeat;
   background-position-y: center;
@@ -132,7 +132,7 @@
 }
 
 .badge-like i {
-  font-size: 200%;
+  font-size: 150%;
   padding-right: 5%;
 }
 

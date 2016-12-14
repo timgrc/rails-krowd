@@ -1,13 +1,17 @@
 class KpiDash
-  def initialize(kpi)
-    @kpi = kpi
+  def initialize(group, kpi)
+    @group = group
+    @kpi   = kpi
   end
 
   def call
-#     case @kpi
-#     when ''
+    case @kpi
+    when 'members'
+      {
 
-#     when 'badges'
+      }
+
+#   when 'badges'
 
 #     when 'ideas'
 
@@ -17,7 +21,7 @@ class KpiDash
 
 #     when ''
 
-#     end
+    end
 #   end
 
 #   def badges

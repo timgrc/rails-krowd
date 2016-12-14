@@ -4,11 +4,11 @@
     <div class="grid-element element-donut col-xs-12 col-sm-6 col-md-3 blue-dam-1">
       <div class="comment-row">
         <div class="badge-comment gray-dam-1">
-          <p>75</p>
+          <p><%= KpiDash.new(@group, 'likes').call %></p>
           <p>Likes</p>
         </div>
         <div class="badge-comment blue-dam-3">
-          <p>75</p>
+          <p><%= KpiDash.new(@group, 'comments').call %></p>
           <p>Comments</p>
         </div>
       </div>
@@ -31,7 +31,7 @@
                   ],
                   datasets: [{
                       // label: '# of Votes',
-                      data: [70, 30],
+                      data: <%= KpiDash.new(@group, 'members').call %>,
                       backgroundColor: [
                       gradient,
                       '#0B1B28'
@@ -48,12 +48,13 @@
           </script>
           <% end %>
         <div class="donut-inner">
-            <div class="donut-title">70 %</div>
-            <div class="donut-subtitle">25 active members</div>
+            <div class="donut-title"><%= KpiDash.new(@group, 'members_ratio').call %> %</div>
+            <div class="donut-subtitle"><%= KpiDash.new(@group, 'members_active').call %> active members</div>
         </div>
       </div>
     </div>
     <div class="grid-element col-xs-12 col-sm-6 col-md-3 turquoise-1">
+      <%= render 'groups/dashboard_partials/general_partials/top3_departments' %>
     </div>
     <div class="grid-element col-xs-12 col-sm-6 col-md-3 green-1">
     </div>

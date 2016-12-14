@@ -7,8 +7,19 @@ class KpiDash
   def call
     case @kpi
     when 'members'
-      members
-
+      [members[:active], members[:inactive]]
+    when 'members_ratio'
+      members[:ratio]
+    when 'members_active'
+      members[:active]
+    when 'likes'
+      likes
+    when 'comments'
+      comments
+    when 'top3_departments_data'
+      top3_departments[:data]
+    when 'top3_departments_labels'
+      top3_departments[:labels]
     when 'badges'
       badges
 #     when 'ideas'
@@ -23,19 +34,50 @@ class KpiDash
   end
 
   def members
-    members_active = User.joins(:messages)
-                         .where('messages.rse_replied_to_id!=?', 0)
-                         .group('users.id')
-                         .order('count_all desc')
-                         .count
+    active = User.joins(:messages)
+                 .where('messages.replied_to_id!=?', 0)
+                 .group('users.id')
+                 .count
 
-    members_active = members_active.select { |user_id, _| User.find(user_id).groups.include? @group }
-    members_non_active = 0
-    members_ratio = 0
+    active = active.select do |user_id, _|
+      User.find(user_id).groups.include? @group
+    end
+
+    active = active.count
+
+    inactive = @group.total_members - active
+    ratio = (100 * active.to_f / @group.total_members).round
     {
-      members_active: members_active,
-      members_non_active: members_non_active,
-      members_ratio: members_ratio
+      active: active,
+      inactive: inactive,
+      ratio: ratio
+    }
+  end
+
+  def likes
+    Message.joins(thread_post: :group)
+           .where('messages.replied_to_id!=? and groups.id=?', 0, @group.id)
+           .sum(:liked_by)
+  end
+
+  def comments
+    Message.joins(thread_post: :group)
+           .where('messages.replied_to_id!=? and groups.id=?', 0, @group.id)
+           .count
+  end
+
+  def top3_departments
+    departments = User.joins(memberships: :group)
+                      .select(:department)
+                      .where.not(email: 'hello@wearestim.com')
+                      .group(:department)
+                      .order('count_department desc')
+                      .limit(3)
+                      .count
+
+    {
+      data: departments.values,
+      labels: departments.keys
     }
   end
 

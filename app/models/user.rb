@@ -10,8 +10,6 @@ class User < ApplicationRecord
   has_many :user_badges, dependent: :destroy
   has_many :badges, through: :user_badges
 
-  has_many :thread_posts
-
   has_one :bot_user, dependent: :destroy
 
   has_many :messages, dependent: :destroy

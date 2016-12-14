@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161212200435) do
+ActiveRecord::Schema.define(version: 20161214022832) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20161212200435) do
     t.string   "mugshot_url"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.integer  "total_members"
   end
 
   create_table "incentive_templates", force: :cascade do |t|
@@ -119,7 +120,6 @@ ActiveRecord::Schema.define(version: 20161212200435) do
     t.string   "web_url"
     t.string   "innovation_disruption"
     t.string   "business_technology"
-    t.integer  "user_id"
     t.integer  "group_id"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
@@ -127,7 +127,6 @@ ActiveRecord::Schema.define(version: 20161212200435) do
     t.integer  "first_reply_id"
     t.integer  "latest_reply_id"
     t.index ["group_id"], name: "index_thread_posts_on_group_id", using: :btree
-    t.index ["user_id"], name: "index_thread_posts_on_user_id", using: :btree
   end
 
   create_table "user_badges", force: :cascade do |t|
@@ -181,7 +180,6 @@ ActiveRecord::Schema.define(version: 20161212200435) do
   add_foreign_key "messages", "users"
   add_foreign_key "push_messages", "users"
   add_foreign_key "thread_posts", "groups"
-  add_foreign_key "thread_posts", "users"
   add_foreign_key "user_badges", "badges"
   add_foreign_key "user_badges", "groups"
   add_foreign_key "user_badges", "users"

@@ -7,6 +7,9 @@
         <%= link_to group_path(group) do %>
           <div class="col-xs-12 col-sm-4">
             <div class="card card-group challenge-card margin-bottom padded" style="background-image: linear-gradient(to bottom left, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 50%), url('<%= path_to_image "background-2.jpg" %>');">
+            <div class="card-icon">
+              <%= link_to 'Remove', membership_path(@membership), :method => :delete %>
+              <i class="fa fa-trash-o" aria-hidden="true"></i></div>
             <div class="card-group-description ">
               <div class="card-group-picture-absolute">
                 <%= image_tag group.mugshot_url, class: "avatar-square card-group-picture-img" %>

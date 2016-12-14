@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :groups, only: [:index, :show, :new, :create, :delete] do
     resources :incentive_templates
     resources :push_messages, only: [:create]
+    resources :memberships, only: [:delete]
   end
 
   # Sidekiq Web UI, only for admins.

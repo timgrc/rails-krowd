@@ -10,7 +10,7 @@ group = Group.find(1)
 #   mem.save
 # end
 
-p KpiDash.new(group, 'top3_departments_labels').call
+p KpiDash.new(group, 'mastermind').call
 # opts = {}
 # yam = Yammer::Client.new(access_token: user.access_token)
 # p yam.messages_in_thread(813963771, opts).body[:messages]

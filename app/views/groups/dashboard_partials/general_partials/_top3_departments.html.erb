@@ -3,7 +3,8 @@
   <script>
     var ctx = document.getElementById("top3_departments_bars").getContext("2d");
     var data = {
-      labels: ["tim","tom","tum"],
+      // labels: ["tim","tom","tum"],
+      labels: <%= raw KpiDash.new(@group, 'top3_departments_labels').call.to_json %>,
       datasets: [
         {
           label: "My First dataset",

@@ -1,6 +1,7 @@
 class Message < ApplicationRecord
   belongs_to :user
   belongs_to :thread_post
+  has_one :group, through: :thread_post
 
   before_save :kind
 

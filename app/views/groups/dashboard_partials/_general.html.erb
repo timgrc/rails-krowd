@@ -57,6 +57,7 @@
       <%= render 'groups/dashboard_partials/general_partials/top3_departments' %>
     </div>
     <div class="grid-element col-xs-12 col-sm-6 col-md-3 green-1">
+      <%= KpiDash.new(@group, 'influencer').call[:message].plain %>
     </div>
     <div class="grid-element col-xs-12 col-sm-6 col-md-3 white-card">
       <div class="badge-card best-reward">
@@ -64,23 +65,23 @@
           <div class="badge-reward text-center">
             <div class="badge-pictures">
               <div class="grad-border">
-                <%= image_tag current_user.mugshot_url, class: "avatar-badges-best" %>
+                <%= image_tag KpiDash.new(@group, 'influencer').call[:user].mugshot_url, class: "avatar-badges-best" %>
               </div>
               <img class="reward-picto" src="<%= path_to_image "activist.svg" %>">
             </div>
             <h3>The Influencer</h3>
             <h4>The most linked post</h4>
-            <h4>Jean Louis David</h4>
+            <h4><%= KpiDash.new(@group, 'influencer').call[:user].first_name %> <%= KpiDash.new(@group, 'influencer').call[:user].last_name %></h4>
           </div>
         </div>
         <div class="like-row">
           <div class="badge-like turquoise-1">
             <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
-            103
+            <%= KpiDash.new(@group, 'influencer').call[:likes] %>
           </div>
           <div class="badge-like green-1">
             <i class="fa fa-comment-o" aria-hidden="true"></i>
-            85
+            <%= KpiDash.new(@group, 'influencer').call[:comments] %>
           </div>
         </div>
       </div>
@@ -88,16 +89,39 @@
   </div>
   <div class="row">
     <div class="grid-element col-xs-12 col-sm-6 col-md-3 blue-dam-1">
-      <%= render "groups/dashboard_partials/dashboard_badge", title: "The Activist" , description: "The Serial Commentator: 30 messages", name: "Jean Louis David", picture: "activist.svg"%>
+      <%= render "groups/dashboard_partials/dashboard_badge",
+        title: "The Activist" ,
+        description: "The Serial Commentator: #{KpiDash.new(@group, 'activist').call[:comments]} messages",
+        name: "#{KpiDash.new(@group, 'activist').call[:user].first_name} #{KpiDash.new(@group, 'activist').call[:user].last_name}",
+        picture: "activist.svg",
+        mugshot_url: KpiDash.new(@group, 'activist').call[:user].mugshot_url %>
     </div>
     <div class="grid-element col-xs-12 col-sm-6 col-md-3 blue-dam-2">
-      <%= render "groups/dashboard_partials/dashboard_badge", title: "The Networker", description: "The Serial Notifier: 30 notified users", name: "Jean Louis David", picture: "networker.svg"%>
+      <%= render "groups/dashboard_partials/dashboard_badge",
+        title: "The Networker",
+        description: "The Serial Notifier: #{KpiDash.new(@group, 'networker').call[:notified_by]} notified users",
+        name: "#{KpiDash.new(@group, 'networker').call[:user].first_name} #{KpiDash.new(@group, 'networker').call[:user].last_name}",
+        picture: "networker.svg",
+        mugshot_url: KpiDash.new(@group, 'networker').call[:user].mugshot_url
+      %>
     </div>
     <div class="grid-element col-xs-12 col-sm-6 col-md-3 blue-dam-1">
-      <%= render "groups/dashboard_partials/dashboard_badge", title: "The Inventor", description: "The most posted ideas: 30 ideas posted", name: "Jean Louis David", picture: "inventor.svg"%>
+      <%= render "groups/dashboard_partials/dashboard_badge",
+        title: "The Inventor",
+        description: "The most posted ideas: #{KpiDash.new(@group, 'inventor').call[:ideas]} ideas posted",
+        name: "#{KpiDash.new(@group, 'inventor').call[:user].first_name} #{KpiDash.new(@group, 'inventor').call[:user].last_name}",
+        picture: "inventor.svg",
+        mugshot_url: KpiDash.new(@group, 'inventor').call[:user].mugshot_url
+      %>
     </div>
     <div class="grid-element col-xs-12 col-sm-6 col-md-3 blue-dam-2">
-      <%= render "groups/dashboard_partials/dashboard_badge", title: "The Mastermind", description: "The best knowledges: 30 knoledges", name: "Jean Louis David", picture: "mastermind.svg"%>
+      <%= render "groups/dashboard_partials/dashboard_badge",
+        title: "The Mastermind",
+        description: "The best knowledges: #{KpiDash.new(@group, 'mastermind').call[:knowledges]} knowledges",
+        name: "#{KpiDash.new(@group, 'mastermind').call[:user].first_name} #{KpiDash.new(@group, 'mastermind').call[:user].last_name}",
+        picture: "mastermind.svg",
+        mugshot_url: KpiDash.new(@group, 'mastermind').call[:user].mugshot_url
+      %>
     </div>
   </div>
 </div>

@@ -1,5 +1,5 @@
 <div class="grid-donut">
-  <canvas class='donut-chart' id=<%= donut_id %>></canvas>
+  <canvas class='donut-chart donut-chart-innovation' id=<%= donut_id %>></canvas>
   <%= content_for :donuts_js do %>
     <script>
       function <%= donut_id %>() {
@@ -15,10 +15,10 @@
                 // label: '# of Votes',
                 data: [50, 20, 15, 15],
                 backgroundColor: [
-                'red',
-                '#0B1B28',
-                'blue',
-                'green'
+                '#5BC5F1',
+                '#2e86ab',
+                '#36AD7E',
+                '#133c55'
                 ],
                 borderWidth: 0,
             }]
@@ -30,9 +30,6 @@
         });
       }
     </script>
-    <% end %>
-<!--   <div class="donut-inner">
-      <div class="donut-title">70 %</div>
-      <div class="donut-subtitle">25 active members</div>
-  </div> -->
+  <% end %>
+  <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
 </div>

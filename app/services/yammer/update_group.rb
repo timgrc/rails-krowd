@@ -10,8 +10,8 @@ class Yammer::UpdateGroup
     puts "-- Update start --"
 
     get_all_thread_posts_rse_id
-    update_thread_posts
-    save_messages_in_db
+    puts update_thread_posts
+    # save_messages_in_db
 
     puts '-- Update finished - 100% Good Style --'
   end
@@ -25,10 +25,11 @@ class Yammer::UpdateGroup
       thread_posts = @yam.messages_in_group(@group.rse_id, opts).body[:messages]
       thread_posts.each do |thread_post|
         if ThreadPost.where(rse_id: thread_post[:id])
+          @new_thread_posts_rse_id.push thread_post[:id]
+        else
           up_to_date = true
           break
         end
-        @new_thread_posts_rse_id.push thread_post[:id]
       end
       opts[:older_than] = thread_posts.last[:id] unless thread_posts.empty?
     end until thread_posts.empty? || up_to_date
@@ -38,12 +39,12 @@ class Yammer::UpdateGroup
   end
 
   def update_thread_posts
-    @all_thread_posts_rse_id.each do |thread_post_rse_id|
+    @new_thread_posts_rse_id.each do |thread_post_rse_id|
 
       if ThreadPost.where(rse_id: thread_post_rse_id).empty?
-        thread_post_fetched = @yam.get_thread(thread_post_rse_id)
+        puts @thread_post_fetched = @yam.get_thread(thread_post_rse_id).body
 
-        @thread_post = ThreadPost.new(thread_post_fetched[:id])
+        @thread_post = ThreadPost.new(rse_id: @thread_post_fetched[:id])
 
         qualify_thread
         get_thread_sender
@@ -65,15 +66,15 @@ class Yammer::UpdateGroup
     innovation_disruption = InnovationDisruptionThread.new(first_reply[:plain]).call
     business_technology   = BusinessTechnologyThread.new(first_reply[:plain]).call
 
-    @thread_post.innovation_disruption = innovation_disruption[1] if innovation_disruption.nil?
-    @thread_post.business_technology   = business_technology[1] if business_technology.nil?
+    @thread_post.innovation_disruption = innovation_disruption[1] unless innovation_disruption.nil?
+    @thread_post.business_technology   = business_technology[1] unless business_technology.nil?
   end
 
   def get_thread_sender
     if User.where(rse_id: @thread_post[:sender_id]).empty?
-      @thread_sender = Yammer::GetUser.new(@yam, thread[:sender_id]).call
+      @thread_sender = Yammer::GetUser.new(@yam, @thread_post_fetched[:sender_id]).call
     else
-      @thread_sender = User.find_by_rse_id(@thread_post[:sender_id])
+      @thread_sender = User.find_by_rse_id(@thread_post_fetched[:sender_id])
     end
   end
 
@@ -86,10 +87,11 @@ class Yammer::UpdateGroup
       messages_in_thread = @yam.messages_in_thread(@thread_post.rse_id, opts).body[:messages]
       messages_in_thread.each do |message_in_thread|
         if Message.where(rse_id: message_in_thread[:id])
+          @new_messages_rse_ids.push message_in_thread[:id]
+        else
           up_to_date = true
           break
         end
-        @new_messages_rse_ids.push message_in_thread[:id]
       end
       opts[:older_than] = messages_in_thread.last[:id] unless messages_in_thread.empty?
     end until messages_in_thread.empty? || up_to_date
@@ -99,7 +101,12 @@ class Yammer::UpdateGroup
   end
 
   def save_messages_in_db
-    puts "-- #{@new_messages_rse_ids.count} Messages to fetch --"
+    if @new_messages_rse_ids.nil?
+      puts 'DB up to date'
+      return
+    else
+      puts "-- #{@new_messages_rse_ids.count} Messages to fetch --"
+    end
     @new_messages_rse_ids.reverse.each_with_index do |message_id, index|
       get_message(message_id)
       get_likes(message_id)

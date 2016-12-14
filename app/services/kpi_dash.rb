@@ -188,8 +188,7 @@ class KpiDash
       group('location').
       order('count_all desc').
       count
-
-
-
   end
+
+
 end

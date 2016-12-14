@@ -18,7 +18,6 @@ $( window ).resize(function() {
   second_donut();
   third_donut();
   displayDonut();
-  alert('ok');
 });
 
 function displayDonut() {

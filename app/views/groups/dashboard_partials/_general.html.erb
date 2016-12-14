@@ -3,11 +3,11 @@
   <div class="row">
     <div class="grid-element element-donut col-xs-12 col-sm-6 col-md-3 blue-dam-1">
       <div class="comment-row">
-        <div class="badge-comment gray-dam-1">
+        <div class="badge-comment turquoise-1">
           <p><%= KpiDash.new(@group, 'likes').call %></p>
           <p>Likes</p>
         </div>
-        <div class="badge-comment blue-dam-3">
+        <div class="badge-comment green-1">
           <p><%= KpiDash.new(@group, 'comments').call %></p>
           <p>Comments</p>
         </div>
@@ -56,14 +56,14 @@
     <div class="grid-element col-xs-12 col-sm-6 col-md-3 turquoise-1">
       <%= render 'groups/dashboard_partials/general_partials/top3_departments' %>
     </div>
-    <div class="grid-element col-xs-12 col-sm-6 col-md-3 green-1">
-      <%= KpiDash.new(@group, 'influencer').call[:message].plain %>
+    <div class="grid-element col-xs-12 col-sm-6 col-md-3 green-1 padding-text">
+      <div class="blockquote"><%= KpiDash.new(@group, 'influencer').call[:message].plain.split('').to_a[0..340].join %>...</div>
     </div>
     <div class="grid-element col-xs-12 col-sm-6 col-md-3 white-card">
       <div class="badge-card best-reward">
         <div class="best-reward-picture">
           <div class="badge-reward text-center">
-            <div class="badge-pictures">
+            <div class="badge-pictures  margin-top-two-bis">
               <div class="grad-border">
                 <%= image_tag KpiDash.new(@group, 'influencer').call[:user].mugshot_url, class: "avatar-badges-best" %>
               </div>

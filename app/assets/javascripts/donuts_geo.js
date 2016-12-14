@@ -7,6 +7,7 @@ $(function() {
   third_donut();
 
   ftest();
+  console.log('console');
 });
 
 $( window ).resize(function() {
@@ -17,6 +18,7 @@ $( window ).resize(function() {
   second_donut();
   third_donut();
   ftest();
+  console.log('blabla');
 });
 
 function ftest() {
@@ -30,4 +32,5 @@ function ftest() {
   widthHeightDonut = percentageGrid * Math.min(gridDonutWidth, gridDonutHeight);
   $('.donut-chart-general').width(widthHeightDonut);
   $('.donut-chart-general').height(widthHeightDonut);
+
 }

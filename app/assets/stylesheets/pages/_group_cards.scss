@@ -1,3 +1,7 @@
+.group-title {
+  margin-top: 200px;
+}
+
 .card-group {
   display: flex;
   position: relative;
@@ -33,7 +37,7 @@
   top: 15px;
   right: 50px;
   font-size: 25px;
-  z-index: 7;
+  z-index: 10;
 }
 
 

@@ -1,7 +1,7 @@
 $(function() {
   geoChartMap();
   donut();
-  centerDonutInner();
+  // centerDonutInner();
   first_donut();
   second_donut();
   third_donut();
@@ -12,17 +12,16 @@ $(function() {
 $( window ).resize(function() {
   geoChartMap();
   donut();
-  centerDonutInner();
+  // centerDonutInner();
   first_donut();
   second_donut();
   third_donut();
-
   ftest();
 });
 
 function ftest() {
   var donutGeneralWidth, donutGeneralHeight, gridDonutWidth, gridDonutHeight, widthHeightDonut, percentageGrid;
-  percentageGrid = 0.90;
+  percentageGrid = 0.80;
   gridDonutWidth  = $('.grid-donut').width();
   gridDonutHeight = $('.grid-donut').height();
   donutGeneralWidth  = $('.donut-chart-general').width();

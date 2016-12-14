@@ -23,7 +23,7 @@
 }
 
 .badge-reward {
-  margin-top: -6%;
+  margin-top: 5%;
 }
 
 .grid {
@@ -38,8 +38,6 @@
 
 .grid-element {
   height: 100%;
-  // display: flex;
-  // align-items: center;
 }
 
 .avatar-badges {
@@ -79,10 +77,11 @@
   align-items: center;
   justify-content: center;
   color: white;
+  padding: 15px;
 }
 
 .badge-like i {
-  font-size: 150%;
+  font-size: 200%;
   padding-right: 5%;
 }
 

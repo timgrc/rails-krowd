@@ -17,7 +17,7 @@
         </div>
       </div>
         <div class="panel-body">
-          <%= f.input :body, as: :text, label: false, input_html: { cols: 40, rows: 10, class: "form-control message", placeholder: "What's your message?" } %>
+          <%= f.input :body, as: :text, label: false, input_html: { cols: 40, rows: 10, class: "form-control message", value: @push_default_value[push] } %>
         </div>
       <div class="panel-footer">
       <%= link_to '<i class="fa fa-refresh" aria-hidden="true"></i>'.html_safe, group_incentive_templates_path(@group), remote: true %>

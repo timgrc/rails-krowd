@@ -305,12 +305,12 @@ class KpiDash
       group('thread_posts.innovation_disruption').
       count
 
-    {
-      business_innovation:   business_ideas["innovation"],
-      business_disruption:   business_ideas["disruption"],
-      technology_innovation: technology_ideas["innovation"],
-      technology_disruption: technology_ideas["disruption"]
-    }
+    [
+      business_ideas["innovation"],
+      business_ideas["disruption"],
+      technology_ideas["innovation"],
+      technology_ideas["disruption"]
+    ]
   end
 
   def innovation_kint
@@ -324,12 +324,12 @@ class KpiDash
       group('thread_posts.innovation_disruption').
       count
 
-    {
-      business_innovation:   business_kint["innovation"],
-      business_disruption:   business_kint["disruption"],
-      technology_innovation: technology_kint["innovation"],
-      technology_disruption: technology_kint["disruption"]
-    }
+    [
+      business_kint["innovation"],
+      business_kint["disruption"],
+      technology_kint["innovation"],
+      technology_kint["disruption"]
+    ]
   end
 
   def innovation_kext
@@ -343,11 +343,11 @@ class KpiDash
       group('thread_posts.innovation_disruption').
       count
 
-    {
-      business_innovation:   business_kext["innovation"],
-      business_disruption:   business_kext["disruption"],
-      technology_innovation: technology_kext["innovation"],
-      technology_disruption: technology_kext["disruption"]
-    }
+    [
+      business_kext["innovation"],
+      business_kext["disruption"],
+      technology_kext["innovation"],
+      technology_kext["disruption"]
+    ]
   end
 end

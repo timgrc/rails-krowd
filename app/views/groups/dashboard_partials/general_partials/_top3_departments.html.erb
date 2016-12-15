@@ -26,7 +26,16 @@
 
     var myBarChart = new Chart(ctx, {
         type: 'bar',
-        data: data
+        data: data,
+        options: {
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero:true
+              }
+            }]
+          }
+        }
     });
   </script>
 <% end %>

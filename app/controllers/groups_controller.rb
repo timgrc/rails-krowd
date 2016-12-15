@@ -10,7 +10,12 @@ class GroupsController < ApplicationController
   end
 
   def show
+    @push_default_value = {
+      awards: awards,
+      incentive: incentive
+    }
     @push_message = PushMessage.new
+    @incentive_id = 5
   end
 
   def create
@@ -38,5 +43,23 @@ class GroupsController < ApplicationController
   def find_group
     @group = Group.find(params[:id])
     authorize @group
+  end
+
+  def awards
+    influencer = KpiDash.new(@group, 'influencer').call
+    activist   = KpiDash.new(@group, 'activist').call
+    networker  = KpiDash.new(@group, 'networker').call
+    inventor   = KpiDash.new(@group, 'inventor').call
+    mastermind = KpiDash.new(@group, 'mastermind').call
+    "Special congratulations for this week :
+    The influencer: #{influencer[:user].first_name} #{influencer[:user].last_name.capitalize}
+    The activist: #{activist[:user].first_name} #{activist[:user].last_name.capitalize}
+    The networker: #{networker[:user].first_name} #{networker[:user].last_name.capitalize}
+    The inventor: #{inventor[:user].first_name} #{inventor[:user].last_name.capitalize}
+    The mastermind: #{mastermind[:user].first_name} #{mastermind[:user].last_name.capitalize}"
+  end
+
+  def incentive
+    IncentiveTemplate.all.sample.body
   end
 end

@@ -8,12 +8,14 @@
           type: 'doughnut',
           data: {
             labels: [
-            'good',
-            'bad'
+            'Business - Innovation',
+            'Business - Disruption',
+            'Technology - Innovation',
+            'Technology - Disruption'
             ],
             datasets: [{
                 // label: '# of Votes',
-                data: [50, 20, 15, 15],
+                data: <%= KpiDash.new(@group, kpi).call %>,
                 backgroundColor: [
                 '#5BC5F1',
                 '#2e86ab',

@@ -4,12 +4,12 @@
     <div class="grid-element element-donut col-xs-12 col-sm-6 col-md-3 blue-dam-1">
       <div class="comment-row">
         <div class="badge-comment turquoise-1">
-          <p><%= KpiDash.new(@group, 'likes').call %></p>
-          <p>Likes</p>
+          <p class="numbers-bungee"><%= KpiDash.new(@group, 'likes').call %></p>
+          <p>LIKES</p>
         </div>
         <div class="badge-comment green-1">
-          <p><%= KpiDash.new(@group, 'comments').call %></p>
-          <p>Comments</p>
+          <p class="numbers-bungee"><%= KpiDash.new(@group, 'comments').call %></p>
+          <p>COMMENTS</p>
         </div>
       </div>
       <div class="grid-donut">
@@ -48,7 +48,7 @@
           </script>
           <% end %>
         <div class="donut-inner">
-            <div class="donut-title"><%= KpiDash.new(@group, 'members_ratio').call %> %</div>
+            <div class="donut-title numbers-bungee"><%= KpiDash.new(@group, 'members_ratio').call %> %</div>
             <div class="donut-subtitle"><strong><%= KpiDash.new(@group, 'members_active').call %></strong> ACTIVE MEMBERS</div>
         </div>
       </div>
@@ -69,9 +69,9 @@
               </div>
               <img class="reward-picto" src="<%= path_to_image "activist.svg" %>">
             </div>
-            <h3>The Influencer</h3>
-            <h4>The most liked post</h4>
-            <h4><%= KpiDash.new(@group, 'influencer').call[:user].first_name %> <%= KpiDash.new(@group, 'influencer').call[:user].last_name %></h4>
+            <h3>THE INFLUENCER</h3>
+            <p>The most liked post</p>
+            <p><%= KpiDash.new(@group, 'influencer').call[:user].first_name %> <%= KpiDash.new(@group, 'influencer').call[:user].last_name %></p>
           </div>
         </div>
         <div class="like-row">
@@ -90,7 +90,7 @@
   <div class="row">
     <div class="grid-element col-xs-12 col-sm-6 col-md-3 blue-dam-1">
       <%= render "groups/dashboard_partials/dashboard_badge",
-        title: "The Activist" ,
+        title: "THE ACTIVIST" ,
         description: "The Serial Commentator: #{KpiDash.new(@group, 'activist').call[:comments]} messages",
         name: "#{KpiDash.new(@group, 'activist').call[:user].first_name} #{KpiDash.new(@group, 'activist').call[:user].last_name}",
         picture: "activist.svg",
@@ -98,7 +98,7 @@
     </div>
     <div class="grid-element col-xs-12 col-sm-6 col-md-3 blue-dam-2">
       <%= render "groups/dashboard_partials/dashboard_badge",
-        title: "The Networker",
+        title: "THE NETWORKER",
         description: "The Serial Notifier: #{KpiDash.new(@group, 'networker').call[:notified_by]} notified users",
         name: "#{KpiDash.new(@group, 'networker').call[:user].first_name} #{KpiDash.new(@group, 'networker').call[:user].last_name}",
         picture: "networker.svg",
@@ -107,16 +107,16 @@
     </div>
     <div class="grid-element col-xs-12 col-sm-6 col-md-3 blue-dam-1">
       <%= render "groups/dashboard_partials/dashboard_badge",
-        title: "The Inventor",
+        title: "THE INVENTOR",
         description: "The most posted ideas: #{KpiDash.new(@group, 'inventor').call[:ideas]} ideas posted",
         name: "#{KpiDash.new(@group, 'inventor').call[:user].first_name} #{KpiDash.new(@group, 'inventor').call[:user].last_name}",
         picture: "inventor.svg",
         mugshot_url: KpiDash.new(@group, 'inventor').call[:user].mugshot_url
       %>
     </div>
-    <div class="grid-element col-xs-12 col-sm-6 col-md-3 blue-dam-2">
+    <div class="grid-element col-xs-12 col-sm-6 col-md-3 blue-dam-2 general-title">
       <%= render "groups/dashboard_partials/dashboard_badge",
-        title: "The Mastermind",
+        title: "THE MASTERMIND",
         description: "The best knowledges: #{KpiDash.new(@group, 'mastermind').call[:knowledges]} knowledges",
         name: "#{KpiDash.new(@group, 'mastermind').call[:user].first_name} #{KpiDash.new(@group, 'mastermind').call[:user].last_name}",
         picture: "mastermind.svg",

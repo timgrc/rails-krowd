@@ -55,11 +55,6 @@
   box-shadow: 0 1px 0 $green-darker;
 }
 
-.numbers-bungee h1{
-  font-family: 'Bungee', cursive;
-  font-size: 100px;
-}
-
 h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
 
 a { font-family: 'Lato', sans-serif; }

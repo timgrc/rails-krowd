@@ -22,6 +22,7 @@
 }
 
 .innovation-donut {
+  margin-top: -30px;
   padding-bottom: 10%;
   position: relative;
 }
@@ -43,6 +44,11 @@
   margin-left: 2%;
   padding: 5%;
   height: 55%;
+}
+
+.card-no-margin{
+  margin-right: 0;
+  margin-left: 0;
 }
 
 .card-innovation h3 {

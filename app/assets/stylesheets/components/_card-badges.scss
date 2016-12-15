@@ -46,6 +46,7 @@
 
 .background-heading h3{
   font-size: 24px;
+  padding: 5px 0 0 5px;
 }
 
 .row-heading{
@@ -57,14 +58,13 @@
 
 .row-body{
   position: relative;
-  top: -50px;
   width: 100%;
 }
 
 .row-body-up{
   position: relative;
   width: 100%;
-  top: -65px;
+  top: -40px;
 }
 
 .row-legend{
@@ -155,7 +155,6 @@
   right: -10px;
   left: -10px;
   background-image: linear-gradient(to bottom left, #36AD7E 0%, #5BC5F1 100%);
-  z-index: -1;
   border-radius: inherit;
 }
 

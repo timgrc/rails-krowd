@@ -20,6 +20,7 @@ class CalculateBotAnswer
       }
     ]
 
+
     bot_correct_answers = bot_answers.map do |bot_answer|
       bot_answer[:answer] if @user_question =~ bot_answer[:regex]
     end

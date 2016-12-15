@@ -32,10 +32,6 @@ class CalculateBotAnswer
       {
         regex:  /most knowledges/i,
         answer: 'Sergio Bossi is the mastermind of the week'
-      },
-      {
-        regex:  /most likes comments/i,
-        answer: 'Jean-Claud Biguine is the influencer of the week'
       }
     ]
 

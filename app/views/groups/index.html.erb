@@ -10,7 +10,7 @@
           <%= link_to membership_path(Membership.where(group: group, user: current_user).first), remote: true, class: "card-icon", method: :delete, data: { confirm: "Are you sure?" } do %>
               <i class="fa fa-trash-o" aria-hidden="true"></i>
             <% end %>
-          <%= link_to group_path(group) do %>
+          <%= link_to group_path(group), class: 'challenge-card-a' do %>
             <div class="card card-group challenge-card margin-bottom padded" style="background-image: linear-gradient(to bottom left, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 50%), url('<%= path_to_image "background-2.jpg" %>');">
 
 

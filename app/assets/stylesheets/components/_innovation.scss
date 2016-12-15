@@ -9,9 +9,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 2%;
+  padding: 0;
 }
 
+.innovation-title h3{
+  font-size: 22px;
+  margin-top: 0px;
+}
 
 .title {
   padding-top: 1%;
@@ -25,8 +29,8 @@
 .innovation-donut i {
   position: absolute;
   font-size: 400%;
-  left: 45%;
-  bottom: 39%;
+  left: 35%;
+  bottom: 35%;
   background: -webkit-linear-gradient(#133c55, #36AD7E);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

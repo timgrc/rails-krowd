@@ -13,7 +13,7 @@
 .green { background-color: $green-lighter; }
 .green-bis { background-color: $green; }
 .green-ter { background-color: $green-darker; }
-.green-1 { background-color: #36AD7E;}
+.green-1 { background-color: $green-1;}
 
 .blue { background-color: $blue-lighter; }
 .blue-bis { background-color: $blue; }
@@ -21,7 +21,7 @@
 .blue-dam-1 { background-color: $blue-dam-1;}
 .blue-dam-2 { background-color: $blue-dam-2;}
 .blue-dam-3 {background-color: $blue-dam-3; }
-.turquoise-1 { background-color: #5BC5F1; }
+.turquoise-1 { background-color: $turquoise-1; }
 
 .red { background-color: $red-lighter; }
 .red-bis { background-color: $red; }
@@ -59,20 +59,6 @@
   font-family: 'Bungee', cursive;
   font-size: 100px;
 }
-
-/*.numbers-exo h1{
-  font-family: 'Exo', sans-serif;
-  font-weight: 900;
-  font-size: 100px;
-}
-*/
-
-/*.numbers-leckerli h1{
-  font-family: 'Leckerli One', cursive;
-  font-size: 100px;
-}
-*/
-
 
 h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
 

@@ -67,7 +67,7 @@
 
 .blockquote{
   display:block;
-  padding: 15px 20px 15px 45px;
+  padding: 5px 20px 15px 45px;
   margin: 0 0 20px;
   position: relative;
 
@@ -82,11 +82,11 @@
   font-family: Georgia, serif;
   font-size: 60px;
   font-weight: bold;
-  color: #999;
+  color: #fff;
 
   position: absolute;
   left: 10px;
-  top:5px;
+  top:-10px;
 }
 
 .blockquote::after{

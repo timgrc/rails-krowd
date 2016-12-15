@@ -49,7 +49,7 @@
           <% end %>
         <div class="donut-inner">
             <div class="donut-title"><%= KpiDash.new(@group, 'members_ratio').call %> %</div>
-            <div class="donut-subtitle"><%= KpiDash.new(@group, 'members_active').call %> active members</div>
+            <div class="donut-subtitle"><strong><%= KpiDash.new(@group, 'members_active').call %></strong> ACTIVE MEMBERS</div>
         </div>
       </div>
     </div>

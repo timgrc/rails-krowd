@@ -7,6 +7,9 @@ class GroupsController < ApplicationController
     @groups     = policy_scope(Group)
     @group      = Group.new
     @yam_groups = Yammer::GetAllGroups.new(current_user).call
+    @yam_groups.select do |group|
+      Group.joins(:memberships).where('full_name = ? and memberships.user_in_dash = false', group[:full_name]).empty?
+    end
   end
 
   def show
@@ -24,16 +27,20 @@ class GroupsController < ApplicationController
     group_params_from_api = yam_groups.find do |yam_group|
       yam_group[:full_name] == params[:group][:full_name]
     end
-    @group = current_user.groups.build(group_params_from_api)
-    authorize @group
-
-    if @group.save
-      Membership.create!(user: current_user, group: @group)
-      redirect_to groups_path
-      # redirect_to group_path(@group)
-    else
-      # render 'new'
+    unless Group.joins(:users).where('users.id = ? and groups.full_name = ?', current_user.id, group_params_from_api[:full_name])
+      @group = current_user.groups.build(group_params_from_api)
+      authorize @group
+      @group.save
     end
+
+    unless Membership.where('user_id = ? and group_id = ?', current_user.id, @group.id)
+      Membership.create!(user: current_user, group: @group, user_in_dash: true)
+    else
+      membership = Membership.where('user_id = ? and group_id = ?', current_user.id, @group.id)
+      membership.user_in_dash = true
+    end
+
+    redirect_to groups_path
   end
 
   # def destroy

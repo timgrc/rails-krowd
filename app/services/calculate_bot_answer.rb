@@ -32,10 +32,6 @@ class CalculateBotAnswer
       {
         regex:  /most knowledges/i,
         answer: 'Sergio Bossi is the mastermind of the week'
-      },
-      {
-        regex:  /most likes comments/i,
-        answer: 'Jean-Claud Biguine is the influencer of the week'
       }
     ]
 
@@ -48,7 +44,7 @@ class CalculateBotAnswer
     if !bot_correct_answers.empty?
       bot_correct_answers.join('\n')
     else
-      "For this question \"#{@user_question}\" :\nSorry, I did not understand the question ^^.\nTry Again ..."
+      "Sorry, I did not understand the question ^^.\nTry Again ..."
     end
   end
 end

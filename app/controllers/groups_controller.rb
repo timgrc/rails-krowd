@@ -16,6 +16,7 @@ class GroupsController < ApplicationController
     }
     @push_message = PushMessage.new
     @incentive_id = 5
+
   end
 
   def create

@@ -20,6 +20,7 @@
   top: 65%;
   right: 25%;
   width: 15%;
+  z-index: 1;
 }
 
 .badge-reward {
@@ -100,6 +101,7 @@
 .avatar-badges-best {
   border-radius: 50%;
   width: 100%;
+  z-index: 1;
 }
 
 .best-reward {

@@ -7,7 +7,7 @@
     gradient.addColorStop(1, '#5BC5F1');
 
     var data = {
-        labels: ["Likes", "Comments"],
+        labels: ["", ""],
         datasets: [
             {
                 // label: "My First dataset",
@@ -42,7 +42,10 @@
               },
               stacked: true
             }
-          ]
+          ],
+          yAxes: [{
+            display: false
+          }]
         },
         legend:{
           display:false

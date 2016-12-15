@@ -12,8 +12,10 @@ gem 'pundit'
 gem 'omniauth'
 gem 'yam'
 gem 'enumerize'
+
 gem 'sidekiq'
 gem 'sidekiq-failures'
+gem 'sidekiq-scheduler', '~> 2.0'
 
 # Dependency for the Sidekiq Web UI
 #   => https://github.com/mperham/sidekiq/wiki/Monitoring

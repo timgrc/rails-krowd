@@ -1,23 +1,26 @@
 $(function() {
-  geoChartMap();
-  donut();
-  // centerDonutInner();
-  first_donut();
-  second_donut();
-  third_donut();
+  if ($("#regions_div").length) {
+    geoChartMap();
+    donut();
+    // centerDonutInner();
+    first_donut();
+    second_donut();
+    third_donut();
 
-  displayDonut();
-
+    displayDonut();
+  }
 });
 
 $( window ).resize(function() {
-  geoChartMap();
-  donut();
-  // centerDonutInner();
-  first_donut();
-  second_donut();
-  third_donut();
-  displayDonut();
+  if ($("#regions_div").length) {
+    geoChartMap();
+    donut();
+    // centerDonutInner();
+    first_donut();
+    second_donut();
+    third_donut();
+    displayDonut();
+  }
 });
 
 function displayDonut() {

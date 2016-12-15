@@ -1,6 +1,7 @@
 class CalculateBotAnswer
   def initialize(user_question)
     @user_question = user_question
+    @group = Group.find_by_full_name('Innovation Challenge - The Company')
   end
 
   def call

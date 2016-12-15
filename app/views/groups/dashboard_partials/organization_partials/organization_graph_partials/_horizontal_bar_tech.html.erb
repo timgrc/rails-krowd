@@ -7,7 +7,7 @@
     gradient.addColorStop(1, '#5BC5F1');
 
     var data = {
-        labels: ["January", "February"],
+        labels: ["Likes", "Comments"],
         datasets: [
             {
                 label: "My First dataset",
@@ -20,10 +20,51 @@
                     'rgba(54, 162, 235, 1)'
                 ],
                 borderWidth: 1,
-                data: [65, 59],
+                data: <%= KpiDash.new(@group, 'organisation_technology').call[:likes_comments] %>,
             }
         ]
     };
+
+  var barOptions_stacked = {
+    tooltips: {
+        enabled: false
+    },
+    hover :{
+        animationDuration:0
+    },
+    scales: {
+        xAxes: [{
+            ticks: {
+                beginAtZero:true,
+                fontFamily: "'Open Sans Bold', sans-serif",
+                fontSize:11
+            },
+            scaleLabel:{
+                display:false
+            },
+            gridLines: {
+            },
+            stacked: true
+        }],
+        yAxes: [{
+            gridLines: {
+                display:false,
+                color: "#fff",
+                zeroLineColor: "#fff",
+                zeroLineWidth: 0
+            },
+            ticks: {
+                fontFamily: "'Open Sans Bold', sans-serif",
+                fontSize:11
+            },
+            stacked: true
+        }]
+    },
+    legend:{
+        display:false
+    }
+
+};
 
     var myBarChart = new Chart(ctx, {
         type: 'horizontalBar',

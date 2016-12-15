@@ -16,7 +16,6 @@ class UseBot
 
         yam.create_message(bot_answer, replied_to_id: user_question[:id] , direct_to_user_ids: user_question[:sender_id])
 
-        Yammer::PostMessage.new(@bot.user, 'TestBot', opts)
         @bot.latest_rse_replied_id = user_question[:id]
         @bot.save
       end

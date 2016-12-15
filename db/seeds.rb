@@ -11,7 +11,6 @@ group = Group.find(1)
 # end
 
 p KpiDash.new(group, 'organisation_business').call
-p KpiDash.new(group, 'organisation_technology').call
 # opts = {}
 # yam = Yammer::Client.new(access_token: user.access_token)
 # p yam.messages_in_thread(813963771, opts).body[:messages]

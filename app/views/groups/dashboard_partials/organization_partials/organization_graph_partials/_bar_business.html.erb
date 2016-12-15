@@ -7,27 +7,79 @@
     gradient.addColorStop(1, '#5BC5F1');
 
     var data = {
-        labels: ["January", "February"],
+        labels: ["January", "February", "Post", "Post"],
         datasets: [
-            {
-                label: "My First dataset",
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)'
-                ],
-                borderWidth: 1,
-                data: [65, 59],
-            }
+          {
+              backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(54, 162, 235, 0.2)'
+              ],
+              borderColor: [
+                  'rgba(255,99,132,1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(54, 162, 235, 1)'
+              ],
+              borderWidth: 1,
+              data: <%= KpiDash.new(@group, 'organisation_business').call[:countries] %>,
+          },
+          {
+              backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(54, 162, 235, 0.2)'
+              ],
+              borderColor: [
+                  'rgba(255,99,132,1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(54, 162, 235, 1)'
+              ],
+              borderWidth: 1,
+              data: <%= KpiDash.new(@group, 'organisation_business').call[:departments] %>,
+          }
         ]
     };
 
     var myBarChart = new Chart(ctx, {
         type: 'bar',
-        data: data
+        data: data,
+        options: {
+          scales: {
+          xAxes: [{
+              ticks: {
+                  beginAtZero:true,
+                  fontFamily: "'Open Sans Bold', sans-serif",
+                  fontSize:11
+              },
+              scaleLabel:{
+                  display:false
+              },
+              gridLines: {
+              },
+              stacked: true
+          }],
+          yAxes: [{
+              gridLines: {
+                  display:false,
+                  color: "#fff",
+                  zeroLineColor: "#fff",
+                  zeroLineWidth: 0
+              },
+              ticks: {
+                  fontFamily: "'Open Sans Bold', sans-serif",
+                  fontSize:11
+              },
+              stacked: true
+          }]
+        },
+        legend:{
+            display:false
+        }
+      }
     });
   </script>
 <% end %>

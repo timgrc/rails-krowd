@@ -188,11 +188,13 @@ class KpiDash
   end
 
   def countries
-    User.joins(:groups, :messages).
+    countries = User.joins(:groups, :messages).
       where('replied_to_id is not null and groups.id = ?', @group.id).
       group('location').
       order('count_all desc').
       count
+
+    [['Country', 'Active Members']] + countries.map { |country, active_members| [country, active_members]}
   end
 
   def organisation_business
@@ -203,11 +205,6 @@ class KpiDash
     comments = Message.joins(:group, :thread_post).
               where('replied_to_id is not null and groups.id = ? and thread_posts.business_technology = ?', @group.id, 'business').
               count
-
-    # departments = User.joins(:groups, :thread_posts, :messages).
-    #           where('replied_to_id is not null and groups.id = ? and thread_posts.business_technology = ?', @group.id, 'business').
-    #           group('thread_posts.id').
-    #           count
 
     thread_business1 = Message.where("plain LIKE '%Post2 Week1%'").first
     thread_business1_countries = User.joins(:groups, :thread_posts, :messages).
@@ -244,10 +241,8 @@ class KpiDash
 
     {
       likes_comments: [likes, comments],
-      departments_countries1: [thread_business1_countries, thread_business1_departments],
-      departments_countries2: [thread_business2_countries, thread_business2_departments],
-      departments_countries3: [thread_business3_countries, thread_business3_departments],
-      departments_countries4: [thread_business4_countries, thread_business4_departments]
+      departments: [thread_business1_departments, thread_business2_departments, thread_business3_departments, thread_business4_departments],
+      countries:   [thread_business1_countries, thread_business2_countries, thread_business3_countries, thread_business4_countries],
     }
   end
 
@@ -269,16 +264,16 @@ class KpiDash
       .group('department').count.count
 
     thread_technology2 = Message.where("plain LIKE '%Post14 Week2%'").first
-    thread_technology2_countries = User.joins(:groups, :thread_posts, :messages).
+    thread_technology2_countries = thread_technology1_countries + User.joins(:groups, :thread_posts, :messages).
       where('replied_to_id is not null and groups.id = ? and thread_posts.business_technology = ? and thread_posts.id = ?', @group.id, 'technology', thread_technology2.thread_post.id)
       .group('location').count.count
-    thread_technology2_departments = User.joins(:groups, :thread_posts, :messages).
+    thread_technology2_departments = thread_technology1_departments + User.joins(:groups, :thread_posts, :messages).
       where('replied_to_id is not null and groups.id = ? and thread_posts.business_technology = ? and thread_posts.id = ?', @group.id, 'technology', thread_technology2.thread_post.id)
       .group('department').count.count
 
     thread_technology3 = Message.where("plain LIKE '%Post15 Week2%'").first
     thread_technology3_countries = thread_technology2_countries + User.joins(:groups, :thread_posts, :messages).
-      where('replied_to_id is not null and groups.id = ? and thread_posts.business_technology = ? and thread_posts.id = ?', @group.id, 'technology', thread_technology3.thread_post.id)
+      where('replied_to_id is not null and groups.id = ? and thread_posts.id = ?', @group.id, thread_technology3.thread_post.id)
       .group('location').count.count
     thread_technology3_departments = thread_technology2_departments + User.joins(:groups, :thread_posts, :messages).
       where('replied_to_id is not null and groups.id = ? and thread_posts.business_technology = ? and thread_posts.id = ?', @group.id, 'technology', thread_technology3.thread_post.id)
@@ -294,10 +289,8 @@ class KpiDash
 
     {
       likes_comments: [likes, comments],
-      departments_countries1: [thread_technology1_countries, thread_technology1_departments],
-      departments_countries2: [thread_technology2_countries, thread_technology2_departments],
-      departments_countries3: [thread_technology3_countries, thread_technology3_departments],
-      departments_countries4: [thread_technology4_countries, thread_technology4_departments]
+      departments: [thread_technology1_departments, thread_technology2_departments, thread_technology3_departments, thread_technology4_departments],
+      countries:   [thread_technology1_countries, thread_technology2_countries, thread_technology3_countries, thread_technology4_countries],
     }
   end
 

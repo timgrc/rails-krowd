@@ -7,7 +7,7 @@
     gradient.addColorStop(1, '#5BC5F1');
 
     var data = {
-        labels: ["January", "February"],
+        labels: ["Likes", "Comments"],
         datasets: [
             {
                 label: "My First dataset",
@@ -20,14 +20,34 @@
                     'rgba(54, 162, 235, 1)'
                 ],
                 borderWidth: 1,
-                data: [65, 59],
+                data: <%= KpiDash.new(@group, 'organisation_business').call[:likes_comments] %>,
             }
         ]
     };
 
     var myBarChart = new Chart(ctx, {
-        type: 'horizontalBar',
-        data: data
+      type: 'horizontalBar',
+      data: data,
+      options: {
+        scales: {
+          xAxes: [
+            {
+              ticks: {
+                beginAtZero:true
+              },
+              scaleLabel:{
+                  display:false
+              },
+              gridLines: {
+              },
+              stacked: true
+            }
+          ]
+        },
+        legend:{
+          display:false
+        }
+      }
     });
   </script>
 <% end %>

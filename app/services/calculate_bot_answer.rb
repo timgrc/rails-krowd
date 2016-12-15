@@ -7,31 +7,15 @@ class CalculateBotAnswer
     bot_answers = [
       {
         regex:  /wagon/i,
-        answer: 'The Wagon is the best !'
+        answer: 'The Wagon is the best!'
       },
       {
         regex:  /active members/i,
-        answer: '30%'
-      },
-      {
-        regex:  /total members/i,
-        answer: '100 collaborators invited'
+        answer: "There is #{active_members} of active members in this Challenge."
       },
       {
         regex:  /most active/i,
-        answer: 'Jean-Louis David is the activist of the week'
-      },
-      {
-        regex:  /most notifications/i,
-        answer: 'Jacques Dessange is the networker of the week'
-      },
-      {
-        regex:  /most ideas/i,
-        answer: 'Frank Provost is the inventor of the week'
-      },
-      {
-        regex:  /most knowledges/i,
-        answer: 'Sergio Bossi is the mastermind of the week'
+        answer: "#{activist} is the activist of the week"
       }
     ]
 
@@ -46,5 +30,13 @@ class CalculateBotAnswer
     else
       "Sorry, I did not understand the question ^^.\nTry Again ..."
     end
+  end
+
+  def activist
+    "#{KpiDash.new(@group, 'activist').call[:user].first_name} #{KpiDash.new(@group, 'activist').call[:user].last_name}"
+  end
+
+  def active_members
+    "#{KpiDash.new(@group, 'members_ratio').call} %"
   end
 end

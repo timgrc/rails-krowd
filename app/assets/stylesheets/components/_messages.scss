@@ -27,6 +27,10 @@ div#award_message, div#incentive_message {
   height: auto;
 }
 
+div#incentive_message{
+  height: 592px;
+}
+
 .background-color-one, .background-color-two{
   flex: 1;
   height: 92vh;
@@ -91,6 +95,7 @@ div#award_message, div#incentive_message {
   border: none;
   background-color: $blue-dam-3;
   color: white;
+  font-size: 20px;
 }
 
 .form-control:focus {
@@ -130,6 +135,10 @@ div#award_message, div#incentive_message {
   display: none;
 }
 
+#incentive_message .panel-body .img-message{
+  display: none;
+}
+
 #incentive_message .panel-footer .fa-refresh{
   position: absolute;
   font-size: 35px;
@@ -139,5 +148,18 @@ div#award_message, div#incentive_message {
 
 .panel-heading-title{
   width: 350px;
+}
+
+.img-message{
+  background-color: $blue-dam-3;
+  width: 100%;
+}
+
+#award_message textarea.form-control {
+  height: 220px;
+}
+
+#incentive_message textarea.form-control {
+  height: 412px;
 }
 

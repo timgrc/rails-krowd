@@ -60,11 +60,11 @@ class GroupsController < ApplicationController
     inventor   = KpiDash.new(@group, 'inventor').call
     mastermind = KpiDash.new(@group, 'mastermind').call
     "Special congratulations for this week :
-    The influencer: #{influencer[:user].first_name} #{influencer[:user].last_name.capitalize}
-    The activist: #{activist[:user].first_name} #{activist[:user].last_name.capitalize}
-    The networker: #{networker[:user].first_name} #{networker[:user].last_name.capitalize}
-    The inventor: #{inventor[:user].first_name} #{inventor[:user].last_name.capitalize}
-    The mastermind: #{mastermind[:user].first_name} #{mastermind[:user].last_name.capitalize}"
+    - The influencer: #{influencer[:user].first_name} #{influencer[:user].last_name.capitalize}
+    - The activist: #{activist[:user].first_name} #{activist[:user].last_name.capitalize}
+    - The networker: #{networker[:user].first_name} #{networker[:user].last_name.capitalize}
+    - The inventor: #{inventor[:user].first_name} #{inventor[:user].last_name.capitalize}
+    - The mastermind: #{mastermind[:user].first_name} #{mastermind[:user].last_name.capitalize}"
   end
 
   def incentive

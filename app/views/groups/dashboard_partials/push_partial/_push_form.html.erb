@@ -11,13 +11,14 @@
               <%= @group.full_name %>
             </div>
             <div>
-              created <%= (Time.now.to_i - Time.at(current_user.created_at.to_i).to_i) / (60*60*24) %> days ago
+              Just now
             </div>
           </div>
         </div>
       </div>
         <div class="panel-body">
-          <%= f.input :body, as: :text, label: false, input_html: { cols: 40, rows: 10, class: "form-control message", value: @push_default_value[push] } %>
+          <%= f.input :body, as: :text, label: false, input_html: { cols: 40, rows: 10, class: "form-control message textarea-message", value: @push_default_value[push] } %>
+          <img class="img-message" src="<%= path_to_image "congrats-blanc.png" %>">
         </div>
       <div class="panel-footer">
       <%= link_to '<i class="fa fa-refresh" aria-hidden="true"></i>'.html_safe, group_incentive_templates_path(@group), remote: true %>

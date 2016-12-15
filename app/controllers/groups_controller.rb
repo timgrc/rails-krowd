@@ -61,6 +61,8 @@ class GroupsController < ApplicationController
   end
 
   def incentive
-    IncentiveTemplate.all.sample.body
+    if IncentiveTemplate.all.count != 0
+      IncentiveTemplate.all.sample.body
+    end
   end
 end

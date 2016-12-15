@@ -194,7 +194,7 @@ class KpiDash
       order('count_all desc').
       count
 
-    [['Country', 'Active Members']] + countries.map { |country, active_members| [country, active_members]}
+    [['Country', 'Active Members']] + countries.map { |country, active_members| [country, active_members] }
   end
 
   def organisation_business

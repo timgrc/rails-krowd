@@ -1,27 +1,27 @@
 <div class="container-full">
-  <div class="row">
-    <div class="col-xs-12 col-sm-4 element-donut-innovation">
-      <div class="innovation-title text-center">
-        <h3>Ideas</h3>
-      </div>
+  <div class="row grid-innovation">
+    <div class="col-xs-12 col-sm-4 card-innovation">
       <div class="innovation-donut">
         <%= render 'groups/dashboard_partials/innovation_partials/donut', donut_id: "first_donut", kpi: 'innovation_ideas' %>
       </div>
-    </div>
-    <div class="col-xs-12 col-sm-4 element-donut-innovation">
       <div class="innovation-title text-center">
-        <h3>Knowledge from inside the industry</h3>
+        <h3>Ideas</h3>
       </div>
+    </div>
+    <div class="col-xs-12 col-sm-4 card-innovation">
       <div class="innovation-donut">
         <%= render 'groups/dashboard_partials/innovation_partials/donut', donut_id: "second_donut", kpi: 'innovation_kint' %>
       </div>
-    </div>
-    <div class="col-xs-12 col-sm-4 element-donut-innovation">
       <div class="innovation-title text-center">
-        <h3>Knowledge from outside the industry</h3>
+        <h3>Knowledges: inside the industry</h3>
       </div>
+    </div>
+    <div class="col-xs-12 col-sm-4 card-innovation">
       <div class="innovation-donut">
         <%= render 'groups/dashboard_partials/innovation_partials/donut', donut_id: "third_donut", kpi: 'innovation_kext' %>
+      </div>
+      <div class="innovation-title text-center">
+        <h3>Knowledges: outside the industry</h3>
       </div>
     </div>
   </div>

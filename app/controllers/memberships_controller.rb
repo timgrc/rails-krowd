@@ -3,6 +3,7 @@ class MembershipsController < ApplicationController
 
   def destroy
     @membership = current_user.memberships.find(params[:id])
-    @membership.destroy
+    @membership.user_in_dash = false
+    @membership.save
   end
 end

@@ -5,7 +5,7 @@
       <p>Pick a challenge or create a new one</p>
     </div>
       <div class="row">
-      <% @groups.each do |group| %>
+      <% @groups.reverse.each do |group| %>
           <div class="col-xs-12 col-sm-4" data-membership-id="<%= Membership.where(group: group, user: current_user).first.id %>">
           <%= link_to membership_path(Membership.where(group: group, user: current_user).first), remote: true, class: "card-icon", method: :delete, data: { confirm: "Are you sure?" } do %>
               <i class="fa fa-trash-o" aria-hidden="true"></i>

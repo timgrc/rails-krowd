@@ -11,7 +11,8 @@ class PushMessagesController < ApplicationController
   private
 
   def push
-    Yammer::PostMessage.new(current_user, @push_message.body, group_id: @group.rse_id).call
+    congrats_pic = File.open(Rails.root.join("app/assets/images/congrats-blanc.png"))
+    Yammer::PostMessage.new(current_user, @push_message.body, group_id: @group.rse_id, attachment1: congrats_pic).call
   end
 
   def push_message_params

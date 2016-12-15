@@ -1,7 +1,7 @@
 class GroupPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.joins(:memberships).where('memberships.user_id=?', user.id)
+      scope.joins(:memberships).where('memberships.user_id=? and user_in_dash = true', user.id)
     end
   end
 

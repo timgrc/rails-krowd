@@ -7,7 +7,7 @@ class Yammer::GetLastPrivateMessagesFromBotUser
     private_messages = Yammer::GetPrivateMessages.new(@bot.user).call
 
     new_private_messages = private_messages.take_while do |private_message|
-      private_message[:sender_id] != @bot.user.rse_id
+      private_message[:sender_id].to_i != @bot.user.rse_id.to_i
     end
 
     unless new_private_messages.nil?

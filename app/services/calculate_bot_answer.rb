@@ -1,4 +1,4 @@
-class CalculateBotAnswer
+ class CalculateBotAnswer
   def initialize(user_question)
     @user_question = user_question
     @group = Group.find_by_full_name('Innovation Challenge - The Company')
@@ -12,11 +12,11 @@ class CalculateBotAnswer
       },
       {
         regex:  /active members/i,
-        answer: "There is #{active_members} of active members in this Challenge."
+        answer: "There is #{active_members} of active members."
       },
       {
         regex:  /most active/i,
-        answer: "#{activist} is the activist of the week"
+        answer: "#{activist} is the activist of the week."
       }
     ]
 
@@ -28,7 +28,7 @@ class CalculateBotAnswer
     bot_correct_answers = bot_correct_answers.select { |bot_answer| !bot_answer.nil? }
 
     if !bot_correct_answers.empty?
-      bot_correct_answers.join('\n')
+      bot_correct_answers.join("\n") + "\nAND LE WAGON IS THE BEST!"
     else
       "Sorry, I did not understand the question ^^.\nTry Again ..."
     end

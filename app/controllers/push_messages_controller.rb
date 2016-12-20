@@ -1,11 +1,18 @@
 class PushMessagesController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: [:bot_answer]
+  skip_before_action :authenticate_user!, only: [:bot_answer]
+  skip_after_action :verify_authorized, only: [:bot_answer]
   before_action :find_group, only: [:create]
+
   def create
     @push_message = current_user.push_messages.build(push_message_params)
     if @push_message.save
       push
-    else
     end
+  end
+
+  def bot_answer
+    PushBotAnswer.new(BotUser.first, bot_question_params).call
   end
 
   private
@@ -18,6 +25,15 @@ class PushMessagesController < ApplicationController
   def push_message_params
     params.require(:push_message).permit(
       :body
+    )
+  end
+
+  def bot_question_params
+    params.permit(
+      :id,
+      :sender_id,
+      :plain,
+      :first_name
     )
   end
 

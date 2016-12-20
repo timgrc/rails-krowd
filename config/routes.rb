@@ -7,9 +7,13 @@ Rails.application.routes.draw do
 
   root to: 'pages#home'
   # get "styleguide", to: "pages#styleguide"
+  get 'test', to: 'pages#test'
 
   post "yammer", to: "users/omniauth_callbacks#yammer"
   get "yammer/callback", to: "users/omniauth_callbacks#callback"
+
+  post 'bot', to: 'push_messages#bot_answer'
+  # get 'bot', to: 'push_messages#bot_answer'
 
   resources :groups, only: [:index, :show, :new, :create, :destroys] do
     resources :incentive_templates

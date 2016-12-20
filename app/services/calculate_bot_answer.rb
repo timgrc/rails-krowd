@@ -12,7 +12,7 @@
       },
       {
         regex:  /active members/i,
-        answer: "There is #{active_members} of active members."
+        answer: "#{active_members} are active members."
       },
       {
         regex:  /most active/i,
@@ -28,9 +28,9 @@
     bot_correct_answers = bot_correct_answers.select { |bot_answer| !bot_answer.nil? }
 
     if !bot_correct_answers.empty?
-      bot_correct_answers.join("\n") + "\nAND LE WAGON IS THE BEST!"
+      bot_correct_answers.join("\n")
     else
-      "Sorry, I did not understand the question ^^.\nTry Again ..."
+      "Sorry, I did not understand the question ^^.\nTry again ..."
     end
   end
 

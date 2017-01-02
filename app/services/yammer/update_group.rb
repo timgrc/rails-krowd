@@ -25,6 +25,9 @@ class Yammer::UpdateGroup
     puts "#{thread_posts_rse_id.count} new threads to fetch"
 
     update_thread_posts
+
+    @new_messages_rse_ids.flatten!
+
     save_messages_in_db
 
     puts '-- Update finished - 100% Good Style --'
@@ -42,7 +45,7 @@ class Yammer::UpdateGroup
 
       thread_posts.each do |thread_post|
         if ThreadPost.where(rse_id: thread_post[:id]).empty?
-          @new_thread_posts_rse_id.push thread_post[:id]
+          @new_thread_posts_rse_id.unshift thread_post[:id]
         else
           up_to_date = true
           break
@@ -55,10 +58,10 @@ class Yammer::UpdateGroup
   end
 
   def update_thread_posts
-    thread_posts_rse_id_in_db = ThreadPost.select('rse_id').where('group_id = ?', 1).order('id desc').map { |thread_post| thread_post.rse_id }
-    @thread_posts_rse_id = @new_thread_posts_rse_id + thread_posts_rse_id_in_db
-    @thread_posts_rse_id.each_with_index do |thread_post_rse_id, index|
+    thread_posts_rse_id_in_db = ThreadPost.select('rse_id').where('group_id = ?', @group.id).order('id').map { |thread_post| thread_post.rse_id }
+    @thread_posts_rse_id = thread_posts_rse_id_in_db + @new_thread_posts_rse_id
 
+    @thread_posts_rse_id.each_with_index do |thread_post_rse_id, index|
       if ThreadPost.where(rse_id: thread_post_rse_id).empty?
         @thread_post_fetched = manage_api_limits :thread do
           @yam.get_thread(thread_post_rse_id).body
@@ -68,7 +71,7 @@ class Yammer::UpdateGroup
 
         qualify_thread
         @thread_post.group = @group
-        @thread_post.save!
+        @thread_post.save
 
       else
         @thread_post = ThreadPost.find_by_rse_id(thread_post_rse_id)
@@ -77,6 +80,7 @@ class Yammer::UpdateGroup
       plural = @thread_posts_rse_id.count > 1 ? 's' : ''
       puts "#{index + 1}/#{@thread_posts_rse_id.count} thread#{plural} fetched"
 
+      @thread_post_rse_id = thread_post_rse_id
       get_new_messages_ids_from_thread
     end
   end
@@ -94,18 +98,18 @@ class Yammer::UpdateGroup
   end
 
   def get_new_messages_ids_from_thread
-    @new_messages_rse_ids = []
-    opts = {}
-    up_to_date = false
+    opts                    = {}
+    up_to_date              = false
+    thread_messages_rse_ids = []
 
     begin
       messages_in_thread = manage_api_limits :message do
-        @yam.messages_in_thread(@thread_post.rse_id, opts).body[:messages]
+        @yam.messages_in_thread(@thread_post_rse_id, opts).body[:messages]
       end
 
       messages_in_thread.each do |message_in_thread|
         if Message.where(rse_id: message_in_thread[:id]).empty?
-          @new_messages_rse_ids.push message_in_thread[:id]
+          thread_messages_rse_ids.unshift message_in_thread[:id]
         else
           up_to_date = true
           break
@@ -114,7 +118,7 @@ class Yammer::UpdateGroup
       opts[:older_than] = messages_in_thread.last[:id] unless messages_in_thread.empty?
     end until messages_in_thread.empty? || up_to_date
 
-    @new_messages_rse_ids
+    @new_messages_rse_ids.push thread_messages_rse_ids
   end
 
   def save_messages_in_db
@@ -125,9 +129,10 @@ class Yammer::UpdateGroup
       plural = @new_messages_rse_ids.count > 1 ? 's' : ''
       puts "-- #{@new_messages_rse_ids.count} Message#{plural} to fetch --"
     end
-    @new_messages_rse_ids.reverse.each_with_index do |message_id, index|
-      get_message(message_id)
-      get_likes(message_id)
+
+    @new_messages_rse_ids.each_with_index do |message_id, index|
+      @message            = get_message(message_id)
+      @message[:liked_by] = get_likes(message_id)
 
       new_message = Message.new(@message)
 
@@ -135,12 +140,22 @@ class Yammer::UpdateGroup
         Yammer::GetUser.new(@user, @message_fetched[:sender_id]).call
       end
 
+      if Membership.where('user_id = ? and group_id = ?', message_sender.id, @group.id).empty?
+        membership       = Membership.new
+        membership.user  = message_sender
+        membership.group = @group
+        membership.save
+      end
+
       new_message.thread_post = ThreadPost.find_by_rse_id(@message_fetched[:thread_id])
-      new_message.replied_to_id = Message.where(rse_replied_to_id: @message_fetched[:replied_to_id])
+      unless @message[:rse_replied_to_id].nil?
+        new_message.replied_to_id = Message.find_by_rse_id(@message[:rse_replied_to_id]).id
+      end
       new_message.user = message_sender
-      new_message.save!
+      new_message.save
 
       puts "#{index + 1} / #{@new_messages_rse_ids.count}"
+      puts new_message.plain
     end
   end
 
@@ -149,7 +164,7 @@ class Yammer::UpdateGroup
       @yam.get_message(message_id).body
     end
 
-    @message = {
+    {
       rse_id:            @message_fetched[:id],
       rse_replied_to_id: @message_fetched[:replied_to_id],
       web_url:           @message_fetched[:web_url],
@@ -160,16 +175,15 @@ class Yammer::UpdateGroup
   end
 
   def get_likes(message_id)
-    @message[:liked_by] = manage_api_limits :user do
+    manage_api_limits :user do
       @yam.get("/api/v1/users/liked_message/#{message_id}.json").body[:users].count
     end
   end
 
   def manage_api_limits(type_of_limit)
-    tempo_max = 30 + (5..10).to_a.sample
+    tempo_max = 35
     rate_limits = 10
 
-    puts "#{type_of_limit.to_s} #{@count_api_limits[type_of_limit][:count]}"
     if @count_api_limits[type_of_limit][:count] == rate_limits
 
       tempo = [0, tempo_max - (Time.now - @count_api_limits[type_of_limit][:timer]).round].max
@@ -178,11 +192,8 @@ class Yammer::UpdateGroup
       sleep(tempo)
 
       @count_api_limits[type_of_limit][:timer] = Time.now
-      @count_api_limits[type_of_limit][:count] = 0
+      @count_api_limits[type_of_limit][:count] = 1
     else
-      if @count_api_limits[type_of_limit][:count] == 0
-        @count_api_limits[type_of_limit][:timer] = Time.now
-      end
       @count_api_limits[type_of_limit][:count] += 1
     end
 

@@ -6,6 +6,6 @@ class BusinessTechnologyThread
   end
 
   def call
-    @message.match(/(#business|#technology)/)
+    @message.match(/#(business|technology)/)
   end
 end

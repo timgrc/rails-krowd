@@ -1,7 +1,6 @@
 class BotJob < ApplicationJob
   queue_as :default
 
-  def perform(*args)
-    UseBot.new(BotUser.first).call
+  def perform
   end
 end

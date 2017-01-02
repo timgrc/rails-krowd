@@ -6,6 +6,6 @@ class InnovationDisruptionThread
   end
 
   def call
-    @message.match(/(#innovation|#disruption)/)
+    @message.match(/#(innovation|disruption)/)
   end
 end

@@ -1,0 +1,62 @@
+<!--   <style>
+    svg {
+      fill: linear-gradient(#133c55, #36AD7E);
+      z-index: 10;
+      width: 100px;
+      height: 100px;
+    }
+  </style>
+
+  <div style="
+    margin:          auto;
+    width:           260px;
+    height:          260px;
+    display:         flex;
+    align-items:     center;
+    justify-content: center;
+    position:        relative;
+  ">
+    <canvas id="retention-rate" style="
+      width:  260px;
+      height: 260px;
+      border-radius: 50%;
+    "></canvas>
+    <div style="
+      position: absolute;
+    ">
+      <%= render 'idea' %>
+    </div>
+  </div>
+
+<% content_for :test_js do %>
+  <script>
+    var ctx = document.getElementById("retention-rate").getContext("2d");
+    var gradient = ctx.createLinearGradient(0, 0, 200, 0);
+    gradient.addColorStop(0, '#36AD7E');
+    gradient.addColorStop(1, '#5BC5F1');
+
+    var myChart = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: [
+        'good',
+        'bad'
+        ],
+        datasets: [{
+            // label: '# of Votes',
+            data: [70, 30],
+            backgroundColor: [
+            gradient,
+            '#0B1B28'
+            ],
+            borderWidth: 0,
+        }]
+      },
+      options: {
+        responsive: true,
+        cutoutPercentage: 93,
+        legend: { display: false }
+      }
+    });
+  </script>
+<% end %> -->

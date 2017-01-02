@@ -154,14 +154,16 @@ class Yammer::UpdateGroup
       new_message.user = message_sender
       new_message.save
 
-      puts "#{index + 1} / #{@new_messages_rse_ids.count}"
+      puts "\nMessage #{index + 1} / #{@new_messages_rse_ids.count} :"
       puts new_message.plain
     end
   end
 
   def get_message(message_id)
     @message_fetched = manage_api_limits :message do
-      @yam.get_message(message_id).body
+      res = @yam.get_message(message_id)
+      p res
+      res.body
     end
 
     {
@@ -176,7 +178,9 @@ class Yammer::UpdateGroup
 
   def get_likes(message_id)
     manage_api_limits :user do
-      @yam.get("/api/v1/users/liked_message/#{message_id}.json").body[:users].count
+      res = @yam.get("/api/v1/users/liked_message/#{message_id}.json")
+      p res
+      res.body[:users].count
     end
   end
 
@@ -186,10 +190,12 @@ class Yammer::UpdateGroup
 
     if @count_api_limits[type_of_limit][:count] == rate_limits
 
-      tempo = [0, tempo_max - (Time.now - @count_api_limits[type_of_limit][:timer]).round].max
+      tempo = tempo_max - (Time.now - @count_api_limits[type_of_limit][:timer]).round
 
-      puts "-- Waiting #{tempo} sec because of API #{type_of_limit.to_s}'s rate limits --"
-      sleep(tempo)
+      if tempo > 0
+        puts "-- Waiting #{tempo} sec because of API #{type_of_limit.to_s}'s rate limits --"
+        sleep(tempo)
+      end
 
       @count_api_limits[type_of_limit][:timer] = Time.now
       @count_api_limits[type_of_limit][:count] = 1

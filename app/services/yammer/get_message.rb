@@ -22,6 +22,7 @@ class Yammer::GetMessage
       :liked_by
     ]
 
+    p message
     message.select { |key, _| message_keys_needed.include? key }
     message[:plain]  = message[:body][:plain]
     message[:parsed] = message[:body][:parsed]

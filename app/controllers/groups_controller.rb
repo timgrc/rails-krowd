@@ -31,7 +31,7 @@ class GroupsController < ApplicationController
       @group = current_user.groups.build(group_params_from_api)
       authorize @group
       @group.save
-      Yammer::UpdateGroup.new(current_user, @group).call
+      # Yammer::UpdateGroup.new(current_user, @group).call
     else
       @group = Group.where('full_name = ?', group_params_from_api[:full_name]).first
       authorize @group

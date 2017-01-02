@@ -173,7 +173,7 @@ class KpiDash
     inventor
 
     masterminds = User.joins(:messages, :groups).
-        where('replied_to_id is not null and groups.id = ? and (idea_kint_kext_social=? or idea_kint_kext_social=?) and users.id != ? and users.id != ? and users.id != ? and users.id != ?', @group.id, 'kint', 'kext', @influencer.id, @activist.id, @networker.id, @inventor.id).
+        where("replied_to_id is not null and groups.id = ? and (idea_kint_kext_social='kint' or idea_kint_kext_social='kext') and users.id != ? and users.id != ? and users.id != ? and users.id != ?", @group.id, @influencer.id, @activist.id, @networker.id, @inventor.id).
         group('users.id').
         order('count_all desc').
         limit(1).

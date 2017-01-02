@@ -138,7 +138,7 @@
             </div>
             <h3>THE INFLUENCER</h3>
             <p>The most liked post</p>
-            <p><%= KpiDash.new(@group, 'influencer').call[:user].first_name %> <%= KpiDash.new(@group, 'influencer').call[:user].last_name %></p>
+            <p><%= "#{KpiDash.new(@group, 'influencer').call[:user].first_name} #{KpiDash.new(@group, 'influencer').call[:user].last_name.capitalize}" %></p>
           </div>
         </div>
         <div class="like-row">
@@ -159,7 +159,7 @@
       <%= render "groups/dashboard_partials/dashboard_badge",
         title: "THE ACTIVIST" ,
         description: "The Serial Commentator: #{KpiDash.new(@group, 'activist').call[:comments]} messages",
-        name: "#{KpiDash.new(@group, 'activist').call[:user].first_name} #{KpiDash.new(@group, 'activist').call[:user].last_name}",
+        name: "#{KpiDash.new(@group, 'activist').call[:user].first_name} #{KpiDash.new(@group, 'activist').call[:user].last_name.capitalize}",
         picture: "activist.svg",
         mugshot_url: KpiDash.new(@group, 'activist').call[:user].mugshot_url %>
     </div>
@@ -167,7 +167,7 @@
       <%= render "groups/dashboard_partials/dashboard_badge",
         title: "THE NETWORKER",
         description: "The Serial Notifier: #{KpiDash.new(@group, 'networker').call[:notified_by]} notified users",
-        name: "#{KpiDash.new(@group, 'networker').call[:user].first_name} #{KpiDash.new(@group, 'networker').call[:user].last_name}",
+        name: "#{KpiDash.new(@group, 'networker').call[:user].first_name} #{KpiDash.new(@group, 'networker').call[:user].last_name.capitalize}",
         picture: "networker.svg",
         mugshot_url: KpiDash.new(@group, 'networker').call[:user].mugshot_url
       %>
@@ -176,7 +176,7 @@
       <%= render "groups/dashboard_partials/dashboard_badge",
         title: "THE INVENTOR",
         description: "The most posted ideas: #{KpiDash.new(@group, 'inventor').call[:ideas]} ideas posted",
-        name: "#{KpiDash.new(@group, 'inventor').call[:user].first_name} #{KpiDash.new(@group, 'inventor').call[:user].last_name}",
+        name: "#{KpiDash.new(@group, 'inventor').call[:user].first_name} #{KpiDash.new(@group, 'inventor').call[:user].last_name.capitalize}",
         picture: "inventor.svg",
         mugshot_url: KpiDash.new(@group, 'inventor').call[:user].mugshot_url
       %>
@@ -185,7 +185,7 @@
       <%= render "groups/dashboard_partials/dashboard_badge",
         title: "THE MASTERMIND",
         description: "The best knowledges: #{KpiDash.new(@group, 'mastermind').call[:knowledges]} knowledges",
-        name: "#{KpiDash.new(@group, 'mastermind').call[:user].first_name} #{KpiDash.new(@group, 'mastermind').call[:user].last_name}",
+        name: "#{KpiDash.new(@group, 'mastermind').call[:user].first_name} #{KpiDash.new(@group, 'mastermind').call[:user].last_name.capitalize}",
         picture: "mastermind.svg",
         mugshot_url: KpiDash.new(@group, 'mastermind').call[:user].mugshot_url
       %>

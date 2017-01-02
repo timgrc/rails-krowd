@@ -140,6 +140,13 @@ class Yammer::UpdateGroup
         Yammer::GetUser.new(@user, @message_fetched[:sender_id]).call
       end
 
+      if Membership.where('user_id = ? and group_id = ?', message_sender.id, @group.id).empty?
+        membership       = Membership.new
+        membership.user  = message_sender
+        membership.group = @group
+        membership.save
+      end
+
       new_message.thread_post = ThreadPost.find_by_rse_id(@message_fetched[:thread_id])
       unless @message[:rse_replied_to_id].nil?
         new_message.replied_to_id = Message.find_by_rse_id(@message[:rse_replied_to_id]).id

@@ -1,42 +1,36 @@
 <div id="wrapper">
-  <%= render 'dashboard_navbar' %>
+  <%= render 'groups/dashboard/navbar' %>
   <div id="page-content-wrapper">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-xs-12">
-          <section id="general">
-            <%= render 'groups/dashboard_partials/general' %>
-          </section>
-        </div>
+        <section id="general" class="margin-top">
+          <%= render 'groups/dashboard/general' %>
+        </section>
       </div>
       <div class="row">
-        <div class="col-xs-12">
-          <section id="map">
-            <%= render 'groups/dashboard_partials/map' %>
-          </section>
-        </div>
+        <section id="badges">
+          <%= render 'groups/dashboard/badges' %>
+        </section>
       </div>
       <div class="row">
-        <div class="col-xs-12">
-          <section id="organization">
-            <%= render 'groups/dashboard_partials/organization' %>
-          </section>
-        </div>
+        <section id="organization">
+          <%= render 'groups/dashboard/organization' %>
+        </section>
       </div>
-      <div class="row">
+<!--      <div class="row">
         <div class="col-xs-12">
           <section id="innovation">
-            <%= render 'groups/dashboard_partials/innovation' %>
+            <%= render 'groups/dashboard/innovation' %>
           </section>
         </div>
       </div>
       <div class="row">
         <div class="col-xs-12">
           <section id="push">
-            <%= render 'groups/dashboard_partials/push' %>
+            <%= render 'groups/dashboard/push' %>
           </section>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>

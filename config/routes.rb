@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   end
 
   root to: 'pages#home'
-  # get "styleguide", to: "pages#styleguide"
   get 'test', to: 'pages#test'
 
   post "yammer", to: "users/omniauth_callbacks#yammer"

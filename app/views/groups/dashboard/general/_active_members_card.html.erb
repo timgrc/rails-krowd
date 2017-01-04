@@ -1,0 +1,14 @@
+<div class="comment-row">
+  <div class="badge-comment turquoise-1">
+    <p><%= KpiDash.new(@group, 'likes').call %></p>
+    <p>LIKES</p>
+  </div>
+  <div class="badge-comment green-1">
+    <p><%= KpiDash.new(@group, 'comments').call %></p>
+    <p id="comments">COMMENTS</p>
+  </div>
+</div>
+
+<div class="grid-donut">
+  <%= render 'groups/dashboard/general/retention_donut_chart' %>
+</div>

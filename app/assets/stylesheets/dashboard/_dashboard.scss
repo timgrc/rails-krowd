@@ -1,0 +1,8 @@
+#general .row, #badges .row {
+  height: 50%;
+  min-height: 359px;
+}
+
+#page-content-wrapper section {
+  height: calc(100vh - 70px);
+}

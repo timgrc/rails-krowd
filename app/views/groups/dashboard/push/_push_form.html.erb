@@ -7,18 +7,14 @@
             <%= image_tag current_user.mugshot_url, class: "avatar-square" %>
           </div>
           <div class="col-xs-6 col-sm-6 panel-heading-title">
-            <div>
-              <%= @group.full_name %>
-            </div>
-            <div>
-              Just now
-            </div>
+            <div><%= @group.full_name %></div>
+            <div>Just now</div>
           </div>
         </div>
       </div>
         <div class="panel-body">
           <%= f.input :body, as: :text, label: false, input_html: { cols: 40, rows: 10, class: "form-control message textarea-message", value: @push_default_value[push] } %>
-          <img class="img-message" src="<%= path_to_image "congrats-blanc.png" %>">
+          <!-- <img class="img-message" src="<%= path_to_image "congrats-blanc.png" %>"> -->
         </div>
       <div class="panel-footer">
       <%= link_to '<i class="fa fa-refresh" aria-hidden="true"></i>'.html_safe, group_incentive_templates_path(@group), remote: true %>
@@ -35,8 +31,8 @@
   </div>
 <% end %>
 
-<% content_for(:after_js) do %>
-  <script>
+<% content_for(:afterrr_js) do %>
+<!--   <script>
     $(document).ready(function() {
       $(".btn-primary").click(function() {
         var button, parent;
@@ -56,11 +52,7 @@
           parent.find(".done").removeClass("finish");
         }, 5000);
       })
-    });
-  </script>
 
-  <script>
-    $(document).ready(function() {
       $(".fa-refresh").click(function() {
         $(this).addClass("fa-spin");
         button = $(this)
@@ -70,5 +62,5 @@
         }, 3000);
       })
     });
-  </script>
+  </script> -->
 <% end %>

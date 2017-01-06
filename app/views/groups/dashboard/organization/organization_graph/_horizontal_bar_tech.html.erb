@@ -1,10 +1,7 @@
-<canvas id="horizontal-tech-bars"></canvas>
-<%= content_for :business_bars_js do %>
+<canvas style="height: 200px;" id="horizontal-tech-bars"></canvas>
+<%= content_for :charts_js do %>
   <script>
-    var ctx = document.getElementById("horizontal-tech-bars").getContext("2d");
-    var gradient = ctx.createLinearGradient(0, 0, 200, 0);
-    gradient.addColorStop(0, '#36AD7E');
-    gradient.addColorStop(1, '#5BC5F1');
+    var ctx = document.getElementById("horizontal-tech-bars");
 
     var data = {
         labels: ["", ""],
@@ -33,25 +30,23 @@
         animationDuration:0
     },
     scales: {
-        xAxes: [{
-            ticks: {
-                beginAtZero:true,
-                fontFamily: "'Open Sans Bold', sans-serif",
-                fontSize:11
-            },
-            scaleLabel:{
-                display:false
-            },
-            gridLines: {
-            },
-            stacked: true
-        }],
-        yAxes: [{
-            display: false
-            }]
+      xAxes: [{
+        ticks: {
+          beginAtZero: true,
+          fontFamily: "'Open Sans Bold', sans-serif",
+          fontSize:11
+        },
+        scaleLabel:{
+          display:false
+        },
+        stacked: true
+      }],
+      yAxes: [{
+        display: false
+      }]
     },
     legend:{
-        display:false
+      display:false
     }
 
 };
@@ -61,22 +56,20 @@
       data: data,
       options: {
         scales: {
-          xAxes: [
-            {
-              ticks: {
-                beginAtZero:true
-              },
-              scaleLabel:{
-                  display:false
-              },
-              gridLines: {
-              },
-              stacked: true
-            }
-          ]
+          xAxes: [{
+            ticks: {
+              beginAtZero: true
+            },
+            scaleLabel:{
+                display: false
+            },
+            gridLines: {
+            },
+            stacked: true
+          }]
         },
         legend:{
-          display:false
+          display: false
         }
       }
     });

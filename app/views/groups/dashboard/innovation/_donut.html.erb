@@ -1,37 +1,55 @@
-<div class="grid-donut">
-  <canvas class='donut-chart donut-chart-innovation' id=<%= donut_id %>></canvas>
-  <%= content_for :donuts_js do %>
-    <script>
-      function <%= donut_id %>() {
-        var ctx = document.getElementById("<%= donut_id %>").getContext("2d");
-        var myChart = new Chart(ctx, {
-          type: 'doughnut',
-          data: {
-            labels: [
-            'Business - Innovation',
-            'Business - Disruption',
-            'Technology - Innovation',
-            'Technology - Disruption'
-            ],
-            datasets: [{
-                // label: '# of Votes',
-                data: <%= KpiDash.new(@group, kpi).call %>,
-                backgroundColor: [
-                '#5BC5F1',
-                '#2e86ab',
-                '#52aa5e',
-                '#388659',
-                ],
-                borderWidth: 0,
-            }]
-          },
-          options: {
-            cutoutPercentage: 75,
-            legend: { display: false }
-          }
-        });
-      }
-    </script>
-  <% end %>
-  <i class="fa fa-<%= icon %> fa-fw" aria-hidden="true"></i>
+<div class="innovation-donut" style="
+  margin:   auto;
+  width:    220px;
+  height:   220px;
+  position: relative;
+">
+  <div style="
+    position: absolute;
+    display:         flex;
+    flex-direction:  column;
+    align-items:     center;
+    justify-content: center;
+    width:  100%;
+    height: 100%;
+  ">
+    <i class="fa fa-<%= icon %> fa-fw" aria-hidden="true"></i>
+  </div>
+  <canvas id=<%= donut_id %> style="
+    width:  100%;
+    height: 100%;
+  "></canvas>
 </div>
+
+<%= content_for :charts_js do %>
+  <script>
+    var ctx = document.getElementById("<%= donut_id %>").getContext("2d");
+    var myChart = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: [
+        'Business - Innovation',
+        'Business - Disruption',
+        'Technology - Innovation',
+        'Technology - Disruption'
+        ],
+        datasets: [{
+            // label: '# of Votes',
+            data: <%= KpiDash.new(@group, kpi).call %>,
+            backgroundColor: [
+            '#5BC5F1',
+            '#2e86ab',
+            '#52aa5e',
+            '#388659',
+            ],
+            borderWidth: 0,
+        }]
+      },
+      options: {
+        cutoutPercentage: 75,
+        legend: { display: false }
+      }
+    });
+  </script>
+<% end %>
+

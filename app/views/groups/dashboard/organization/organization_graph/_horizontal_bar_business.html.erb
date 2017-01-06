@@ -1,28 +1,22 @@
-<canvas id="horizontal-business-bars"></canvas>
-<%= content_for :business_bars_js do %>
+<canvas style="width: 90%; height: 200px; border: 1px solid red;" id="horizontal-business-bars"></canvas>
+<%= content_for :charts_js do %>
   <script>
-    var ctx = document.getElementById("horizontal-business-bars").getContext("2d");
-    var gradient = ctx.createLinearGradient(0, 0, 200, 0);
-    gradient.addColorStop(0, '#36AD7E');
-    gradient.addColorStop(1, '#5BC5F1');
+    var ctx = document.getElementById("horizontal-business-bars");
 
     var data = {
-        labels: ["", ""],
-        datasets: [
-            {
-                // label: "My First dataset",
-                backgroundColor: [
-                    'rgba(54, 173, 126, 0.5)',
-                    'rgba(94, 201, 109, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(18, 186, 41, 1)',
-                    'rgba(18, 186, 41, 1)'
-                ],
-                borderWidth: 1,
-                data: <%= KpiDash.new(@group, 'organisation_business').call[:likes_comments] %>,
-            }
-        ]
+      labels: ["", ""],
+      datasets: [{
+        backgroundColor: [
+            'rgba(54, 173, 126, 0.5)',
+            'rgba(94, 201, 109, 0.2)'
+        ],
+        borderColor: [
+            'rgba(18, 186, 41, 1)',
+            'rgba(18, 186, 41, 1)'
+        ],
+        borderWidth: 1,
+        data: <%= KpiDash.new(@group, 'organisation_business').call[:likes_comments] %>
+      }]
     };
 
     var myBarChart = new Chart(ctx, {
@@ -30,25 +24,14 @@
       data: data,
       options: {
         scales: {
-          xAxes: [
-            {
-              ticks: {
-                beginAtZero:true
-              },
-              scaleLabel:{
-                  display:false
-              },
-              gridLines: {
-              },
-              stacked: true
+          xAxes: [{
+            ticks: {
+              beginAtZero: true
             }
-          ],
+          }],
           yAxes: [{
-            display: false
+            barThickness: 30
           }]
-        },
-        legend:{
-          display:false
         }
       }
     });

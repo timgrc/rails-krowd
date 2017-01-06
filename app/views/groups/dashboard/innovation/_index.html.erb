@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-4 card-innovation text-center">
+    <%= render 'groups/dashboard/innovation/donut', donut_id: "first_donut", kpi: 'innovation_ideas', icon: 'lightbulb-o'%>
+    <h3>Ideas</h3>
+  </div>
+  <div class="col-xs-12 col-sm-4 card-innovation text-center">
+    <%= render 'groups/dashboard/innovation/donut', donut_id: "second_donut", kpi: 'innovation_kint' , icon: 'book'%>
+    <h3>Knowledge: inside the industry</h3>
+  </div>
+  <div class="col-xs-12 col-sm-4 card-innovation text-center">
+    <%= render 'groups/dashboard/innovation/donut', donut_id: "third_donut", kpi: 'innovation_kext' , icon: 'graduation-cap' %>
+    <h3>Knowledge: outside the industry</h3>
+  </div>
+</div>

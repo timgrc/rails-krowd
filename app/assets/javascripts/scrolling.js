@@ -1,11 +1,3 @@
-$(function() {
-  scrolling();
-});
-
-$(window).scroll(function() {
-  scrolling();
-});
-
 function scrolling() {
   var windowTop,
     generalHeight,

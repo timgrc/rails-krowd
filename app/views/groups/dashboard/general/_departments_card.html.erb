@@ -1,1 +1,46 @@
-_departments_card.html.erb
+<canvas style="width: 400px; height: 400px; border: 1px solid red;" id="department_members_polar"></canvas>
+<%= content_for :charts_js do %>
+  <script>
+    var ctx = document.getElementById("department_members_polar");
+
+    var data = {
+      datasets: [{
+        data: [
+            11,
+            16,
+            7,
+            3,
+            14
+        ],
+        backgroundColor: [
+          "#FF6384",
+          "#4BC0C0",
+          "#FFCE56",
+          "#E7E9ED",
+          "#36A2EB"
+        ],
+        label: 'My dataset' // for legend
+      }],
+      labels: [
+        "Red",
+        "Green",
+        "Yellow",
+        "Grey",
+        "Blue"
+      ]
+    };
+
+    new Chart(ctx, {
+      type: 'polarArea',
+      data: data,
+      options: {
+        responsive: false,
+        elements: {
+            arc: {
+                borderColor: "#FFFFFF"
+            }
+        }
+      }
+    });
+  </script>
+<% end %>

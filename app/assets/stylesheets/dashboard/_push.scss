@@ -1,5 +1,5 @@
 .section-message {
-  height: 92vh;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -22,18 +22,22 @@
   background-color: $blue-dam-3;
 }
 
-div#award_message, div#incentive_message {
-  width: 30em;
-  height: auto;
+div #award_message, div #incentive_message {
+  width: 90%;
+  height: 500px;
+  border: 1px solid red;
 }
 
-div#incentive_message{
-  height: 592px;
+#award_message textarea.form-control {
+  // height: 220px;
+}
+
+#incentive_message textarea.form-control {
+  // height: 412px;
 }
 
 .background-color-one, .background-color-two{
   flex: 1;
-  height: 92vh;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -147,19 +151,12 @@ div#incentive_message{
 }
 
 .panel-heading-title{
-  width: 350px;
-}
-
-.img-message{
-  background-color: $blue-dam-3;
   width: 100%;
 }
 
-#award_message textarea.form-control {
-  height: 220px;
-}
+// .img-message{
+//   background-color: $blue-dam-3;
+//   width: 100%;
+// }
 
-#incentive_message textarea.form-control {
-  height: 412px;
-}
 

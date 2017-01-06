@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(function(){
 
   $(".tab").on("click", function(e){
     // Change active tab

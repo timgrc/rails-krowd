@@ -2,6 +2,15 @@
   color: #E6E6E6;
 }
 
+#general .row {
+  height: 50%;
+  min-height: 359px;
+}
+
+.grid-element {
+  height: 100%;
+}
+
 .general-title h3 {
   font-size: 26px;
 }
@@ -10,3 +19,6 @@
   font-family: 16px;
 }
 
+.badge-comment p{
+  margin: 1px 0 0 11px;
+}

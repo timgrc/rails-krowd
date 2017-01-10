@@ -16,10 +16,8 @@ class KpiDash
       likes
     when 'comments'
       comments
-    when 'top3_departments_data'
-      top3_departments[:data]
-    when 'top3_departments_labels'
-      top3_departments[:labels]
+    when 'departments'
+      departments
     when 'influencer'
       influencer
     when 'activist'
@@ -30,8 +28,10 @@ class KpiDash
       inventor
     when 'mastermind'
       mastermind
-    when 'countries'
-      countries
+    when 'countries_active_members'
+      countries[:active_members]
+    when 'countries_comments'
+      countries[:comments]
     when 'organisation_business'
       organisation_business
     when 'organisation_technology'
@@ -73,17 +73,46 @@ class KpiDash
            .count
   end
 
-  def top3_departments
-    departments = User.joins(:groups).
-                      where('users.email != ? and groups.id = ?', 'hello@wearestim.com', @group.id).
-                      group(:department).
-                      order('count_all desc').
-                      limit(3).
-                      count
+  def departments
+    departments_active_members = User.joins(:groups).
+                                 where('users.email != ? and groups.id = ?', 'hello@wearestim.com', @group.id).
+                                 group(:department).
+                                 order('count_all desc').
+                                 count
+
+    departments_comments = User.joins(:groups, :messages).
+                           where('users.email != ? and groups.id = ?', 'hello@wearestim.com', @group.id).
+                           group(:department).
+                           order('count_all').
+                           count
+
+    departments_data = departments_active_members.map do |department, nb_active_members|
+      {
+        name: department,
+        active_members: nb_active_members,
+        comments: departments_comments[department]
+      }
+    end
+
+    p departments_data
+  end
+
+  def countries
+    countries_active_members = User.joins(:groups).
+      where('users.email != ? and groups.id = ?', 'hello@wearestim.com', @group.id).
+      group('location').
+      order('count_all desc').
+      count
+
+    countries_comments = User.joins(:groups, :messages).
+      where('replied_to_id is not null and groups.id = ?', @group.id).
+      group('location').
+      order('count_all desc').
+      count
 
     {
-      data: departments.values,
-      labels: departments.keys
+      active_members: countries_active_members,
+      comments: [['Country', 'Comments']] + countries_comments.map { |country, comments| [country, comments] }
     }
   end
 
@@ -187,16 +216,6 @@ class KpiDash
     }
   end
 
-  def countries
-    countries = User.joins(:groups, :messages).
-      where('replied_to_id is not null and groups.id = ?', @group.id).
-      group('location').
-      order('count_all desc').
-      count
-
-    [['Country', 'Active Members']] + countries.map { |country, active_members| [country, active_members] }
-  end
-
   def organisation_business
     likes = Message.joins(:group, :thread_post).
               where('replied_to_id is not null and groups.id = ? and thread_posts.business_technology = ?', @group.id, 'business').
@@ -207,6 +226,9 @@ class KpiDash
               count
 
     thread_business1 = Message.where("plain LIKE '%Post2 Week1%'").first
+    p thread_business1_countries = User.joins(:groups, :thread_posts, :messages).
+      where('replied_to_id is not null and groups.id = ? and thread_posts.business_technology = ? and thread_posts.id = ?', @group.id, 'business', thread_business1.thread_post.id)
+      .group('location').count
     thread_business1_countries = User.joins(:groups, :thread_posts, :messages).
       where('replied_to_id is not null and groups.id = ? and thread_posts.business_technology = ? and thread_posts.id = ?', @group.id, 'business', thread_business1.thread_post.id)
       .group('location').count.count

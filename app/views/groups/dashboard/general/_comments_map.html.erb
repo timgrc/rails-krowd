@@ -3,12 +3,12 @@
 <div class="map-legend-box">
   <h4>Country ranking</h4>
     <ol>
-      <% KpiDash.new(@group, 'countries').call[1..3].each do |country| %>
+      <% KpiDash.new(@group, 'countries_comments').call[1..3].each do |country| %>
         <li><%= country.first %></li>
       <% end %>
     </ol>
   <div>
-    <p><em>Color density key: connected participants</em></p>
+    <p><em>Color density key: active participants</em></p>
     <div class="map-legend-key">
       <div class="map-legend-min-max">0</div>
       <div class="map-legend-key-color"></div>
@@ -27,11 +27,11 @@
 
         var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
 
-        chart.draw(google.visualization.arrayToDataTable(<%= raw KpiDash.new(@group, 'countries').call.to_json %>),
+        chart.draw(google.visualization.arrayToDataTable(<%= raw KpiDash.new(@group, 'countries_comments').call.to_json %>),
         {
-          backgroundColor: 'white',
+          backgroundColor: '#031421',
           colorAxis: {colors: ["#abfaa9", "#00bc66"]},
-          datalessRegionColor: "#e5e3df", legend:'none'
+          datalessRegionColor: "#122c42", legend:'none'
         });
       }
     }

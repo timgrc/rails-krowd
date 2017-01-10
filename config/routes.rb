@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   resources :groups, only: [:index, :show, :new, :create, :destroys] do
     resources :incentive_templates
+    get 'change_incentive_template', to: 'incentive_templates#change'
     resources :push_messages, only: [:create]
   end
 

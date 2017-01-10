@@ -1,11 +1,9 @@
-<div class="comment-row">
-  <div class="badge-comment turquoise-1">
-    <p><%= KpiDash.new(@group, 'likes').call %></p>
-    <p>LIKES</p>
+<div class="like-row">
+  <div class="badge-like turquoise-1">
+    <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <%= KpiDash.new(@group, 'likes').call %>
   </div>
-  <div class="badge-comment green-1">
-    <p><%= KpiDash.new(@group, 'comments').call %></p>
-    <p id="comments">COMMENTS</p>
+  <div class="badge-like green-1">
+    <i class="fa fa-comment-o" aria-hidden="true"></i> <%= KpiDash.new(@group, 'comments').call %>
   </div>
 </div>
 

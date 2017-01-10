@@ -19,6 +19,31 @@
   font-family: 16px;
 }
 
-.badge-comment p{
-  margin: 1px 0 0 11px;
+.grid-donut {
+  height: 80%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.donut-title {
+  text-align: center;
+  font-size: 40px;
+  background: -webkit-linear-gradient(#5BC5F1, #36AD7E);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.donut-subtitle {
+  text-align: center;
+  font-size: 14px;
+  background: -webkit-linear-gradient(#36AD7E, #5BC5F1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+@media (max-width: $screen-sm-max) {
+
+
 }

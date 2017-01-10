@@ -1,29 +1,29 @@
-<%= simple_form_for [@group, @push_message], html: { class: 'krowd-share-box' } do |f| %>
-  <div class="share">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <div class="row">
-          <div class="col-xs-1 margin-right">
-            <%= image_tag current_user.mugshot_url, class: "avatar-square" %>
-          </div>
-          <div class="col-xs-6 col-sm-6 panel-heading-title">
-            <div><%= @group.full_name %></div>
-            <div>Just now</div>
-          </div>
+<%= simple_form_for [@group, @push_message] do |f| %>
+  <div class="panel-default">
+    <div class="panel-heading">
+      <div>
+        <%= image_tag current_user.mugshot_url, class: "avatar-square" %>
+      </div>
+      <div class="panel-title">
+        <div><%= @group.full_name %></div>
+        <div>Just now</div>
+      </div>
+    </div>
+      <div class="panel-body">
+        <%= f.input :type, as: :hidden, input_html: { value: push.to_s } %>
+        <%= f.input :body, as: :text, label: false, input_html: { cols: 40, rows: 8, class: "form-control textarea-push-message", value: @push_default_value[push] } %>
+        <div class="form-img-container text-center blue-dam-3">
+        <img class="img-message" src="<%= path_to_image "congrats-blanc.png" %>">
         </div>
       </div>
-        <div class="panel-body">
-          <%= f.input :body, as: :text, label: false, input_html: { cols: 40, rows: 10, class: "form-control message textarea-message", value: @push_default_value[push] } %>
-          <!-- <img class="img-message" src="<%= path_to_image "congrats-blanc.png" %>"> -->
-        </div>
-      <div class="panel-footer">
-      <%= link_to '<i class="fa fa-refresh" aria-hidden="true"></i>'.html_safe, group_incentive_templates_path(@group), remote: true %>
-        <div class="form-group">
-          <div class="button-holder">
-            <div class="submit-button">
-              <div class="krowd-hidden fa fa-check done"></div>
-              <%= f.button :button, "Create Push post", class: "btn btn-primary" %>
-            </div>
+    <div class="panel-footer">
+      <div class="form-group">
+        <div class="button-holder">
+          <%= link_to '<i class="fa fa-refresh" aria-hidden="true"></i>'.html_safe, group_change_incentive_template_path(@group, @incentive_template_id), remote: true %>
+          <div class="submit-button text-center">
+            <div class="fa fa-check post-done hidden"></div>
+            <div class="loading hidden"></div>
+            <%= f.button :button, "Create Push post", class: "btn btn-primary button-post" %>
           </div>
         </div>
       </div>
@@ -31,26 +31,31 @@
   </div>
 <% end %>
 
-<% content_for(:afterrr_js) do %>
-<!--   <script>
-    $(document).ready(function() {
-      $(".btn-primary").click(function() {
+<% content_for :after_js do %>
+  <script>
+    $(function() {
+      $(".button-post").click(function() {
         var button, parent;
-        $(this).addClass("loading");
-        $('.loading:focus').blur()
         button = $(this)
         parent  = $(this).parent();
 
-        setTimeout(function() {
-          button.addClass("hide-loading");
-          parent.find(".done").addClass("finish");
-        }, 3000);
+        button.addClass("hidden");
+        parent.find(".loading").removeClass("hidden");
+        $('.loading:focus').blur()
 
         setTimeout(function() {
-          button.removeClass("loading");
-          button.removeClass("hide-loading");
-          parent.find(".done").removeClass("finish");
-        }, 5000);
+          parent.find(".loading").addClass("hidden");
+          parent.find(".post-done").removeClass("hidden");
+          parent.find(".post-done").addClass("finish");
+        }, 1000);
+
+        setTimeout(function() {
+          parent.find(".post-done").removeClass("finish");
+        }, 2000);
+
+        setTimeout(function() {
+          button.removeClass("hidden");
+        }, 2500);
       })
 
       $(".fa-refresh").click(function() {
@@ -59,8 +64,8 @@
 
         setTimeout(function() {
         button.removeClass("fa-spin");
-        }, 3000);
+        }, 1050);
       })
     });
-  </script> -->
+  </script>
 <% end %>

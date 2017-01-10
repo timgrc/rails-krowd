@@ -30,3 +30,22 @@
     </div>
   </div>
 </div>
+
+<% content_for :after_js do %>
+  <script>
+    if ( window.location.hash ) scroll(0,0);
+    setTimeout( function() { scroll(0,0); }, 1 );
+
+    $( function(){
+      if(window.location.hash) {
+          var anchor = window.location.hash
+          $('.tab.active').removeClass("active");
+          $('a[href="' + anchor + '"]').addClass("active");
+          // smooth scroll to the anchor id
+          $('html, body').animate({
+              scrollTop: $(window.location.hash).offset().top - 40
+          }, 1000, 'swing');
+      }
+    } )
+  </script>
+<% end %>

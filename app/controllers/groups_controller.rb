@@ -17,9 +17,8 @@ class GroupsController < ApplicationController
       awards: awards,
       incentive: incentive
     }
-    @push_message = PushMessage.new
-    @incentive_id = 5
 
+    @push_message = PushMessage.new
   end
 
   def create
@@ -74,7 +73,9 @@ class GroupsController < ApplicationController
 
   def incentive
     if IncentiveTemplate.all.count != 0
-      IncentiveTemplate.all.sample.body
+      incentive_template_sample = IncentiveTemplate.all.sample
+      @incentive_template_id = incentive_template_sample.id
+      incentive_template_sample.body
     end
   end
 end

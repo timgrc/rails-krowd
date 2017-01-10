@@ -1,21 +1,12 @@
 #innovation .row {
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #F4F3F2;
 }
 
-.card-innovation {
+#innovation .grid-element {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 60%;
-  margin-left: 20px;
-  margin-right: 20px;
-  background-color: white;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4);
 }
 
 .innovation-donut i {
@@ -25,7 +16,7 @@
   -webkit-text-fill-color: transparent;
 }
 
-.card-innovation h3{
+#innovation h3{
   font-size: 22px;
   color: grey;
 }

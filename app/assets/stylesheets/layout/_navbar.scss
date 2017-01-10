@@ -2,26 +2,23 @@
 .navbar-wagon {
   position: fixed;
   width: 100%;
-  height: 70px;
+  height: 40px;
   top: 0px;
   left: 0px;
   display: flex;
   box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
-  background: white;
+  // background: white;
+  background: $gray;
   transition: all 0.3s ease;
   z-index: 100;
-  padding: 0px 30px;
+  padding: 0px 8px;
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid #828282;
 }
 
 .navbar-wagon span{
-  font-size: 20px;
-  padding-left: 15px;
-}
-
-.navbar-wagon span span{
+  font-size: 16px;
   padding-left: 5px;
 }
 
@@ -36,7 +33,13 @@
 
 /* Navbar logo */
 .navbar-wagon-brand img {
-  width: 150px;
+  height: 30px;
+}
+
+@media (max-width: $screen-md-max) {
+  .navbar-wagon-brand img {
+    height: 20px;
+  }
 }
 
 /* Navbar right section (with form, links, button) */
@@ -82,7 +85,8 @@
 
 /* Navbar search form */
 .navbar-wagon-search {
-  flex: 0 1 300px;
+  // flex: 0 1 300px;
+  flex: 0 1;
   display: flex;
   justify-content: flex-end;
   padding: 0 10px;
@@ -99,7 +103,8 @@
   z-index: 1;
 }
 .navbar-wagon-search-input {
-  flex: 0 1 300px;
+  // flex: 0 1 300px;
+  flex: 0 1;
   transition: all 0.15s ease;
   line-height: 40px;
   font-weight: lighter;

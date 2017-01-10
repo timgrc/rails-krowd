@@ -21,7 +21,7 @@
   "></canvas>
 </div>
 
-<%= content_for :charts_js do %>
+<%= content_for :after_js do %>
   <script>
     var ctx = document.getElementById("<%= donut_id %>").getContext("2d");
     var myChart = new Chart(ctx, {

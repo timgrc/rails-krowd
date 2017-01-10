@@ -20,19 +20,19 @@ function scrolling() {
     if (windowTop <= (generalHeight / 2)){
       $(".tab").removeClass("active");
       $(".tab-general").addClass("active");
-      $('#page-description').html('<i class="fa fa-tachometer" aria-hidden="true"></i><span>Watch weekly activity</span>');
+      $('#page-description').html('<i class="fa fa-tachometer" aria-hidden="true"></i><span>Weekly activity</span>');
     } else if (windowTop <= (generalHeight + mapHeight / 2)) {
       $(".tab").removeClass("active");
       $(".tab-badges").addClass("active");
-      $('#page-description').html('<i class="fa fa-globe" aria-hidden="true"></i><span>Trace active members accross the world</span>');
+      $('#page-description').html('<i class="fa fa-globe" aria-hidden="true"></i><span>Reward active members</span>');
     } else if (windowTop <= (generalHeight + mapHeight + organizationHeight / 2)) {
       $(".tab").removeClass("active");
       $(".tab-organization").addClass("active");
-      $('#page-description').html('<i class="fa fa-users" aria-hidden="true"></i><span>Analyse the contributions categories breakdown</span>');
+      $('#page-description').html('<i class="fa fa-users" aria-hidden="true"></i><span>Analyse organization impact</span>');
     } else if (windowTop <= (generalHeight + mapHeight + organizationHeight + innovationHeight / 2)) {
       $(".tab").removeClass("active");
       $(".tab-innovation").addClass("active");
-      $('#page-description').html('<i class="fa fa-lightbulb-o" aria-hidden="true"></i><span>Assess the level of disruption</span>');
+      $('#page-description').html('<i class="fa fa-lightbulb-o" aria-hidden="true"></i><span>Assess innovation capacity</span>');
     } else {
       $(".tab").removeClass("active");
       $(".tab-push").addClass("active");

@@ -1,5 +1,5 @@
 $(function() {
-  scrolling();
+  // scrolling();
   geoChartMap();
 });
 
@@ -8,5 +8,5 @@ $(window).resize(function() {
 });
 
 $(window).scroll(function() {
-  scrolling();
+  // scrolling();
 });

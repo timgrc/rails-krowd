@@ -4,40 +4,42 @@
       <h1>Welcome <%= @current_user.first_name + " " + @current_user.last_name %></h1>
       <p>Pick a challenge or create a new one</p>
     </div>
-      <div class="row">
+    <div class="row">
       <% @groups.reverse.each do |group| %>
-          <div class="col-xs-12 col-sm-4" data-membership-id="<%= Membership.where(group: group, user: current_user).first.id %>">
+        <div class="col-xs-12 col-sm-4" data-membership-id="<%= Membership.where(group: group, user: current_user).first.id %>">
           <%= link_to membership_path(Membership.where(group: group, user: current_user).first), class: "card-icon", method: :delete, data: { confirm: "Are you sure?" } do %>
-              <i class="fa fa-trash-o" aria-hidden="true"></i>
-            <% end %>
-          <%= link_to group_path(group), class: 'challenge-card-a' do %>
-            <div class="card card-group challenge-card margin-bottom padded" style="background-image: linear-gradient(to bottom left, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 50%), url('<%= path_to_image "background-2.jpg" %>');">
-
-
-            <div class="card-group-description ">
-              <div class="card-group-picture-absolute">
-                <%= image_tag group.mugshot_url, class: "avatar-square card-group-picture-img" %>
-              </div>
+            <i class="fa fa-trash-o" aria-hidden="true"></i>
+          <% end %>
+          <%= link_to group_path(group), class: 'card-group-a' do %>
+            <div class="card-group" style="background-image: linear-gradient(to bottom left, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 50%), url('<%= path_to_image "background-2.jpg" %>');">
+              <div class="card-group-description ">
+                <div class="card-group-picture-absolute">
+                  <%= image_tag group.mugshot_url, class: "card-group-avatar" %>
+                </div>
                 <h2><%= group.full_name %></h2>
               </div>
             </div>
           <% end %>
-          </div>
-        <% end %>
-
-      <%= link_to '', 'data-toggle' => 'modal', 'data-target' => '#myModal' do %>
-        <div class="col-xs-12 col-sm-4">
-          <div class="card card-group create-border margin-bottom padded">
-            <div class="card-group-btn">
-              +<span>New challenge</span>
-            </div>
-          </div>
         </div>
       <% end %>
 
+      <%= unless @yam_groups.empty?
+        link_to '', 'data-toggle' => 'modal', 'data-target' => '#myModal' do %>
+          <div class="col-xs-12 col-sm-4">
+            <div class="card-group card-group-btn">
+              <div class="plus-lg">+</div>
+              <div style="margin-top: -20px;">New challenge</div>
+            </div>
+          </div>
+        <% end
+      end %>
     </div>
   </div>
 </div>
 
-<%= render 'modal_form_create_group' %>
+<%=
+unless @yam_groups.empty?
+  render 'modal_form_create_group'
+end
+%>
 

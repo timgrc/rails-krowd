@@ -1,0 +1,73 @@
+<!-- <style>
+  svg {
+    fill: linear-gradient(#133c55, #36AD7E);
+    z-index: 10;
+    width: 100px;
+    height: 100px;
+  }
+</style> -->
+
+<div style="
+  margin:   auto;
+  width:    220px;
+  height:   220px;
+  position: relative;
+">
+  <canvas id="retention-rate" style="
+    position: absolute;
+    width:  100%;
+    height: 100%;
+    z-index: 10;
+  "></canvas>
+  <div style="
+    display:         flex;
+    flex-direction:  column;
+    align-items:     center;
+    justify-content: center;
+    width:  100%;
+    height: 100%;
+    z-index: 1;
+  ">
+    <div class="donut-title text-center"><%= KpiDash.new(@group, 'members_ratio').call %> %</div>
+    <div class="donut-subtitle text-center"><strong><%= KpiDash.new(@group, 'members_active').call %></strong> ACTIVE MEMBERS</div>
+  </div>
+</div>
+
+<% content_for :after_js do %>
+  <script>
+    var canvas = document.getElementById("retention-rate");
+    var ctx = canvas.getContext("2d");
+
+    var gradient = ctx.createLinearGradient(0, 0, 200, 0);
+    gradient.addColorStop(0, '#36AD7E');
+    gradient.addColorStop(1, '#5BC5F1');
+
+    var doughnutData = {
+      labels: [
+      'active',
+      'inactive'
+      ],
+      datasets: [{
+          data: <%= KpiDash.new(@group, 'members').call %>,
+          backgroundColor: [
+          gradient,
+          '#0B1B28'
+          ],
+          borderWidth: 0,
+      }]
+    }
+
+    var myChart = new Chart(ctx, {
+      type: 'doughnut',
+      data: doughnutData,
+      options: {
+        cutoutPercentage: 90,
+        legend: {
+          display: false
+        }
+      }
+    });
+
+
+  </script>
+<% end %>

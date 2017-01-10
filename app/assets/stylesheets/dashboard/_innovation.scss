@@ -1,0 +1,25 @@
+#innovation .row {
+  height: 100%;
+}
+
+#innovation .grid-element {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.innovation-donut i {
+  font-size: 50px;
+  background: -webkit-linear-gradient(#133c55, #36AD7E);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+#innovation h3{
+  font-size: 22px;
+  color: grey;
+}
+
+
+

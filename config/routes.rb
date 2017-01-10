@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   end
 
   root to: 'pages#home'
-  # get "styleguide", to: "pages#styleguide"
   get 'test', to: 'pages#test'
 
   post "yammer", to: "users/omniauth_callbacks#yammer"
@@ -17,6 +16,7 @@ Rails.application.routes.draw do
 
   resources :groups, only: [:index, :show, :new, :create, :destroys] do
     resources :incentive_templates
+    get 'change_incentive_template', to: 'incentive_templates#change'
     resources :push_messages, only: [:create]
   end
 

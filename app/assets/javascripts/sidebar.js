@@ -1,6 +1,7 @@
-$(document).ready(function(){
+$(function(){
 
   $(".tab").on("click", function(e){
+    e.preventDefault();
     // Change active tab
     $(".tab").removeClass("active");
     $(this).addClass("active");
@@ -10,9 +11,8 @@ $(document).ready(function(){
       target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
       if (target.length) {
         $('html, body').animate({
-          scrollTop: target.offset().top - 70
+          scrollTop: target.offset().top - 40
         }, 1000);
-        return false;
       }
     }
   });

@@ -1,0 +1,76 @@
+<div style="width: calc(100% + 20px); height: calc(100% + 25px); margin-top: -10px; margin-left: -10px;" id="department_members_polar"></div>
+<%= content_for :after_js do %>
+  <script>
+    $(function() {
+      var data =
+        <%=
+          departments_data = KpiDash.new(@group, 'departments').call
+          nb_departments = departments_data.count
+          sum_percentages = 0
+
+          departments_data = departments_data.map.with_index do |department, index|
+            if index + 1 == nb_departments
+              percentage_comments = 100 - sum_percentages
+            else
+              percentage_comments = (100 * department[:comments] / departments_data.sum { |department| department[:comments] }.to_f).round
+              sum_percentages += percentage_comments
+            end
+            green_shade = (((index + 1) / nb_departments.to_f) * 255).round
+            {
+              name: "#{department[:name]} | #{department[:comments]} comments (#{department[:active_members]})",
+              y: percentage_comments,
+              members: department[:active_members],
+              color: '#00' + green_shade.to_s(16) + '00'
+            }
+          end
+          raw departments_data.to_json
+        %>;
+
+      var start = -90;
+      var series = [];
+      var donut_whole = 200;
+      for (var i = 0; i < data.length; i++) {
+        var end = start + 360 * data[i].y / 100;
+        data[i].y = 100;
+
+        series.push({
+          type: 'pie',
+          size: donut_whole + 20 * data[i].members,
+          innerSize: donut_whole,
+          startAngle: start,
+          endAngle: end,
+          data: [data[i]]
+        });
+        start = end;
+      };
+
+      $('#department_members_polar').highcharts(
+        {
+          chart: {
+            plotBackgroundColor: '#031421',
+            style: {
+              fontFamily: 'sans-serif'
+            }
+          },
+          title: {
+            text: false
+          },
+          plotOptions: {
+            pie: {
+              borderColor: '#0B1B28',
+              dataLabels: {
+                enabled: true,
+                style: {
+                    color: 'white',
+                    fontSize: '13px',
+                    fontWeight: 'normal',
+                    textOutline: '0px'
+                }
+              }
+            }
+          },
+          series: series
+        });
+    });
+  </script>
+<% end %>

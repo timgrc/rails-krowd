@@ -1,0 +1,39 @@
+<canvas style="width: 80%; max-height: 200px;" id="horizontal-business-bars"></canvas>
+<%= content_for :after_js do %>
+  <script>
+    var ctx = document.getElementById("horizontal-business-bars");
+
+    var data = {
+      labels: ["", ""],
+      datasets: [{
+        backgroundColor: [
+            'rgba(54, 173, 126, 0.5)',
+            'rgba(94, 201, 109, 0.2)'
+        ],
+        borderColor: [
+            'rgba(18, 186, 41, 1)',
+            'rgba(18, 186, 41, 1)'
+        ],
+        borderWidth: 1,
+        data: <%= KpiDash.new(@group, 'organisation_business').call[:likes_comments] %>
+      }]
+    };
+
+    var myBarChart = new Chart(ctx, {
+      type: 'horizontalBar',
+      data: data,
+      options: {
+        scales: {
+          xAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }],
+          yAxes: [{
+            barThickness: 30
+          }]
+        }
+      }
+    });
+  </script>
+<% end %>

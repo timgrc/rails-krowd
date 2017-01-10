@@ -1,0 +1,39 @@
+<div id="regions_div" style='height: 100%; margin: auto;'></div>
+
+<div class="map-legend-box">
+  <h4>Country ranking</h4>
+    <ol>
+      <% KpiDash.new(@group, 'countries_comments').call[1..3].each do |country| %>
+        <li><%= country.first %></li>
+      <% end %>
+    </ol>
+  <div>
+    <p><em>Color density key: active participants</em></p>
+    <div class="map-legend-key">
+      <div class="map-legend-min-max">0</div>
+      <div class="map-legend-key-color"></div>
+      <div class="map-legend-min-max">100</div>
+    </div>
+  </div>
+</div>
+
+<% content_for :after_js do %>
+  <script>
+    function geoChartMap() {
+      google.charts.load('upcoming', {'packages':['geochart']});
+      google.charts.setOnLoadCallback(drawRegionsMap);
+
+      function drawRegionsMap() {
+
+        var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+
+        chart.draw(google.visualization.arrayToDataTable(<%= raw KpiDash.new(@group, 'countries_comments').call.to_json %>),
+        {
+          backgroundColor: '#031421',
+          colorAxis: {colors: ["#abfaa9", "#00bc66"]},
+          datalessRegionColor: "#122c42", legend:'none'
+        });
+      }
+    }
+  </script>
+<% end %>

@@ -30,20 +30,19 @@
     <meta itemprop="image" content="<%= image_url(meta_image) %>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
   </head>
   <body>
     <%= render 'shared/navbar' %>
-    <%= render 'shared/flashes' %>
+    <!-- <%= render 'shared/flashes' %> -->
+
     <%= yield %>
+
+    <%= javascript_include_tag 'application' %>
     <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
     <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js" %>
     <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js" %>
-    <%= yield :donuts_js %>
-    <%= yield :business_bars_js %>
-    <%= yield :departments_bars_js %>
-    <%= yield :test_js %>
-    <%= javascript_include_tag 'application' %>
+    <%= javascript_include_tag "https://code.highcharts.com/highcharts.js" %>
     <%= yield :after_js %>
   </body>
 </html>

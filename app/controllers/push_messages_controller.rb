@@ -5,7 +5,8 @@ class PushMessagesController < ApplicationController
   before_action :find_group, only: [:create]
 
   def create
-    @push_message = current_user.push_messages.build(push_message_params)
+    @push_type    = params[:push_message][:type]
+    @push_message = current_user.push_messages.build(body: params[:push_message][:body])
     if @push_message.save
       push
     end
@@ -18,14 +19,14 @@ class PushMessagesController < ApplicationController
   private
 
   def push
-    congrats_pic = File.open(Rails.root.join("app/assets/images/congrats-transp.png"))
-    Yammer::PostMessage.new(current_user, @push_message.body, group_id: @group.rse_id, attachment1: congrats_pic).call
-  end
+    options = {}
+    if @push_type == 'awards'
+      congrats_pic = File.open(Rails.root.join("app/assets/images/congrats-transp.png"))
+      options[:attachment1] = congrats_pic
+    end
 
-  def push_message_params
-    params.require(:push_message).permit(
-      :body
-    )
+    options[:group_id] = @group.rse_id
+    Yammer::PostMessage.new(current_user, @push_message.body, options).call
   end
 
   def bot_question_params

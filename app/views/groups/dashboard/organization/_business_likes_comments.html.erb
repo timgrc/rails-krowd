@@ -1,0 +1,33 @@
+<div class="grid-title">BUSINESS LIKES AND COMMENTS</div>
+<div class="grid-content" style="padding-top: 40px;">
+  <div class='likes_comments_block'>
+    <i class="fa fa-thumbs-o-up"></i>
+    <div class="progress">
+      <div id='business_likes' class="progress-bar progress-bar-success progress-bar-striped active organisation_likes" role="progressbar"
+      aria-valuemin="0" aria-valuemax="<%=
+        business_likes        = KpiDash.new(@group, 'organisation_business').call[:likes]
+        technology_likes      = KpiDash.new(@group, 'organisation_technology').call[:likes]
+        business_likes_max    = (( business_likes / 100 ) + 1 ) * 100
+        technology_likes_max  = (( technology_likes / 100 ) + 1 ) * 100
+        likes_max             = [business_likes_max, technology_likes_max].max
+      %>" aria-valuenow="<%= business_likes %>" style="width: <%= ((business_likes / likes_max.to_f) * 100).round %>%;">
+        <%= business_likes %> likes
+      </div>
+    </div>
+  </div>
+  <div class='likes_comments_block'>
+    <i class="fa fa-comment-o"></i>
+    <div class="progress">
+      <div class="progress-bar progress-bar-success progress-bar-striped active organisation_comments" role="progressbar"
+      aria-valuemin="0" aria-valuemax="<%=
+        business_comments       = KpiDash.new(@group, 'organisation_business').call[:comments]
+        technology_comments     = KpiDash.new(@group, 'organisation_technology').call[:comments]
+        business_comments_max   = (( business_comments / 100 ) + 1 ) * 100
+        technology_comments_max = (( technology_comments / 100 ) + 1 ) * 100
+        comments_max            = [business_comments_max, technology_comments_max].max
+      %>" aria-valuenow="<%= business_comments %>" style="width: <%= ((business_comments / comments_max.to_f) * 100).round %>%;">
+        <%= business_comments %> comments
+      </div>
+    </div>
+  </div>
+</div>

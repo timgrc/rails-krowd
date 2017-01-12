@@ -1,12 +1,14 @@
-<div class="like-row">
-  <div class="badge-like turquoise-1">
-    <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <%= KpiDash.new(@group, 'likes').call %>
+<div class="grid-title">GENERAL ACTIVITY</div>
+<div class="grid-content">
+  <div class="grid-donut">
+    <%= render 'groups/dashboard/general/retention_donut_chart' %>
   </div>
-  <div class="badge-like green-1">
-    <i class="fa fa-comment-o" aria-hidden="true"></i> <%= KpiDash.new(@group, 'comments').call %>
+  <div class="like-row">
+    <div class="badge-like turquoise-1">
+      <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <%= KpiDash.new(@group, 'likes').call %>
+    </div>
+    <div class="badge-like green-1">
+      <i class="fa fa-comment-o" aria-hidden="true"></i> <%= KpiDash.new(@group, 'comments').call %>
+    </div>
   </div>
-</div>
-
-<div class="grid-donut">
-  <%= render 'groups/dashboard/general/retention_donut_chart' %>
 </div>

@@ -1,0 +1,75 @@
+<div class="grid-title">COMMENTS BY COUNTRY</div>
+
+<div class="grid-content">
+  <div style="
+    width: calc(100% - 80px);
+    height: calc(100% - 80px);
+  ">
+    <div id="countries_bars" style="width: 100%; height: 100%;"></div>
+  </div>
+</div>
+
+<% content_for :after_js do %>
+  <script type="text/javascript">
+    function commentsCountryChart() {
+      google.charts.load("current", {packages:['corechart']});
+      google.charts.setOnLoadCallback(drawColumnChart);
+      function drawColumnChart() {
+        var data = google.visualization.arrayToDataTable(<%=
+          countries = KpiDash.new(@group, 'countries').call
+          chart_colors = ['#3F3B97', '#FFA581', '#B1B2D6', '#ED0017']
+          chart_title = ["Country", "Comments", { role: "style" }, { role: 'annotation' } ]
+
+          chart_countries_comments = countries.each_with_index.map do |country, index|
+            chart_country_array = []
+            chart_country_array.push country[:name]
+            chart_country_array.push country[:comments]
+            chart_country_array.push chart_colors[index]
+            chart_country_array.push "#{country[:comments]} COMMENTS"
+          end
+
+          chart_countries_comments.unshift chart_title
+          raw chart_countries_comments.to_json
+        %>);
+
+        var options = {
+          chartArea: {
+            width: '100%',
+            height: '80%'
+          },
+          vAxis: {
+            baselineColor: 'white',
+            ticks: [],
+            minValue: 0
+          },
+          hAxis: {
+            baselineColor: 'none',
+            ticks: [],
+            textStyle: {
+              color: 'white'
+            }
+          },
+          backgroundColor: { fill:'transparent' },
+          bar: {groupWidth: "70%"},
+          legend: { position: "none" },
+          animation: {
+            duration: 2000,
+            startup: true,
+            easing: 'out',
+          },
+          annotations: {
+            alwaysOutside: false,
+            textStyle: {
+              fontSize: 10,
+              bold: true,
+              opacity: 0.8
+            }
+          }
+        };
+        var chart = new google.visualization.ColumnChart(document.getElementById("countries_bars"));
+        chart.draw(data, options);
+      }
+    }
+  </script>
+<% end %>
+

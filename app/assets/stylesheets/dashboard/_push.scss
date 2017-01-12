@@ -4,25 +4,8 @@
   font-size: 16px;
 }
 
-#push .row .grid-element {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#push .row .grid-element .post-block {
-  width: 100%;
-  margin: 0 40px;
-}
-
-.title-white {
-  color: white;
-  font-size: 18px;
-  margin-bottom: 20px;
-}
-
-.title-white i {
-  padding-right: 6px;
+.post-block {
+  width: calc(100% - 80px);
 }
 
 .panel-heading {

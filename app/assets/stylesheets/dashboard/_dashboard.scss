@@ -1,3 +1,62 @@
 #page-content-wrapper section {
-  height: calc(100vh - 40px);
+  height: calc(100vh - 70px);
+}
+
+.section-title {
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  font-size: 16px;
+  letter-spacing: 0.8px;
+  z-index: 10;
+}
+
+.grid-title {
+  position: absolute;
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $orange;
+  font-size: 13px;
+  letter-spacing: 0.8px;
+}
+
+.grid-element {
+  height: 100%;
+}
+
+.grid-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.like-row {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  width: 100%;
+  flex-grow: 1;
+}
+
+.badge-like {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  padding: 8px;
+}
+
+.badge-like i {
+  font-size: 150%;
+  padding-right: 5%;
 }

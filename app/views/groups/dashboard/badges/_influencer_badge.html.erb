@@ -1,0 +1,23 @@
+<div class="badge-card best-reward">
+  <div class="text-center">
+    <div class="badge-pictures  margin-top-two-bis">
+      <div class="grad-border">
+        <%= image_tag KpiDash.new(@group, 'influencer').call[:user].mugshot_url, class: "avatar-badges-best" %>
+      </div>
+      <img class="reward-picto" src="<%= path_to_image "activist.svg" %>">
+    </div>
+    <h4 style="">THE INFLUENCER</h4>
+    <p>The most liked post</p>
+    <p><%= "#{KpiDash.new(@group, 'influencer').call[:user].first_name} #{KpiDash.new(@group, 'influencer').call[:user].last_name.upcase}" %></p>
+  </div>
+  <div class="like-row">
+    <div class="badge-like turquoise-1">
+      <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+      <%= KpiDash.new(@group, 'influencer').call[:likes] %>
+    </div>
+    <div class="badge-like green-1">
+      <i class="fa fa-comment-o" aria-hidden="true"></i>
+      <%= KpiDash.new(@group, 'influencer').call[:comments] %>
+    </div>
+  </div>
+</div>

@@ -1,12 +1,24 @@
 $(function() {
-  // scrolling();
-  geoChartMap();
+  scrolling();
+  onLoadAndResize();
 });
 
 $(window).resize(function() {
-  geoChartMap();
+  onLoadAndResize();
 });
 
 $(window).scroll(function() {
-  // scrolling();
+  scrolling();
 });
+
+function onLoadAndResize() {
+  retentionChart();
+  departmentChart();
+  geoChartMap();
+  commentsCountryChart();
+  businessCountriesDepartmentsChart();
+  technologyCountriesDepartmentsChart();
+  first_donut();
+  second_donut();
+  third_donut();
+}

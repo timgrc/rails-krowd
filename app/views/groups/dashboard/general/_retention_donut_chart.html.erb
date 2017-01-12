@@ -1,24 +1,23 @@
-<!-- <style>
-  svg {
-    fill: linear-gradient(#133c55, #36AD7E);
-    z-index: 10;
-    width: 100px;
-    height: 100px;
-  }
-</style> -->
-
 <div style="
   margin:   auto;
-  width:    220px;
-  height:   220px;
+  width:    240px;
+  height:   240px;
   position: relative;
 ">
-  <canvas id="retention-rate" style="
+  <svg style="position: absolute;">
+    <defs>
+      <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" style="stop-color:#36ad7e; stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#5bc5f1; stop-opacity:1" />
+      </linearGradient>
+    </defs>
+  </svg>
+  <div id="retention-rate" style="
     position: absolute;
     width:  100%;
     height: 100%;
     z-index: 10;
-  "></canvas>
+  "></div>
   <div style="
     display:         flex;
     flex-direction:  column;
@@ -34,40 +33,53 @@
 </div>
 
 <% content_for :after_js do %>
-  <script>
-    var canvas = document.getElementById("retention-rate");
-    var ctx = canvas.getContext("2d");
+  <script type="text/javascript">
+    function retentionChart() {
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
 
-    var gradient = ctx.createLinearGradient(0, 0, 200, 0);
-    gradient.addColorStop(0, '#36AD7E');
-    gradient.addColorStop(1, '#5BC5F1');
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable(<%=
+          active_inactive_members = KpiDash.new(@group, 'members').call
+          retention_chart = [
+            ['Members', 'Number of members'],
+            ['Active', active_inactive_members[:active]],
+            ['Inactive', active_inactive_members[:inactive]]
+          ]
+          raw retention_chart.to_json
+        %>);
 
-    var doughnutData = {
-      labels: [
-      'active',
-      'inactive'
-      ],
-      datasets: [{
-          data: <%= KpiDash.new(@group, 'members').call %>,
-          backgroundColor: [
-          gradient,
-          '#0B1B28'
-          ],
-          borderWidth: 0,
-      }]
-    }
+        var options = {
+          chartArea: {
+            width: '90%',
+            height: '90%'
+          },
+          pieHole: 0.9,
+          pieSliceBorderColor: 'transparent',
+          pieSliceText: 'none',
+          animation: {
+            duration: 5000,
+            startup: true,
+            easing: 'in',
+          },
+          legend: { position: "none" },
+          backgroundColor: { fill:'transparent' },
+          slices: {
+            0: { color: '#5bc5f1' },
+            1: { color: 'transparent' }
+          }
+        };
 
-    var myChart = new Chart(ctx, {
-      type: 'doughnut',
-      data: doughnutData,
-      options: {
-        cutoutPercentage: 90,
-        legend: {
-          display: false
-        }
+        var chart = new google.visualization.PieChart(document.getElementById('retention-rate'));
+        google.visualization.events.addListener(chart, 'ready', allReady);
+        google.visualization.events.addListener(chart, 'onmouseover', allReady);
+        google.visualization.events.addListener(chart, 'onmouseout', allReady);
+        chart.draw(data, options);
       }
-    });
 
-
+      function allReady() {
+        $("#retention-rate [fill='#5bc5f1']").attr('fill', 'url(#grad1)');
+      }
+    }
   </script>
 <% end %>

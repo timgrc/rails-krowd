@@ -1,55 +1,81 @@
 <div class="innovation-donut" style="
   margin:   auto;
-  width:    220px;
-  height:   220px;
+  width:    280px;
+  height:   280px;
   position: relative;
 ">
+  <div id=<%= donut_id %> style="
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:  100%;
+    height: 100%;
+    z-index: 10;
+  "></div>
   <div style="
     position: absolute;
-    display:         flex;
-    flex-direction:  column;
-    align-items:     center;
+    display: flex;
+    align-items: center;
     justify-content: center;
     width:  100%;
     height: 100%;
   ">
     <i class="fa fa-<%= icon %> fa-fw" aria-hidden="true"></i>
   </div>
-  <canvas id=<%= donut_id %> style="
-    width:  100%;
-    height: 100%;
-  "></canvas>
 </div>
 
 <%= content_for :after_js do %>
-  <script>
-    var ctx = document.getElementById("<%= donut_id %>").getContext("2d");
-    var myChart = new Chart(ctx, {
-      type: 'doughnut',
-      data: {
-        labels: [
-        'Business - Innovation',
-        'Business - Disruption',
-        'Technology - Innovation',
-        'Technology - Disruption'
-        ],
-        datasets: [{
-            // label: '# of Votes',
-            data: <%= KpiDash.new(@group, kpi).call %>,
-            backgroundColor: [
-            '#5BC5F1',
-            '#2e86ab',
-            '#52aa5e',
-            '#388659',
-            ],
-            borderWidth: 0,
-        }]
-      },
-      options: {
-        cutoutPercentage: 75,
-        legend: { display: false }
+  <script type="text/javascript">
+    function <%= donut_id %>() {
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(innovationChart);
+      function innovationChart() {
+        var data = google.visualization.arrayToDataTable(<%=
+          innovation_chart_title = ['Type', 'Comments']
+          innovation_division = KpiDash.new(@group, kpi).call
+          innovation_legend = [
+            'Business - Innovation',
+            'Business - Disruption',
+            'Technology - Innovation',
+            'Technology - Disruption'
+          ]
+
+          innovation_data = innovation_division.each_with_index.map do |division, index|
+            [innovation_legend[index], innovation_division[index]]
+          end
+
+          innovation_data.unshift innovation_chart_title
+          raw innovation_data.to_json
+        %>);
+
+        var options = {
+          chartArea: {
+            width: '90%',
+            height: '90%'
+          },
+          pieHole: 0.85,
+          pieSliceBorderColor: 'transparent',
+          pieSliceText: 'none',
+          animation: {
+            duration: 5000,
+            startup: true,
+            easing: 'in',
+          },
+          legend: { position: "none" },
+          backgroundColor: { fill:'transparent' },
+          slices: {
+            0: { color: '#52aa5e' },
+            1: { color: '#388659' },
+            2: { color: '#5bc5f1' },
+            3: { color: '#2e86ab' }
+          }
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById("<%= donut_id %>"));
+        chart.draw(data, options);
       }
-    });
+    }
   </script>
 <% end %>
 

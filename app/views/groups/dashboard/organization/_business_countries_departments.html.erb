@@ -1,0 +1,76 @@
+<div class="grid-title">BUSINESS COMMENTS BY COUNTRIES AND DEPARTMENTS</div>
+<div class="grid-content">
+  <div style="width: 90%; height: calc(90% - 40px);" id='business_line_chart'></div>
+</div>
+
+<%= content_for :after_js do %>
+  <script type="text/javascript">
+    function businessCountriesDepartmentsChart() {
+      google.charts.load("current", {packages:['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable(<%=
+          organisation_business_title = ['What if', 'Number of countries', 'Number of departments']
+          organisation_business = KpiDash.new(@group, 'organisation_business').call
+          organisation_business_what_ifs = organisation_business[:what_ifs]
+          organisation_business_countries = organisation_business[:countries]
+          organisation_business_departments = organisation_business[:departments]
+          business_chart = organisation_business_what_ifs.each_with_index.map do |post, index|
+            post_chart = []
+            post_chart.push post
+            post_chart.push organisation_business_countries[index]
+            post_chart.push organisation_business_departments[index]
+            post_chart
+          end
+          business_chart.unshift organisation_business_title
+          raw business_chart.to_json
+        %>);
+
+        var options = {
+          chartArea: {
+            width: '90%',
+            height: '70%'
+          },
+          vAxis: {
+            baselineColor: 'white',
+            // ticks: [],
+            minValue: 0,
+            format: 'decimal',
+            textStyle: {
+              color: 'white'
+            },
+            gridlines: {
+              count: 6,
+              color: '#122c42'
+            }
+          },
+          hAxis: {
+            baselineColor: 'none',
+            ticks: [],
+            textStyle: {
+              color: 'white'
+            }
+          },
+          backgroundColor: { fill:'transparent' },
+          animation: {
+            duration: 2000,
+            startup: true,
+            easing: 'out',
+          },
+          // curveType: 'function',
+          legend: {
+            position: 'bottom',
+            textStyle: {
+              color: 'white'
+            }
+          }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('business_line_chart'));
+
+        chart.draw(data, options);
+      }
+    }
+  </script>
+<% end %>

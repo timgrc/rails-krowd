@@ -1,0 +1,76 @@
+<div class="grid-title">TECHNOLOGICAL COMMENTS BY COUNTRIES AND DEPARTMENTS</div>
+<div class="grid-content">
+  <div style="width: 90%; height: calc(90% - 40px);" id='technology_line_chart'></div>
+</div>
+
+<%= content_for :after_js do %>
+  <script type="text/javascript">
+    function technologyCountriesDepartmentsChart() {
+      google.charts.load("current", {packages:['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable(<%=
+          organisation_technology_title = ['What if', 'Number of countries', 'Number of departments']
+          organisation_technology = KpiDash.new(@group, 'organisation_technology').call
+          organisation_technology_what_ifs = organisation_technology[:what_ifs]
+          organisation_technology_countries = organisation_technology[:countries]
+          organisation_technology_departments = organisation_technology[:departments]
+          technology_chart = organisation_technology_what_ifs.each_with_index.map do |post, index|
+            post_chart = []
+            post_chart.push post
+            post_chart.push organisation_technology_countries[index]
+            post_chart.push organisation_technology_departments[index]
+            post_chart
+          end
+          technology_chart.unshift organisation_technology_title
+          raw technology_chart.to_json
+        %>);
+
+        var options = {
+          chartArea: {
+            width: '90%',
+            height: '70%'
+          },
+          vAxis: {
+            baselineColor: 'white',
+            // ticks: [],
+            minValue: 0,
+            format: 'decimal',
+            textStyle: {
+              color: 'white'
+            },
+            gridlines: {
+              count: 6,
+              color: '#122c42'
+            }
+          },
+          hAxis: {
+            baselineColor: 'none',
+            ticks: [],
+            textStyle: {
+              color: 'white'
+            }
+          },
+          backgroundColor: { fill:'transparent' },
+          animation: {
+            duration: 2000,
+            startup: true,
+            easing: 'out',
+          },
+          // curveType: 'function',
+          legend: {
+            position: 'bottom',
+            textStyle: {
+              color: 'white'
+            }
+          }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('technology_line_chart'));
+
+        chart.draw(data, options);
+      }
+    }
+  </script>
+<% end %>

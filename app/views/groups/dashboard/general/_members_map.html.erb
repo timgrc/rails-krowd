@@ -1,0 +1,62 @@
+<div class="grid-title">PARTICIPATION BY COUNTRY</div>
+<div class="grid-content">
+  <div id="regions_div" style='position: absolute; bottom: 0; width: 100%; height: calc(100% - 40px); margin: auto;'></div>
+
+  <div class="map-legend-box">
+    <h4>Country ranking</h4>
+    <ol>
+      <% KpiDash.new(@group, 'countries').call[1..3].each do |country| %>
+        <li><%= country[:name] %></li>
+      <% end %>
+    </ol>
+    <div>
+      <p><em>Color density: active participants</em></p>
+      <div class="map-legend-key">
+        <div class="map-legend-min-max"><%=
+          active_members = KpiDash.new(@group, 'countries').call
+          nb_active_members = active_members.map { |country| country[:active_members] }
+          nb_active_members_min = nb_active_members.min
+          nb_active_members_max = nb_active_members.max
+          nb_active_members_min == nb_active_members_max ? 0 : nb_active_members_min
+        %></div>
+        <div class="map-legend-key-color"></div>
+        <div class="map-legend-min-max"><%=
+          nb_active_members_max
+        %></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for :after_js do %>
+  <script>
+    function geoChartMap() {
+      google.charts.load('upcoming', {'packages':['geochart']});
+      google.charts.setOnLoadCallback(drawRegionsMap);
+
+      function drawRegionsMap() {
+
+        var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+
+        chart.draw(google.visualization.arrayToDataTable(<%=
+          countries   = KpiDash.new(@group, 'countries').call
+          chart_title = ['Country', 'Active members']
+
+          chart_countries_active_members = countries.map do |country|
+            chart_country_array = []
+            chart_country_array.push country[:name]
+            chart_country_array.push country[:active_members]
+          end
+
+          chart_countries_active_members.unshift chart_title
+          raw chart_countries_active_members.to_json
+        %>),
+        {
+          backgroundColor: '#031421',
+          colorAxis: {colors: ["#abfaa9", "#00bc66"]},
+          datalessRegionColor: "#122c42", legend:'none'
+        });
+      }
+    }
+  </script>
+<% end %>

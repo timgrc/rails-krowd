@@ -1,6 +1,6 @@
-<div class="grid-title">TECHNOLOGICAL COMMENTS BY COUNTRIES AND DEPARTMENTS</div>
+<div class="grid-title technology-color">TECHNOLOGICAL COMMENTS BY COUNTRIES AND DEPARTMENTS</div>
 <div class="grid-content">
-  <div style="width: 90%; height: calc(90% - 40px);" id='technology_line_chart'></div>
+  <div class="organization-line-chart" id='technology_line_chart'></div>
 </div>
 
 <%= content_for :after_js do %>
@@ -28,28 +28,29 @@
         %>);
 
         var options = {
+          fontName: 'Open Sans',
           chartArea: {
             width: '90%',
             height: '70%'
           },
           vAxis: {
-            baselineColor: 'white',
+            baselineColor: '<%= Dashboard.technology_color %>',
             // ticks: [],
             minValue: 0,
             format: 'decimal',
             textStyle: {
-              color: 'white'
+              color: '<%= Dashboard.technology_color %>'
             },
             gridlines: {
               count: 6,
-              color: '#122c42'
+              color: '<%= Dashboard.map_dataless_region_color %>'
             }
           },
           hAxis: {
             baselineColor: 'none',
             ticks: [],
             textStyle: {
-              color: 'white'
+              color: '<%= Dashboard.technology_color %>'
             }
           },
           backgroundColor: { fill:'transparent' },
@@ -59,10 +60,18 @@
             easing: 'out',
           },
           // curveType: 'function',
+          series: {
+            0: {
+              color: '<%= Dashboard.countries_color %>'
+            },
+            1: {
+              color: '<%= Dashboard.departments_color %>'
+            }
+          },
           legend: {
             position: 'bottom',
             textStyle: {
-              color: 'white'
+              color: '<%= Dashboard.technology_color %>'
             }
           }
         };

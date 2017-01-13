@@ -4,14 +4,12 @@
   flex-direction: column;
   justify-content: center;
   color: white;
-  // background-color: $blue-dam-1;
-  background-color: $blue-dam-4;
+  background-color: $dam-color-4;
   opacity: 0.7;
   width: 220px;
   border-radius: 3px;
   padding: 15px;
   box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.4);
-  // border: 1px solid $blue-dam-1;
   position: absolute;
   bottom: 15px;
   left: 15px;
@@ -22,6 +20,10 @@
   margin: 0;
   padding-bottom: 10px;
   font-size: 14px;
+}
+
+.map-legend-box em {
+  font-size: 12px;
 }
 
 .map-legend-key {
@@ -40,6 +42,6 @@
 .map-legend-key-color {
   flex: 1 0 auto;
   height: 100%;
-  background: linear-gradient(90deg, #abfaa9, #22C873);
+  background: linear-gradient(90deg, <%= "#{Dashboard.chart_density_colors.first}, #{Dashboard.chart_density_colors.last}" %>);
   border-radius: 1px;
 }

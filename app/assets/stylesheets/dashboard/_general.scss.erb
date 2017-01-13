@@ -15,6 +15,11 @@
   font-family: 16px;
 }
 
+.retention-donut-size {
+  width:    240px;
+  height:   240px;
+}
+
 .grid-donut {
   height: 100%;
   margin: auto;
@@ -26,18 +31,27 @@
 .donut-title {
   text-align: center;
   font-size: 40px;
-  background: -webkit-linear-gradient(#5BC5F1, #36AD7E);
+  background: -webkit-linear-gradient(<%= "left, #{Dashboard.likes_color}, #{Dashboard.comments_color}" %>);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 .donut-subtitle {
   text-align: center;
   font-size: 14px;
-  background: -webkit-linear-gradient(#36AD7E, #5BC5F1);
+  background: -webkit-linear-gradient(<%= "left, #{Dashboard.likes_color}, #{Dashboard.comments_color}" %>);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
+#regions_div {
+  bottom: 0;
+  height: calc(100% - #{$grid-height});
+}
+
+#comments_country_bar_chart {
+  width: calc(100% - 80px);
+  height: calc(100% - 80px);
+}
 
 @media (max-width: $screen-sm-max) {
 

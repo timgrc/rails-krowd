@@ -1,1 +1,4 @@
-<div class="blockquote"><%= KpiDash.new(@group, 'influencer').call[:message].plain.split('').to_a[0..340].join %>...</div>
+<div class="blockquote">
+  <i class="fa fa-quote-left fa-2x" style="padding-right: 10px;"></i><%= KpiDash.new(@group, 'influencer').call[:message].plain.split('').to_a[0..360].join %>...
+  <i class="fa fa-quote-right fa-2x" style="padding-left: 10px;"></i>
+</div>

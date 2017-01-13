@@ -12,7 +12,7 @@
       <div class="panel-body">
         <%= f.input :type, as: :hidden, input_html: { value: push.to_s } %>
         <%= f.input :body, as: :text, label: false, input_html: { cols: 40, rows: 8, class: "form-control textarea-push-message", value: @push_default_value[push] } %>
-        <div class="form-img-container text-center blue-dam-3">
+        <div class="form-img-container text-center dam-color-3">
         <img class="img-message" src="<%= path_to_image "congrats-blanc.png" %>">
         </div>
       </div>

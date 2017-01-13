@@ -24,7 +24,7 @@
 }
 
 .likes_comments_block i {
-  color: white;
+  // color: white;
   font-size: 20px;
 }
 
@@ -35,9 +35,34 @@
 }
 
 .organisation_likes {
-  background-color: $turquoise-1 !important;
+  background-color: $likes-color !important;
 }
 
 .organisation_comments {
-  background-color: $green-1 !important;
+  background-color: $comments-color !important;
+}
+
+.organization_column {
+  min-height: 600px;
+}
+
+.organization_title {
+  height: $organization-title-height;
+  font-size: 16px;
+  color: $organization-title-color;
+  background-color: $organization-title-bg-color;
+}
+
+.organisation-column-container {
+  margin-top: $organization-title-height;
+  height: calc(100% - #{$organization-title-height});
+}
+
+.organization-line-chart {
+  width: 90%;
+  height: calc(90% - #{$organization-title-height});
+}
+
+.organisation_likes_comments_container {
+  padding-top: $organization-title-height;
 }

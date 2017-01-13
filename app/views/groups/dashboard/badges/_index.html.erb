@@ -1,41 +1,33 @@
   <div class="row">
-    <div class="grid-element col-xs-12 col-sm-6 col-md-3 col-lg-3 blue-dam-1">
+    <div class="grid-element col-xs-12 col-sm-6 col-md-3 col-lg-3 dam-color-1">
       <div class="grid-title">LAST BUSINESS WHAT IF</div>
-      <div class="grid-content blockquote-message">
-        <div style="
-          width: 100%;
-          height: 140px;
+      <div class="grid-content" style="display: block;">
+        <div class="what-if-img" style="
           background: url('https://www.yammer.com/api/v1/uploaded_files/76577325/preview/skype.jpg');
-          background-position: center center;
           background-size: cover;
-          border-radius: 4px;
-          margin-bottom: 10px;
+          background-position: center center;
         "></div>
-        <div class="blockquote">
-          <%= KpiDash.new(@group, 'last_business_wi').call %>
+        <div class="blockquote" style="padding-top: 15px;">
+          <i class="fa fa-quote-left fa-2x" style="padding-right: 10px;"></i><%= KpiDash.new(@group, 'last_business_wi').call %><i class="fa fa-quote-right fa-2x" style="padding-left: 10px;"></i>
         </div>
       </div>
     </div>
 
-    <div class="grid-element col-xs-12 col-sm-6 col-md-3 col-lg-3 blue-dam-2">
+    <div class="grid-element col-xs-12 col-sm-6 col-md-3 col-lg-3 dam-color-2">
       <div class="grid-title">LAST TECHNOLOGICAL WHAT IF</div>
-      <div class="grid-content blockquote-message">
-        <div style="
-          width: 100%;
-          height: 140px;
+      <div class="grid-content" style="display: block;">
+        <div class="what-if-img" style="
           background: url('https://www.yammer.com/api/v1/uploaded_files/76576740/preview/8391929320_fa68b4324a_o.jpg');
-          background-position: center center;
           background-size: cover;
-          border-radius: 4px;
-          margin-bottom: 10px;
+          background-position: center center;
         "></div>
-        <div class="blockquote">
-          <%= KpiDash.new(@group, 'last_technology_wi').call %>
+        <div class="blockquote" style="padding-top: 15px;">
+          <i class="fa fa-quote-left fa-2x" style="padding-right: 10px;"></i><%= KpiDash.new(@group, 'last_technology_wi').call %><i class="fa fa-quote-right fa-2x" style="padding-left: 10px;"></i>
         </div>
       </div>
     </div>
 
-    <div class="grid-element col-xs-12 col-sm-6 col-md-3 col-lg-3 green-1 blockquote-message">
+    <div class="grid-element col-xs-12 col-sm-6 col-md-3 col-lg-3 comments-color">
       <%= render 'groups/dashboard/badges/influencer_message' %>
     </div>
     <div class="grid-element col-xs-12 col-sm-6 col-md-3 col-lg-3 white-card">
@@ -43,15 +35,16 @@
     </div>
   </div>
   <div class="row">
-    <div class="grid-element col-xs-12 col-sm-6 col-md-3 col-lg-3 blue-dam-2">
+    <div class="grid-element col-xs-12 col-sm-6 col-md-3 col-lg-3 dam-color-2">
       <%= render "groups/dashboard/badges/badge",
         title: "THE ACTIVIST" ,
         description: "The Serial Commentator: #{KpiDash.new(@group, 'activist').call[:comments]} messages",
         name: "#{KpiDash.new(@group, 'activist').call[:user].first_name} #{KpiDash.new(@group, 'activist').call[:user].last_name.upcase}",
         picture: "activist.svg",
-        mugshot_url: KpiDash.new(@group, 'activist').call[:user].mugshot_url %>
+        mugshot_url: KpiDash.new(@group, 'activist').call[:user].mugshot_url
+      %>
     </div>
-    <div class="grid-element col-xs-12 col-sm-6 col-md-3 col-lg-3 blue-dam-1">
+    <div class="grid-element col-xs-12 col-sm-6 col-md-3 col-lg-3 dam-color-1">
       <%= render "groups/dashboard/badges/badge",
         title: "THE NETWORKER",
         description: "The Serial Notifier: #{KpiDash.new(@group, 'networker').call[:notified_by]} notified users",
@@ -60,7 +53,7 @@
         mugshot_url: KpiDash.new(@group, 'networker').call[:user].mugshot_url
       %>
     </div>
-    <div class="grid-element col-xs-12 col-sm-6 col-md-3 col-lg-3 blue-dam-2">
+    <div class="grid-element col-xs-12 col-sm-6 col-md-3 col-lg-3 dam-color-2">
       <%= render "groups/dashboard/badges/badge",
         title: "THE INVENTOR",
         description: "The most posted ideas: #{KpiDash.new(@group, 'inventor').call[:ideas]} ideas posted",
@@ -69,7 +62,7 @@
         mugshot_url: KpiDash.new(@group, 'inventor').call[:user].mugshot_url
       %>
     </div>
-    <div class="grid-element col-xs-12 col-sm-6 col-md-3 col-lg-3 blue-dam-1 general-title">
+    <div class="grid-element col-xs-12 col-sm-6 col-md-3 col-lg-3 dam-color-1 general-title">
       <%= render "groups/dashboard/badges/badge",
         title: "THE MASTERMIND",
         description: "The best knowledges: #{KpiDash.new(@group, 'mastermind').call[:knowledges]} knowledges",

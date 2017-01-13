@@ -1,6 +1,6 @@
 <div class="grid-title">PARTICIPATION BY COUNTRY</div>
 <div class="grid-content">
-  <div id="regions_div" style='position: absolute; bottom: 0; width: 100%; height: calc(100% - 40px); margin: auto;'></div>
+  <div id="regions_div" class="position-absolute width-full margin-auto"></div>
 
   <div class="map-legend-box">
     <h4>Country ranking</h4>
@@ -38,7 +38,7 @@
 
         var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
 
-        chart.draw(google.visualization.arrayToDataTable(<%=
+        var data = google.visualization.arrayToDataTable(<%=
           countries   = KpiDash.new(@group, 'countries').call
           chart_title = ['Country', 'Active members']
 
@@ -50,12 +50,16 @@
 
           chart_countries_active_members.unshift chart_title
           raw chart_countries_active_members.to_json
-        %>),
-        {
-          backgroundColor: '#031421',
-          colorAxis: {colors: ["#abfaa9", "#00bc66"]},
-          datalessRegionColor: "#122c42", legend:'none'
-        });
+        %>);
+
+        var options = {
+          fontName: 'Open Sans',
+          backgroundColor: 'transparent',
+          colorAxis: {colors: <%= raw Dashboard.chart_density_colors.to_json %> },
+          datalessRegionColor: "<%= raw Dashboard.map_dataless_region_color %>", legend:'none'
+        }
+
+        chart.draw(data, options);
       }
     }
   </script>

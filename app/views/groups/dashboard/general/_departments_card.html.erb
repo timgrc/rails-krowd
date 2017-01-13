@@ -19,11 +19,7 @@
     </div>
   </div>
 
-  <div id="department_members_polar" style="
-    width:  100%;
-    height: 100%;
-    z-index: 10;
-  "></div>
+  <div id="department_members_polar" class="size-full z-10"></div>
 </div>
 
 <% content_for :after_js do %>
@@ -34,32 +30,30 @@
       function drawChart() {
         <%
           require 'matrix'
-          lighter_green              = Vector[171, 250, 169]
-          darker_green               = Vector[0, 188, 102]
-          green_vector               = darker_green - lighter_green
-          green_vector_norm          = green_vector.norm
+          begin_color_vector        = Dashboard.chart_density_vectors.first
+          end_color_vector          = Dashboard.chart_density_vectors.last
+          color_vector              = end_color_vector - begin_color_vector
+          color_vector_norm         = color_vector.norm
           departments                = KpiDash.new(@group, 'departments').call
           min_comments_departments   = KpiDash.new(@group, 'departments').call.map { |department| department[:active_members] }.min
           max_comments_departments   = KpiDash.new(@group, 'departments').call.map { |department| department[:active_members] }.max
           depth_comments_departments = max_comments_departments - min_comments_departments
 
-          background_greens = departments.map do |department|
-            vector_color  = lighter_green + ((department[:active_members] - min_comments_departments) / depth_comments_departments.to_f) * green_vector
+          background_colors = departments.map do |department|
+            vector_color  = begin_color_vector + ((department[:active_members] - min_comments_departments) / depth_comments_departments.to_f) * color_vector
             "##{vector_color[0].round.to_s(16).rjust(2, '0')}#{vector_color[1].round.to_s(16).rjust(2, '0')}#{vector_color[2].round.to_s(16).rjust(2, '0')}"
           end
         %>
 
         var data = google.visualization.arrayToDataTable(<%=
           departments_comments = KpiDash.new(@group, 'departments').call
-          chart_colors = background_greens
+          chart_colors = background_colors
           chart_title = ["Department", "Comments"]
 
           chart_departments_comments = departments_comments.each_with_index.map do |department, index|
             chart_department_array = []
             chart_department_array.push department[:name]
             chart_department_array.push department[:comments]
-            # chart_department_array.push chart_colors[index]
-            # chart_department_array.push "#{department_comments.last} COMMENTS"
           end
 
           chart_departments_comments.unshift chart_title
@@ -67,9 +61,11 @@
         %>);
 
         var options = {
+          fontName: 'Open Sans',
           backgroundColor: { fill:'transparent' },
           pieHole: 0.7,
           pieSliceText: 'value',
+          pieSliceTextStyle: { color: '#dedede' },
           pieSliceBorderColor: '#031421',
           legend: {
             position: 'labeled',

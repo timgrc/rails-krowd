@@ -1,32 +1,14 @@
-<div style="
-  margin:   auto;
-  width:    240px;
-  height:   240px;
-  position: relative;
-">
-  <svg style="position: absolute;">
+<div class="margin-auto position-relative retention-donut-size">
+  <svg class="position-absolute">
     <defs>
       <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%" style="stop-color:#36ad7e; stop-opacity:1" />
-        <stop offset="100%" style="stop-color:#5bc5f1; stop-opacity:1" />
+        <stop offset="0%" style="stop-color: <%= Dashboard.likes_color %>; stop-opacity:1" />
+        <stop offset="100%" style="stop-color: <%= Dashboard.comments_color %>; stop-opacity:1" />
       </linearGradient>
     </defs>
   </svg>
-  <div id="retention-rate" style="
-    position: absolute;
-    width:  100%;
-    height: 100%;
-    z-index: 10;
-  "></div>
-  <div style="
-    display:         flex;
-    flex-direction:  column;
-    align-items:     center;
-    justify-content: center;
-    width:  100%;
-    height: 100%;
-    z-index: 1;
-  ">
+  <div id="retention-rate" class="position-absolute size-full z-10"></div>
+  <div class="horizontal-vertical-center direction-column size-full z-1">
     <div class="donut-title text-center"><%= KpiDash.new(@group, 'members_ratio').call %> %</div>
     <div class="donut-subtitle text-center"><strong><%= KpiDash.new(@group, 'members_active').call %></strong> ACTIVE MEMBERS</div>
   </div>
@@ -50,6 +32,7 @@
         %>);
 
         var options = {
+          fontName: 'Open Sans',
           chartArea: {
             width: '90%',
             height: '90%'

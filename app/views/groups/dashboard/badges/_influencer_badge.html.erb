@@ -1,6 +1,9 @@
+  <div id="influencer-arrow-container" class="position-absolute height-full display-flex">
+    <div id="influencer-arrow"></div>
+  </div>
 <div class="badge-card best-reward">
   <div class="text-center">
-    <div class="badge-pictures  margin-top-two-bis">
+    <div class="badge-pictures margin-top-two-bis">
       <div class="grad-border">
         <%= image_tag KpiDash.new(@group, 'influencer').call[:user].mugshot_url, class: "avatar-badges-best" %>
       </div>
@@ -11,11 +14,11 @@
     <p><%= "#{KpiDash.new(@group, 'influencer').call[:user].first_name} #{KpiDash.new(@group, 'influencer').call[:user].last_name.upcase}" %></p>
   </div>
   <div class="like-row">
-    <div class="badge-like turquoise-1">
+    <div class="badge-like likes-color">
       <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
       <%= KpiDash.new(@group, 'influencer').call[:likes] %>
     </div>
-    <div class="badge-like green-1">
+    <div class="badge-like comments-color">
       <i class="fa fa-comment-o" aria-hidden="true"></i>
       <%= KpiDash.new(@group, 'influencer').call[:comments] %>
     </div>

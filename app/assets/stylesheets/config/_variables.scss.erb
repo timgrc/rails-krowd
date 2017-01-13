@@ -1,0 +1,105 @@
+/* -------------------------------------
+ * Fonts
+ * ------------------------------------- */
+// Google fonts
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700|Montserrat:400,700');
+
+$base-font: "Open Sans", sans-serif;
+$header-font: "Montserrat", sans-serif;
+
+
+// Local fonts (uncomment following lines)
+// @font-face {
+//   font-family: "Font Name";
+//   src: font-url('FontFile.eot');
+//   src: font-url('FontFile.eot?#iefix') format('embedded-opentype'),
+//        font-url('FontFile.woff') format('woff'),
+//        font-url('FontFile.ttf') format('truetype')
+// }
+// $my-font: "Font Name";
+
+// Font-size and line-height
+$base-size: 16px;
+$base-height: 1.4;
+
+/* -------------------------------------
+ * Colors
+ * ------------------------------------- */
+$brand-color: #b30000;
+
+$red-darker: #b30000;
+$red: #e20d1f;
+$red-lighter: #fe5f55;
+
+/* -------------------------------------
+ * Krowd colors
+ * ------------------------------------- */
+$blue-krowd: #394696;
+$orange-krowd: #ffac87;
+$purple-krowd: #8896ff;
+
+$dam-color-1: #0b1b28;
+$dam-color-2: #031421;
+$dam-color-3: #212f3b;
+$dam-color-4: <%= Dashboard.map_dataless_region_color %>;
+$dam-color-5: #1c2731;
+
+$business-innovation-color: <%= Dashboard.innovation_donuts_colors[:business_innovation] %>;
+$business-disruption-color: <%= Dashboard.innovation_donuts_colors[:business_disruption] %>;
+$innovation-legend-business-bg-color: <%=
+  business_diruption_color = Dashboard.innovation_donuts_colors[:business_disruption]
+  "rgba(#{business_diruption_color[1..2].to_i(16)}, #{business_diruption_color[3..4].to_i(16)}, #{business_diruption_color[5..6].to_i(16)}, 0.3)"
+%>;
+$technology-innovation-color: <%= Dashboard.innovation_donuts_colors[:technology_innovation] %>;
+$technology-disruption-color: <%= Dashboard.innovation_donuts_colors[:technology_disruption] %>;
+$innovation-legend-technology-bg-color: <%=
+  technology_diruption_color = Dashboard.innovation_donuts_colors[:technology_disruption]
+  "rgba(#{technology_diruption_color[1..2].to_i(16)}, #{technology_diruption_color[3..4].to_i(16)}, #{technology_diruption_color[5..6].to_i(16)}, 0.3)"
+%>;
+$business-color: <%= Dashboard.business_color %>;
+$technology-color: <%= Dashboard.technology_color %>;
+
+/* -------------------------------------
+ * Dashboard colors
+ * ------------------------------------- */
+$navbar-height: 40px;
+$navbar-bg-color: $blue-krowd;
+
+$section-title-height: 30px;
+$section-title-bg-color: rgba(136, 150, 255, 0.5);
+$section-title-color: $blue-krowd;
+
+$grid-height: 40px;
+$likes-color: <%= Dashboard.likes_color %>;
+$comments-color: <%= Dashboard.comments_color %>;
+
+$grid-title-color: $orange-krowd;
+$organization-title-height: 40px;
+$organization-title-bg-color: transparent;
+$organization-title-color: blue;
+
+$sidebar-active-color: $blue-krowd;
+
+/* -------------------------------------
+ * Others colors
+ * ------------------------------------- */
+$blue-darker: #031421;
+$blue: #2b59c3;
+$blue-lighter: #33a1fd;
+
+$orange: #FFAC87;
+$yellow: #fcf11e;
+
+$green-darker: #07751E;
+$green: #1fb71f;
+$green-lighter: #15ed47;
+
+$purple-darker: #611275;
+$purple: #9625a3;
+$purple-lighter: #ca61c3;
+
+$dark-black: #0f0e0e;
+$black: #1E1D23;
+$gray: #89949B;
+$gray-lighter: #9daa9d;
+$beige: #f4f7f6;

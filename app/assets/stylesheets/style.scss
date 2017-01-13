@@ -1,3 +1,22 @@
+.position-absolute { position: absolute; }
+.position-relative { position: relative; }
+.size-full { width: 100%; height: 100%; }
+.width-full { width: 100%; }
+.width-half { width: 50%; }
+.height-full { height: 100%; }
+.margin-auto { margin: auto; }
+.display-flex { display: flex; }
+.radius-3 { border-radius: 3px; }
+.z-10 { z-index: 10; }
+.z-1 { z-index: 1; }
+.horizontal-vertical-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.direction-column {
+  flex-direction: column;
+}
 
 .padded { padding: 50px 0px; }
 
@@ -13,15 +32,13 @@
 .green { background-color: $green-lighter; }
 .green-bis { background-color: $green; }
 .green-ter { background-color: $green-darker; }
-.green-1 { background-color: $green-1;}
+.comments-color { background-color: $comments-color;}
 
 .blue { background-color: $blue-lighter; }
-.blue-bis { background-color: $blue; }
-.blue-ter { background-color: $blue-darker;}
-.blue-dam-1 { background-color: $blue-dam-1;}
-.blue-dam-2 { background-color: $blue-dam-2;}
-.blue-dam-3 {background-color: $blue-dam-3; }
-.turquoise-1 { background-color: $turquoise-1; }
+.dam-color-1 { background-color: $dam-color-1;}
+.dam-color-2 { background-color: $dam-color-2;}
+.dam-color-3 {background-color: $dam-color-3; }
+.likes-color { background-color: $likes-color; }
 
 .red { background-color: $red-lighter; }
 .red-bis { background-color: $red; }
@@ -42,6 +59,17 @@
 .orange { background-color: $orange; }
 .yellow { background-color: $yellow; }
 
+.color-white { color: white; }
+
+.business-innovation-bg-color { background-color: $business-innovation-color; }
+.business-disruption-bg-color { background-color: $business-disruption-color; }
+.technology-innovation-bg-color { background-color: $technology-innovation-color; }
+.technology-disruption-bg-color { background-color: $technology-disruption-color; }
+
+.business-bg-color { background-color: $business-color; }
+.business-color { color: $business-color; }
+.technology-bg-color { background-color: $technology-color; }
+.technology-color { color: $technology-color; }
 
 .btn-color-red {
   background: -webkit-linear-gradient(top,$red 0,$red-darker 100%);
@@ -55,17 +83,12 @@
   box-shadow: 0 1px 0 $green-darker;
 }
 
-.numbers-bungee h1{
-  font-family: 'Bungee', cursive;
-  font-size: 100px;
-}
+h1, h2, h3, h4 { font-family: $header-font; }
 
-h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
-
-a { font-family: 'Lato', sans-serif; }
+a { font-family: $base-font; }
 
 p {
-  font-family: 'Lato', sans-serif;
+  font-family: $base-font;
   font-weight: 400;
 }
 

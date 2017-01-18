@@ -76,6 +76,7 @@
 
 #incentive_message .panel-footer .fa-refresh{
   font-size: 35px;
+  color: $blue-krowd;
 }
 
 .button-holder{
@@ -94,8 +95,16 @@
 }
 
 .button-post {
+  background-color: $blue-krowd;
+  color: white;
+  border: 0;
   font-size: 17px;
   cursor: pointer !important;
+}
+
+.button-post:hover, .button-post:focus {
+  background-color: $purple-krowd;
+  color: white;
 }
 
 .loading{

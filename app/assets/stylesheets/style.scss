@@ -14,9 +14,10 @@
   align-items: center;
   justify-content: center;
 }
-.direction-column {
-  flex-direction: column;
-}
+.direction-column { flex-direction: column; }
+.align-center { align-items: center; }
+.justify-end { justify-content: flex-end; }
+
 
 .padded { padding: 50px 0px; }
 

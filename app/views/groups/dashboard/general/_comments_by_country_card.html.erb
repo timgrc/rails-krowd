@@ -19,7 +19,11 @@
 
           chart_countries_comments = countries.each_with_index.map do |country, index|
             chart_country_array = []
-            chart_country_array.push country[:name]
+            if country[:name] == 'United Kingdom'
+              chart_country_array.push 'UK'
+            else
+              chart_country_array.push country[:name]
+            end
             chart_country_array.push country[:comments]
             chart_country_array.push chart_colors[index]
             chart_country_array.push "#{country[:comments]} COMMENTS"

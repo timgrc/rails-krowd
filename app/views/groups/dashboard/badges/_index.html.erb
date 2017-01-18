@@ -8,7 +8,7 @@
           background-position: center center;
         "></div>
         <div class="blockquote" style="padding-top: 15px;">
-          <i class="fa fa-quote-left fa-2x" style="padding-right: 10px;"></i><%= KpiDash.new(@group, 'last_business_wi').call %><i class="fa fa-quote-right fa-2x" style="padding-left: 10px;"></i>
+          <i class="fa fa-quote-left fa-2x" style="padding-right: 10px;"></i>Offering things for free? What if The Company offered free things with paying services on top as Skype does?<!-- <i class="fa fa-quote-right fa-2x" style="padding-left: 10px;"></i> -->
         </div>
       </div>
     </div>
@@ -22,7 +22,7 @@
           background-position: center center;
         "></div>
         <div class="blockquote" style="padding-top: 15px;">
-          <i class="fa fa-quote-left fa-2x" style="padding-right: 10px;"></i><%= KpiDash.new(@group, 'last_technology_wi').call %><i class="fa fa-quote-right fa-2x" style="padding-left: 10px;"></i>
+          <i class="fa fa-quote-left fa-2x" style="padding-right: 10px;"></i>Did you say capturing gas bubbles in things? What if The Company could capture gas bubbles in things for improved fluid transportation and to prevent damaging complex multiphase fluid dynamics ?<!-- <i class="fa fa-quote-right fa-2x" style="padding-left: 10px;"></i> -->
         </div>
       </div>
     </div>
@@ -56,7 +56,7 @@
     <div class="grid-element col-xs-12 col-sm-6 col-md-3 col-lg-3 dam-color-2 grid-borders">
       <%= render "groups/dashboard/badges/badge",
         title: "THE INVENTOR",
-        description: "The most posted ideas: #{KpiDash.new(@group, 'inventor').call[:ideas]} ideas posted",
+        description: "The most ideas posted: #{KpiDash.new(@group, 'inventor').call[:ideas]} ideas posted",
         name: "#{KpiDash.new(@group, 'inventor').call[:user].first_name} #{KpiDash.new(@group, 'inventor').call[:user].last_name.upcase}",
         picture: "inventor.png",
         mugshot_url: KpiDash.new(@group, 'inventor').call[:user].mugshot_url
@@ -65,7 +65,7 @@
     <div class="grid-element col-xs-12 col-sm-6 col-md-3 col-lg-3 dam-color-1 general-title grid-borders">
       <%= render "groups/dashboard/badges/badge",
         title: "THE MASTERMIND",
-        description: "The best knowledges: #{KpiDash.new(@group, 'mastermind').call[:knowledges]} knowledges",
+        description: "The most knowledge posted: #{KpiDash.new(@group, 'mastermind').call[:knowledges]} knowledge",
         name: "#{KpiDash.new(@group, 'mastermind').call[:user].first_name} #{KpiDash.new(@group, 'mastermind').call[:user].last_name.upcase}",
         picture: "mastermind.png",
         mugshot_url: KpiDash.new(@group, 'mastermind').call[:user].mugshot_url

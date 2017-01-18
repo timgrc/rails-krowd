@@ -1,36 +1,36 @@
-  <div class="innovation-legend-container">
-    <div class="display-flex margin-auto radius-3 color-white">
-      <div id="innovation-legend-business" class="radius-3 width-half">
-        <div class="text-center width-full">BUSINESS</div>
-        <div class="display-flex">
-          <div class="width-half text-center radius-3 business-innovation-bg-color innovation-legend-margin-padding">Innovation</div>
-          <div id="business-disruption-legend" class="width-half text-center radius-3 business-disruption-bg-color innovation-legend-margin-padding">Disruption</div>
-        </div>
+<div class="innovation-legend-container">
+  <div class="margin-auto radius-3 color-white">
+    <div id="innovation-legend-business" class="width-full radius-3 innovation-legend-margin-padding">
+      <div class="text-center width-full">BUSINESS</div>
+      <div class="display-flex">
+        <div class="width-half text-center radius-3 business-innovation-bg-color innovation-legend-margin-padding">Innovation</div>
+        <div id="business-disruption-legend" class="width-half text-center radius-3 business-disruption-bg-color innovation-legend-margin-padding">Disruption</div>
       </div>
-      <div id="innovation-legend-technology" class="width-half radius-3">
-        <div class="text-center width-full">TECHNOLOGY</div>
-        <div class="display-flex">
-          <div class="width-half text-center radius-3 technology-innovation-bg-color innovation-legend-margin-padding">Innovation</div>
-          <div class="width-half text-center radius-3 technology-disruption-bg-color innovation-legend-margin-padding">Disruption</div>
-        </div>
+    </div>
+    <div id="innovation-legend-technology" class="width-full radius-3 innovation-legend-margin-padding">
+      <div class="text-center width-full">TECHNOLOGY</div>
+      <div class="display-flex">
+        <div class="width-half text-center radius-3 technology-innovation-bg-color innovation-legend-margin-padding">Innovation</div>
+        <div class="width-half text-center radius-3 technology-disruption-bg-color innovation-legend-margin-padding">Disruption</div>
       </div>
     </div>
   </div>
-<div class="row">
+</div>
+<div class="row width-full">
   <div class="grid-element col-sm-12 col-md-4 text-center dam-color-1 grid-borders">
-    <div class="grid-title">IDEAS</div>
+    <div class="grid-title">IDEAS POSTED</div>
     <div class="grid-content">
       <%= render 'groups/dashboard/innovation/donut', donut_id: "first_donut", kpi: 'innovation_ideas', icon: 'lightbulb-o'%>
     </div>
   </div>
   <div class="grid-element col-sm-12 col-md-4 text-center dam-color-2 grid-borders">
-    <div class="grid-title">KNOWLEDGE: INSIDE THE INDUSTRY</div>
+    <div class="grid-title">KNOWLEDGE SHARED: INSIDE THE O&G INDUSTRY</div>
     <div class="grid-content">
       <%= render 'groups/dashboard/innovation/donut', donut_id: "second_donut", kpi: 'innovation_kint' , icon: 'book'%>
     </div>
   </div>
   <div class="grid-element col-sm-12 col-md-4 text-center dam-color-1 grid-borders">
-    <div class="grid-title">KNOWLEDGE: OUTSIDE THE INDUSTRY</div>
+    <div class="grid-title">KNOWLEDGE SHARED: OUTSIDE THE O&G INDUSTRY</div>
     <div class="grid-content">
       <%= render 'groups/dashboard/innovation/donut', donut_id: "third_donut", kpi: 'innovation_kext' , icon: 'graduation-cap' %>
     </div>

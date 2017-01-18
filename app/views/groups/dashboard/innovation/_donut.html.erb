@@ -1,4 +1,4 @@
-<div class="innovation-donut">
+<div class="innovation-donut width-full">
   <div id=<%= donut_id %> class="innovation-donut-container"></div>
   <div class="innovation_donut_content">
     <i class="fa fa-<%= icon %> fa-fw" aria-hidden="true"></i>
@@ -36,16 +36,16 @@
             height: '90%'
           },
           <%=
-            if kpi == 'innovation_kint'
+            # if kpi == 'innovation_kint'
               raw "legend: {
                   position: 'labeled',
                   textStyle: {
                     color: 'white'
                   }
                 },"
-            else
-              raw "legend: { position: 'none' },"
-            end
+            # else
+            #   raw "legend: { position: 'none' },"
+            # end
           %>
           pieSliceText: 'none',
           pieHole: 0.85,

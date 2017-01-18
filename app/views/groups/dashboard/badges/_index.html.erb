@@ -1,5 +1,5 @@
   <div class="row">
-    <div class="grid-element col-xs-12 col-sm-6 col-md-3 col-lg-3 dam-color-1">
+    <div class="grid-element col-xs-12 col-sm-6 col-md-3 col-lg-3 dam-color-1 grid-borders">
       <div class="grid-title">LAST BUSINESS WHAT IF</div>
       <div class="grid-content" style="display: block;">
         <div class="what-if-img" style="
@@ -13,7 +13,7 @@
       </div>
     </div>
 
-    <div class="grid-element col-xs-12 col-sm-6 col-md-3 col-lg-3 dam-color-2">
+    <div class="grid-element col-xs-12 col-sm-6 col-md-3 col-lg-3 dam-color-2 grid-borders">
       <div class="grid-title">LAST TECHNOLOGICAL WHAT IF</div>
       <div class="grid-content" style="display: block;">
         <div class="what-if-img" style="
@@ -27,15 +27,15 @@
       </div>
     </div>
 
-    <div class="grid-element col-xs-12 col-sm-6 col-md-3 col-lg-3 comments-color">
+    <div class="grid-element col-xs-12 col-sm-6 col-md-3 col-lg-3 comments-color grid-border-left grid-border-top grid-border-bottom">
       <%= render 'groups/dashboard/badges/influencer_message' %>
     </div>
-    <div class="grid-element col-xs-12 col-sm-6 col-md-3 col-lg-3 white-card">
+    <div class="grid-element col-xs-12 col-sm-6 col-md-3 col-lg-3 white-card grid-border-right grid-border-right grid-border-top grid-border-bottom">
       <%= render 'groups/dashboard/badges/influencer_badge' %>
     </div>
   </div>
   <div class="row">
-    <div class="grid-element col-xs-12 col-sm-6 col-md-3 col-lg-3 dam-color-2">
+    <div class="grid-element col-xs-12 col-sm-6 col-md-3 col-lg-3 dam-color-2 grid-borders">
       <%= render "groups/dashboard/badges/badge",
         title: "THE ACTIVIST" ,
         description: "The Serial Commentator: #{KpiDash.new(@group, 'activist').call[:comments]} messages",
@@ -44,7 +44,7 @@
         mugshot_url: KpiDash.new(@group, 'activist').call[:user].mugshot_url
       %>
     </div>
-    <div class="grid-element col-xs-12 col-sm-6 col-md-3 col-lg-3 dam-color-1">
+    <div class="grid-element col-xs-12 col-sm-6 col-md-3 col-lg-3 dam-color-1 grid-borders">
       <%= render "groups/dashboard/badges/badge",
         title: "THE NETWORKER",
         description: "The Serial Notifier: #{KpiDash.new(@group, 'networker').call[:notified_by]} notified users",
@@ -53,7 +53,7 @@
         mugshot_url: KpiDash.new(@group, 'networker').call[:user].mugshot_url
       %>
     </div>
-    <div class="grid-element col-xs-12 col-sm-6 col-md-3 col-lg-3 dam-color-2">
+    <div class="grid-element col-xs-12 col-sm-6 col-md-3 col-lg-3 dam-color-2 grid-borders">
       <%= render "groups/dashboard/badges/badge",
         title: "THE INVENTOR",
         description: "The most posted ideas: #{KpiDash.new(@group, 'inventor').call[:ideas]} ideas posted",
@@ -62,7 +62,7 @@
         mugshot_url: KpiDash.new(@group, 'inventor').call[:user].mugshot_url
       %>
     </div>
-    <div class="grid-element col-xs-12 col-sm-6 col-md-3 col-lg-3 dam-color-1 general-title">
+    <div class="grid-element col-xs-12 col-sm-6 col-md-3 col-lg-3 dam-color-1 general-title grid-borders">
       <%= render "groups/dashboard/badges/badge",
         title: "THE MASTERMIND",
         description: "The best knowledges: #{KpiDash.new(@group, 'mastermind').call[:knowledges]} knowledges",

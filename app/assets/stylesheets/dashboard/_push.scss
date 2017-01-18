@@ -102,9 +102,9 @@
   cursor: pointer !important;
 }
 
-.button-post:hover, .button-post:focus {
-  background-color: $purple-krowd;
-  color: white;
+.button-post:hover, .button-post:focus, .button-post:active {
+  background-color: $purple-krowd !important;
+  color: white !important;
 }
 
 .loading{

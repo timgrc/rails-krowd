@@ -61,3 +61,20 @@
   font-size: 150%;
   padding-right: 5%;
 }
+
+.grid-border-left {
+  border-left: 0.5px solid $light-blue-border-krowd;
+}
+
+.grid-border-right {
+  border-right: 0.5px solid $light-blue-border-krowd;
+}
+
+.grid-border-top {
+  border-top: 0.5px solid $light-blue-border-krowd;
+}
+
+.grid-border-bottom {
+  border-bottom: 0.5px solid $light-blue-border-krowd;
+}
+

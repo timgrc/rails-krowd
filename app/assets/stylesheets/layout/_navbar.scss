@@ -32,12 +32,12 @@
 
 /* Navbar logo */
 .navbar-wagon-brand img {
-  height: $navbar-height;
+  height: calc(#{$navbar-height} - 10px);
 }
 
 @media (max-width: $screen-md-max) {
   .navbar-wagon-brand img {
-    height: $navbar-height;
+    height: calc(#{$navbar-height} - 10px);
   }
 }
 

@@ -40,7 +40,7 @@
         title: "THE ACTIVIST" ,
         description: "The Serial Commentator: #{KpiDash.new(@group, 'activist').call[:comments]} messages",
         name: "#{KpiDash.new(@group, 'activist').call[:user].first_name} #{KpiDash.new(@group, 'activist').call[:user].last_name.upcase}",
-        picture: "activist.svg",
+        picture: "activist.png",
         mugshot_url: KpiDash.new(@group, 'activist').call[:user].mugshot_url
       %>
     </div>
@@ -49,7 +49,7 @@
         title: "THE NETWORKER",
         description: "The Serial Notifier: #{KpiDash.new(@group, 'networker').call[:notified_by]} notified users",
         name: "#{KpiDash.new(@group, 'networker').call[:user].first_name} #{KpiDash.new(@group, 'networker').call[:user].last_name.upcase}",
-        picture: "networker.svg",
+        picture: "networker.png",
         mugshot_url: KpiDash.new(@group, 'networker').call[:user].mugshot_url
       %>
     </div>
@@ -58,7 +58,7 @@
         title: "THE INVENTOR",
         description: "The most posted ideas: #{KpiDash.new(@group, 'inventor').call[:ideas]} ideas posted",
         name: "#{KpiDash.new(@group, 'inventor').call[:user].first_name} #{KpiDash.new(@group, 'inventor').call[:user].last_name.upcase}",
-        picture: "inventor.svg",
+        picture: "inventor.png",
         mugshot_url: KpiDash.new(@group, 'inventor').call[:user].mugshot_url
       %>
     </div>
@@ -67,7 +67,7 @@
         title: "THE MASTERMIND",
         description: "The best knowledges: #{KpiDash.new(@group, 'mastermind').call[:knowledges]} knowledges",
         name: "#{KpiDash.new(@group, 'mastermind').call[:user].first_name} #{KpiDash.new(@group, 'mastermind').call[:user].last_name.upcase}",
-        picture: "mastermind.svg",
+        picture: "mastermind.png",
         mugshot_url: KpiDash.new(@group, 'mastermind').call[:user].mugshot_url
       %>
     </div>

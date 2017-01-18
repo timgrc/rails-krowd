@@ -35,15 +35,26 @@
             width: '90%',
             height: '90%'
           },
+          <%=
+            if kpi == 'innovation_kint'
+              raw "legend: {
+                  position: 'labeled',
+                  textStyle: {
+                    color: 'white'
+                  }
+                },"
+            else
+              raw "legend: { position: 'none' },"
+            end
+          %>
+          pieSliceText: 'none',
           pieHole: 0.85,
           pieSliceBorderColor: 'transparent',
-          pieSliceText: 'none',
           animation: {
             duration: 5000,
             startup: true,
             easing: 'in',
           },
-          legend: { position: "none" },
           backgroundColor: { fill:'transparent' },
           slices: {
             0: { color: '<%= Dashboard.innovation_donuts_colors[:business_innovation] %>' },

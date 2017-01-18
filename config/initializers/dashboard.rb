@@ -45,7 +45,7 @@ class Dashboard < ActiveRecord::Base
   end
 
   def self.business_color
-    comments_color
+    '#6379ff'
   end
 
   def self.technology_color
@@ -57,7 +57,8 @@ class Dashboard < ActiveRecord::Base
       # business_innovation:   '#52aa5e',
       business_innovation:   '#ffac87',
       # business_disruption:   '#388659',
-      business_disruption:   '#9e6850',
+      # business_disruption:   '#9e6850',
+      business_disruption:   '#ffffff',
       # technology_innovation: '#5bc5f1',
       technology_innovation: '#647afc',
       # technology_disruption: '#2e86ab'

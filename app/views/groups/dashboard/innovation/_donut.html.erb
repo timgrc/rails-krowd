@@ -15,10 +15,10 @@
           innovation_chart_title = ['Type', 'Comments']
           innovation_division = KpiDash.new(@group, kpi).call
           innovation_legend = [
-            'Business - Innovation',
-            'Business - Disruption',
-            'Technology - Innovation',
-            'Technology - Disruption'
+            'Innovation - B',
+            'Disruption - B',
+            'Innovation - T',
+            'Disruption - T'
           ]
 
           innovation_data = innovation_division.each_with_index.map do |division, index|
@@ -40,7 +40,8 @@
               raw "legend: {
                   position: 'labeled',
                   textStyle: {
-                    color: 'white'
+                    color: 'white',
+                    fontSize: 8
                   }
                 },"
             # else

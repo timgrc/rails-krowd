@@ -4,20 +4,21 @@
 
 #general .row {
   height: 50%;
-  min-height: 350px;
+  min-height: 280px;
 }
 
 .general-title h3 {
-  font-size: 26px;
+  font-size: 24px;
+  font-weight: 700;
 }
 
 .general-title h4 {
-  font-family: 16px;
+  font-family: 14px;
 }
 
 .retention-donut-size {
-  width:    240px;
-  height:   240px;
+  width:    200px;
+  height:   200px;
 }
 
 .grid-donut {
@@ -52,3 +53,50 @@
   width: calc(100% - 80px);
   height: calc(100% - 80px);
 }
+
+.map-legend-box {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  color: white;
+  background-color: $dam-color-4;
+  opacity: 0.7;
+  width: 180px;
+  border-radius: 3px;
+  padding: 10px;
+  box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.4);
+  bottom: 15px;
+  left: 15px;
+  font-size: 10px;
+}
+
+.map-legend-box h4 {
+  margin: 0;
+  padding-bottom: 8px;
+  font-size: 12px;
+}
+
+.map-legend-box em {
+  font-size: 10px;
+}
+
+.map-legend-key {
+  display: flex;
+  align-items: center;
+  height: 10px;
+}
+
+.map-legend-min-max {
+  align-items: center;
+  justify-content: space-around;
+  padding: 5px;
+}
+
+.map-legend-key-color {
+  flex: 1 0 auto;
+  height: 100%;
+  background: linear-gradient(90deg, <%= "#{Dashboard.chart_density_colors.first}, #{Dashboard.chart_density_colors.last}" %>);
+  border-radius: 1px;
+}
+

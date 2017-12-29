@@ -2,6 +2,8 @@ require 'yammer'
 
 class GroupsController < ApplicationController
   before_action :find_group, only: [:show] # :destoy ?
+  before_action :set_demo, only: [:show, :demo] # :destoy ?
+  skip_before_action :authenticate_user!, only: [:demo]
 
   def index
     @groups     = policy_scope(Group)
@@ -19,6 +21,19 @@ class GroupsController < ApplicationController
     }
 
     @push_message = PushMessage.new
+  end
+
+  def demo
+    @demo = true
+    @group = Group.find_by_full_name('Innovation Challenge - The Company')
+    authorize @group
+
+    @push_default_value = {
+      awards: awards,
+      incentive: incentive
+    }
+
+    #@push_message = PushMessage.new
   end
 
   def create
@@ -77,5 +92,9 @@ class GroupsController < ApplicationController
       @incentive_template_id = incentive_template_sample.id
       incentive_template_sample.body
     end
+  end
+
+  def set_demo
+    @demo = false
   end
 end

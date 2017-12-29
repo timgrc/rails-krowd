@@ -1,34 +1,69 @@
-<%= simple_form_for [@group, @push_message] do |f| %>
-  <div class="panel-default">
-    <div class="panel-heading">
-      <div>
-        <%= image_tag current_user.mugshot_url, class: "avatar-square" %>
-      </div>
-      <div class="panel-title">
-        <div><%= @group.full_name %></div>
-        <div>Just now</div>
-      </div>
-    </div>
-      <div class="panel-body">
-        <%= f.input :type, as: :hidden, input_html: { value: push.to_s } %>
-        <%= f.input :body, as: :text, label: false, input_html: { cols: 40, rows: 8, class: "form-control textarea-push-message", value: @push_default_value[push] } %>
-        <div class="form-img-container text-center dam-color-3">
-        <img class="img-message" src="<%= path_to_image "congrats-blanc.png" %>">
+<% if @demo %>
+  <%= simple_form_for [@group] do |f| %>
+    <div class="panel-default">
+      <div class="panel-heading">
+        <div>
+          <%= image_tag 'user_pictures/Timothée GARCIA.jpeg', class: "avatar-square" %>
+        </div>
+        <div class="panel-title">
+          <div><%= @group.full_name %></div>
+          <div>Just now</div>
         </div>
       </div>
-    <div class="panel-footer">
-      <div class="form-group">
-        <div class="button-holder">
-          <%= link_to '<i class="fa fa-refresh" aria-hidden="true"></i>'.html_safe, group_change_incentive_template_path(@group, @incentive_template_id), remote: true %>
-          <div class="submit-button text-center">
-            <div class="fa fa-check post-done hidden"></div>
-            <div class="loading hidden"></div>
-            <%= f.button :button, "Create Push post", class: "btn button-post" %>
+        <div class="panel-body">
+          <%= f.input :type, as: :hidden, input_html: { value: push.to_s } %>
+          <%= f.input :body, as: :text, label: false, input_html: { cols: 40, rows: 8, class: "form-control textarea-push-message", value: @push_default_value[push] } %>
+          <div class="form-img-container text-center dam-color-3">
+          <img class="img-message" src="<%= path_to_image "congrats-blanc.png" %>">
+          </div>
+        </div>
+      <div class="panel-footer">
+        <div class="form-group">
+          <div class="button-holder">
+            <%= link_to '<i class="fa fa-refresh" aria-hidden="true"></i>'.html_safe, group_change_incentive_template_path(@group, @incentive_template_id), remote: true %>
+            <div class="submit-button text-center">
+              <div class="fa fa-check post-done hidden"></div>
+              <div class="loading hidden"></div>
+              <div class="btn button-post">Create Push post</div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  <% end %>
+<% else %>
+  <%= simple_form_for [@group, @push_message] do |f| %>
+    <div class="panel-default">
+      <div class="panel-heading">
+        <div>
+          <%= image_tag current_user.mugshot_url, class: "avatar-square" %>
+        </div>
+        <div class="panel-title">
+          <div><%= @group.full_name %></div>
+          <div>Just now</div>
+        </div>
+      </div>
+        <div class="panel-body">
+          <%= f.input :type, as: :hidden, input_html: { value: push.to_s } %>
+          <%= f.input :body, as: :text, label: false, input_html: { cols: 40, rows: 8, class: "form-control textarea-push-message", value: @push_default_value[push] } %>
+          <div class="form-img-container text-center dam-color-3">
+          <img class="img-message" src="<%= path_to_image "congrats-blanc.png" %>">
+          </div>
+        </div>
+      <div class="panel-footer">
+        <div class="form-group">
+          <div class="button-holder">
+            <%= link_to '<i class="fa fa-refresh" aria-hidden="true"></i>'.html_safe, group_change_incentive_template_path(@group, @incentive_template_id), remote: true %>
+            <div class="submit-button text-center">
+              <div class="fa fa-check post-done hidden"></div>
+              <div class="loading hidden"></div>
+              <%= f.button :button, "Create Push post", class: "btn button-post" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
 <% end %>
 
 <% content_for :after_js do %>

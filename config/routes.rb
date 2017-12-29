@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   end
 
   root to: 'pages#home'
-  get 'test', to: 'pages#test'
 
   post "yammer", to: "users/omniauth_callbacks#yammer"
   get "yammer/callback", to: "users/omniauth_callbacks#callback"
@@ -22,6 +21,7 @@ Rails.application.routes.draw do
 
   resources :memberships, only: [:destroy]
 
+  get 'demo', to: 'groups#demo'
 
   # Sidekiq Web UI, only for admins.
   require "sidekiq/web"

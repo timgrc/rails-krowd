@@ -13,6 +13,10 @@ class GroupPolicy < ApplicationPolicy
     record.member? user
   end
 
+  def demo?
+    true
+  end
+
   def create?
     true
   end

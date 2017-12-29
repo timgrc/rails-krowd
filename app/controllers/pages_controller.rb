@@ -6,7 +6,4 @@ class PagesController < ApplicationController
 
   def styleguide
   end
-
-  def test
-  end
 end

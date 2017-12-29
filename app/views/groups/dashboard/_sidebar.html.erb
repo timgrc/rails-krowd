@@ -1,7 +1,7 @@
 <div id="sidebar-wrapper">
   <ul class="sidebar-nav">
     <% if @demo %>
-      <li class="sidebar-brand"><%= image_tag path_to_image('challenge_picture.jpeg'), class: 'sidebar-group-picture' %></li>
+      <li class="sidebar-brand"><%= image_tag 'challenge_picture.png', class: 'sidebar-group-picture' %></li>
     <% else %>
       <li class="sidebar-brand"><%= image_tag @group.mugshot_url, class: 'sidebar-group-picture' %></li>
     <% end %>

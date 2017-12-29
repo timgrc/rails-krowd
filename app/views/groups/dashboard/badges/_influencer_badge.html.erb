@@ -6,7 +6,7 @@
     <div class="badge-pictures margin-top-two-bis">
       <div class="grad-border">
         <% if @demo %>
-          <%= image_tag "#{KpiDash.new(@group, 'influencer').call[:user].first_name} #{KpiDash.new(@group, 'influencer').call[:user].last_name.upcase}.jpeg", class: "avatar-badges-best" %>
+          <%= image_tag "#{KpiDash.new(@group, 'influencer').call[:user].first_name} #{KpiDash.new(@group, 'influencer').call[:user].last_name.upcase}.png", class: "avatar-badges-best" %>
         <% else %>
           <%= image_tag KpiDash.new(@group, 'influencer').call[:user].mugshot_url, class: "avatar-badges-best" %>
         <% end %>

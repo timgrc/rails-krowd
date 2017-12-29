@@ -2,7 +2,7 @@
   <div class="text-center">
     <div class="badge-pictures">
       <% if @demo %>
-        <img class="avatar-badges" src="<%= path_to_image name + '.jpeg' %>">
+        <img class="avatar-badges" src='<%= path_to_image("#{name}.jpeg") %>'>
       <% else %>
         <%= image_tag mugshot_url, class: "avatar-badges" %>
       <% end %>

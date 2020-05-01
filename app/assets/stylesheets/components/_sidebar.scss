@@ -23,11 +23,6 @@ $sidebar-height: 100px;
   height: $sidebar-height;
 }
 
-.sidebar-group-picture {
-  width: 95px;
-  height: 95px;
-}
-
 #page-content-wrapper {
   margin-left: $sidebar-height;
 }
@@ -36,6 +31,7 @@ $sidebar-height: 100px;
 .sidebar-group-picture {
   width: 75px;
   height: 75px;
+  background-color: white;
   border-radius: 4px;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(0, 0, 0, 0.1);
